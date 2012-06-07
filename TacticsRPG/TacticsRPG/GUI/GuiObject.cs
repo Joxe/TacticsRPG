@@ -15,12 +15,16 @@ namespace TacticsRPG {
 			m_layer = 0.001f;
 		}
 
+		public override void update() {
+			m_position = m_parent.p_position;
+		}
+
 		public virtual Vector2 p_screenPosition {
 			get {
 				return m_parentOffset;
 			}
 			set {
-				m_parentOffset = value;
+				m_parentOffset = value - Game.getInstance().getResolution() / 2;
 			}
 		}
 

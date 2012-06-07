@@ -72,6 +72,7 @@ namespace TacticsRPG {
 				return;
 			}
 			updateBounds();
+			m_text.update();
 			updateMouse();
 			updateKeyboard();
 		}

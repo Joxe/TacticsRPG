@@ -36,8 +36,8 @@ namespace TacticsRPG {
 
 			for (int i = 0; i < m_width; i++) {
 				for (int j = 0; j < m_height; j++) {
-					m_tileMap[i, j] = new Tile(new Vector2(i, j), MathManager.randomInt(t_heightIndex - 3, t_heightIndex + 3));
-					//m_tileMap[i, j] = new Tile(new Vector2(i, j), 1/*MathManager.randomInt(t_heightIndex - 3, t_heightIndex + 3)*/);
+					//m_tileMap[i, j] = new Tile(new Vector2(i, j), MathManager.randomInt(t_heightIndex - 3, t_heightIndex + 3));
+					m_tileMap[i, j] = new Tile(new Vector2(i, j), 1/*MathManager.randomInt(t_heightIndex - 3, t_heightIndex + 3)*/);
 					m_tileMap[i, j].p_tileMap = this;
 					m_tileMap[i, j].load();
 					if (MathManager.isEven(i)) {
@@ -173,6 +173,20 @@ namespace TacticsRPG {
 					m_tileMap[i, j].restoreState();
 				}
 			}
+		}
+
+		public LinkedList<Tile> toLinkedList(Tile.TileState a_state) {
+			LinkedList<Tile> t_list = new LinkedList<Tile>();
+
+			for (int i = 0; i < m_width; i++) {
+				for (int j = 0; j < m_height; j++) {
+					if (m_tileMap[i, j].p_tileState == a_state) {
+						t_list.AddLast(m_tileMap[i, j]);
+					}
+				}
+			}
+
+			return t_list;
 		}
 	}
 }

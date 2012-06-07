@@ -4,7 +4,6 @@ Content\Images\Sprites\Tiles\Test\toggle.xnb
 Content\Images\Sprites\Tiles\Test\normal.xnb
 Content\Images\Sprites\Tiles\Test\mellangrej.xnb
 Content\Images\Sprites\Indicators\target.xnb
-Content\Fonts\BitstreamVS.xnb
 Content\Images\Sprites\Classes\Warrior_Female\Idle\BottomLeft.xnb
 Content\Images\Sprites\Classes\Warrior_Female\Idle\BottomRight.xnb
 Content\Images\Sprites\Classes\Warrior_Female\Idle\Down.xnb
@@ -77,4 +76,5 @@ Content\Images\Sprites\Classes\Mage_Male\Walking\Down.xnb
 Content\Images\Sprites\Classes\Mage_Male\Walking\TopLeft.xnb
 Content\Images\Sprites\Classes\Mage_Male\Walking\TopRight.xnb
 Content\Images\Sprites\Classes\Mage_Male\Walking\Up.xnb
+Content\Fonts\BitstreamVS.xnb
 Content\Settings\settings.ini

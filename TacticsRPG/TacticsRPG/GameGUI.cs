@@ -11,7 +11,7 @@ namespace TacticsRPG {
 
 		private GuiState m_state = GuiState.Normal;
 		public enum GuiState {
-			Normal,	SelectTarget
+			Normal,		SelectTarget,	Move
 		}
 
 		public GameGUI() {
@@ -20,6 +20,8 @@ namespace TacticsRPG {
 
 		public override void load() {
 			m_gameState = (GameState)Game.getInstance().getCurrentState();
+			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 220), "Move", "BitstreamVS"));
+			((TextButton)m_menuList.Last()).m_clickEvent += new TextButton.clickDelegate(moveClick);
 			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 200), "Attack", "BitstreamVS"));
 			((TextButton)m_menuList.Last()).m_clickEvent += new TextButton.clickDelegate(attackClick);
 			foreach (GuiObject t_go in m_menuList) {
@@ -29,11 +31,15 @@ namespace TacticsRPG {
 
 		public override void update() {
 			updateMouse();
-			base.update();
+			if (m_gameState.getSelectedChampion() != null) {
+				base.update();
+			}
 		}
 
 		public override void draw() {
-			base.draw();
+			if (m_gameState.getSelectedChampion() != null) {
+				base.draw();
+			}
 		}
 
 		private void updateMouse() {
@@ -48,11 +54,29 @@ namespace TacticsRPG {
 						}
 					}
 				}
+				if (m_state == GuiState.Move) {
+					foreach (Tile t_tile in m_gameState.getTileMap().toLinkedList(Tile.TileState.Toggle)) {
+						if (t_tile != null && t_tile.getHitBox().contains(MouseHandler.worldMouse())) {
+							m_gameState.getSelectedChampion().moveTo(t_tile);
+							m_gameState.getTileMap().restoreStates();
+						}
+					}
+				}
 			}
 			if (MouseHandler.rmbPressed()) {
-				if (m_state == GuiState.SelectTarget) {
+				if (m_state == GuiState.SelectTarget || m_state == GuiState.Move) {
 					m_gameState.getTileMap().restoreStates();
 					m_state = GuiState.Normal;
+				}
+			}
+		}
+
+		private void moveClick(Button a_button) {
+			Champion t_selectedChampion = m_gameState.getSelectedChampion();
+			foreach (Tile t_tile in m_gameState.getTileMap().getSurroundingTiles(t_selectedChampion.getTile(), 0, t_selectedChampion.getStat("move"), new LinkedList<Tile>())) {
+				if (t_tile != m_gameState.getSelectedChampion().getTile()) {
+					t_tile.p_tileState = Tile.TileState.Toggle;
+					m_state = GuiState.Move;
 				}
 			}
 		}

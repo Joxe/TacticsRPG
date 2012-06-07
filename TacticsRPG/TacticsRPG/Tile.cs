@@ -79,9 +79,6 @@ namespace TacticsRPG {
 							break;
 						case TileState.Pressed:
 							if (MouseHandler.lmbUp()) {
-								if (((GameState)Game.getInstance().getCurrentState()).getSelectedChampion() != null && m_currentChampion == null) {
-									((GameState)Game.getInstance().getCurrentState()).getSelectedChampion().moveTo(this);
-								}
 								m_tileState = TileState.Hover;
 							}
 							break;
@@ -167,7 +164,7 @@ namespace TacticsRPG {
 		}
 
 		public override string ToString() {
-			return base.ToString() + X + ", " + Y;
+			return base.ToString() + X + ", " + Y + "<" + m_tileState + ">";
 		}
 
 		public void restoreState() {

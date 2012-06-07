@@ -65,7 +65,7 @@ namespace TacticsRPG {
 		public static void setListPosition(LinkedList<GuiObject> a_list, Vector2 a_position, Vector2 a_offset) {
 			int i = 0;
 			foreach (GuiObject t_go in a_list) {
-				t_go.p_parentOffset = a_position + a_offset * i++;
+				t_go.p_parentOffset = a_position + a_offset * i++ - Game.getInstance().getResolution() / 2;
 			}
 		}
 
