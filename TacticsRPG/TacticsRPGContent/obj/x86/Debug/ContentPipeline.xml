@@ -1,0 +1,757 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Images\Sprites\Tiles\Test\hover.png</Source>
+      <Name>Images\Sprites\Tiles\Test\hover</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Tiles\Test\hover.xnb</Output>
+      <Time>2012-06-02T20:49:58+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Tiles\Test\pressed.png</Source>
+      <Name>Images\Sprites\Tiles\Test\pressed</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Tiles\Test\pressed.xnb</Output>
+      <Time>2012-06-02T20:48:26+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Tiles\Test\toggle.png</Source>
+      <Name>Images\Sprites\Tiles\Test\toggle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Tiles\Test\toggle.xnb</Output>
+      <Time>2012-06-02T20:49:30+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Tiles\Test\normal.png</Source>
+      <Name>Images\Sprites\Tiles\Test\normal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Tiles\Test\normal.xnb</Output>
+      <Time>2012-06-02T20:49:12+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Tiles\Test\mellangrej.png</Source>
+      <Name>Images\Sprites\Tiles\Test\mellangrej</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Tiles\Test\mellangrej.xnb</Output>
+      <Time>2012-06-02T20:50:38+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Indicators\target.png</Source>
+      <Name>Images\Sprites\Indicators\target</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Indicators\target.xnb</Output>
+      <Time>2012-06-04T18:51:42+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\BitstreamVS.spritefont</Source>
+      <Name>Fonts\BitstreamVS</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Fonts\BitstreamVS.xnb</Output>
+      <Time>2012-06-04T21:57:52+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Idle\BottomLeft.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Idle\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Idle\BottomLeft.xnb</Output>
+      <Time>2012-06-04T00:20:48+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Idle\BottomRight.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Idle\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Idle\BottomRight.xnb</Output>
+      <Time>2012-06-04T00:21:06+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Idle\Down.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Idle\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Idle\Down.xnb</Output>
+      <Time>2012-06-04T00:20:56+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Idle\TopLeft.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Idle\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Idle\TopLeft.xnb</Output>
+      <Time>2012-06-04T00:20:40+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Idle\TopRight.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Idle\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Idle\TopRight.xnb</Output>
+      <Time>2012-06-04T00:20:20+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Idle\Up.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Idle\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Idle\Up.xnb</Output>
+      <Time>2012-06-04T00:20:30+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Walking\BottomLeft.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Walking\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Walking\BottomLeft.xnb</Output>
+      <Time>2012-06-04T00:20:48+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Walking\BottomRight.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Walking\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Walking\BottomRight.xnb</Output>
+      <Time>2012-06-04T00:21:06+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Walking\Down.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Walking\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Walking\Down.xnb</Output>
+      <Time>2012-06-04T00:20:56+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Walking\TopLeft.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Walking\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Walking\TopLeft.xnb</Output>
+      <Time>2012-06-04T00:20:40+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Walking\TopRight.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Walking\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Walking\TopRight.xnb</Output>
+      <Time>2012-06-04T00:20:20+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Female\Walking\Up.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Female\Walking\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Female\Walking\Up.xnb</Output>
+      <Time>2012-06-04T00:20:30+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Idle\BottomLeft.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Idle\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Idle\BottomLeft.xnb</Output>
+      <Time>2012-06-04T00:20:48+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Idle\BottomRight.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Idle\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Idle\BottomRight.xnb</Output>
+      <Time>2012-06-04T00:21:06+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Idle\Down.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Idle\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Idle\Down.xnb</Output>
+      <Time>2012-06-04T00:20:56+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Idle\TopLeft.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Idle\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Idle\TopLeft.xnb</Output>
+      <Time>2012-06-04T00:20:40+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Idle\TopRight.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Idle\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Idle\TopRight.xnb</Output>
+      <Time>2012-06-04T00:20:20+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Idle\Up.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Idle\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Idle\Up.xnb</Output>
+      <Time>2012-06-04T00:20:30+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Walking\BottomLeft.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Walking\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Walking\BottomLeft.xnb</Output>
+      <Time>2012-06-04T00:20:48+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Walking\BottomRight.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Walking\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Walking\BottomRight.xnb</Output>
+      <Time>2012-06-04T00:21:06+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Walking\Down.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Walking\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Walking\Down.xnb</Output>
+      <Time>2012-06-04T00:20:56+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Walking\TopLeft.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Walking\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Walking\TopLeft.xnb</Output>
+      <Time>2012-06-04T00:20:40+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Walking\TopRight.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Walking\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Walking\TopRight.xnb</Output>
+      <Time>2012-06-04T00:20:20+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Warrior_Male\Walking\Up.png</Source>
+      <Name>Images\Sprites\Classes\Warrior_Male\Walking\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Warrior_Male\Walking\Up.xnb</Output>
+      <Time>2012-06-04T00:20:30+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Idle\BottomLeft.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Idle\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Idle\BottomLeft.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Idle\BottomRight.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Idle\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Idle\BottomRight.xnb</Output>
+      <Time>2012-06-05T21:10:12.0953017+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Idle\Down.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Idle\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Idle\Down.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Idle\TopLeft.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Idle\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Idle\TopLeft.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Idle\TopRight.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Idle\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Idle\TopRight.xnb</Output>
+      <Time>2012-06-05T21:10:12.0953017+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Idle\Up.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Idle\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Idle\Up.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Walking\BottomLeft.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Walking\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Walking\BottomLeft.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Walking\BottomRight.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Walking\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Walking\BottomRight.xnb</Output>
+      <Time>2012-06-05T21:10:12.0953017+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Walking\Down.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Walking\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Walking\Down.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Walking\TopLeft.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Walking\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Walking\TopLeft.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Walking\TopRight.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Walking\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Walking\TopRight.xnb</Output>
+      <Time>2012-06-05T21:10:12.0953017+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Female\Walking\Up.png</Source>
+      <Name>Images\Sprites\Races\Human_Female\Walking\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Female\Walking\Up.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Idle\BottomLeft.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Idle\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Idle\BottomLeft.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Idle\BottomRight.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Idle\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Idle\BottomRight.xnb</Output>
+      <Time>2012-06-05T21:10:12.0953017+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Idle\Down.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Idle\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Idle\Down.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Idle\TopLeft.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Idle\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Idle\TopLeft.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Idle\TopRight.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Idle\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Idle\TopRight.xnb</Output>
+      <Time>2012-06-05T21:10:12.0953017+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Idle\Up.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Idle\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Idle\Up.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Walking\BottomLeft.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Walking\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Walking\BottomLeft.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Walking\BottomRight.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Walking\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Walking\BottomRight.xnb</Output>
+      <Time>2012-06-05T21:10:12.0953017+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Walking\Down.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Walking\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Walking\Down.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Walking\TopLeft.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Walking\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Walking\TopLeft.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Walking\TopRight.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Walking\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Walking\TopRight.xnb</Output>
+      <Time>2012-06-05T21:10:12.0953017+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Races\Human_Male\Walking\Up.png</Source>
+      <Name>Images\Sprites\Races\Human_Male\Walking\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Races\Human_Male\Walking\Up.xnb</Output>
+      <Time>2012-06-05T15:15:23.9706906+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Idle\BottomLeft.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Idle\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Idle\BottomLeft.xnb</Output>
+      <Time>2012-06-05T23:26:26.2498366+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Idle\BottomRight.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Idle\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Idle\BottomRight.xnb</Output>
+      <Time>2012-06-05T23:27:18.5728293+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Idle\Down.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Idle\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Idle\Down.xnb</Output>
+      <Time>2012-06-05T23:27:28.5614006+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Idle\TopLeft.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Idle\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Idle\TopLeft.xnb</Output>
+      <Time>2012-06-05T23:27:37.6519206+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Idle\TopRight.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Idle\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Idle\TopRight.xnb</Output>
+      <Time>2012-06-05T23:27:47.4424805+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Idle\Up.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Idle\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Idle\Up.xnb</Output>
+      <Time>2012-06-05T23:27:57.2110393+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Walking\BottomLeft.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Walking\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Walking\BottomLeft.xnb</Output>
+      <Time>2012-06-05T23:26:26.2498366+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Walking\BottomRight.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Walking\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Walking\BottomRight.xnb</Output>
+      <Time>2012-06-05T23:27:18.5728293+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Walking\Down.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Walking\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Walking\Down.xnb</Output>
+      <Time>2012-06-05T23:27:28.5614006+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Walking\TopLeft.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Walking\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Walking\TopLeft.xnb</Output>
+      <Time>2012-06-05T23:27:37.6519206+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Walking\TopRight.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Walking\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Walking\TopRight.xnb</Output>
+      <Time>2012-06-05T23:27:47.4424805+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Female\Walking\Up.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Female\Walking\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Female\Walking\Up.xnb</Output>
+      <Time>2012-06-05T23:27:57.2110393+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Idle\BottomLeft.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Idle\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Idle\BottomLeft.xnb</Output>
+      <Time>2012-06-05T23:26:26.2498366+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Idle\BottomRight.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Idle\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Idle\BottomRight.xnb</Output>
+      <Time>2012-06-05T23:27:18.5728293+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Idle\Down.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Idle\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Idle\Down.xnb</Output>
+      <Time>2012-06-05T23:27:28.5614006+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Idle\TopLeft.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Idle\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Idle\TopLeft.xnb</Output>
+      <Time>2012-06-05T23:27:37.6519206+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Idle\TopRight.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Idle\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Idle\TopRight.xnb</Output>
+      <Time>2012-06-05T23:27:47.4424805+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Idle\Up.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Idle\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Idle\Up.xnb</Output>
+      <Time>2012-06-05T23:27:57.2110393+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Walking\BottomLeft.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Walking\BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Walking\BottomLeft.xnb</Output>
+      <Time>2012-06-05T23:26:26.2498366+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Walking\BottomRight.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Walking\BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Walking\BottomRight.xnb</Output>
+      <Time>2012-06-05T23:27:18.5728293+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Walking\Down.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Walking\Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Walking\Down.xnb</Output>
+      <Time>2012-06-05T23:27:28.5614006+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Walking\TopLeft.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Walking\TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Walking\TopLeft.xnb</Output>
+      <Time>2012-06-05T23:27:37.6519206+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Walking\TopRight.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Walking\TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Walking\TopRight.xnb</Output>
+      <Time>2012-06-05T23:27:47.4424805+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Sprites\Classes\Mage_Male\Walking\Up.png</Source>
+      <Name>Images\Sprites\Classes\Mage_Male\Walking\Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Images\Sprites\Classes\Mage_Male\Walking\Up.xnb</Output>
+      <Time>2012-06-05T23:27:57.2110393+02:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPGContent\</RootDirectory>
+      <LoggerRootDirectory>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\</LoggerRootDirectory>
+      <IntermediateDirectory>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPGContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2011-11-16T22:54:05.4084011+01:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
