@@ -37,7 +37,7 @@ namespace TacticsRPG {
 			for (int i = 0; i < m_width; i++) {
 				for (int j = 0; j < m_height; j++) {
 					//m_tileMap[i, j] = new Tile(new Vector2(i, j), MathManager.randomInt(t_heightIndex - 3, t_heightIndex + 3));
-					m_tileMap[i, j] = new Tile(new Vector2(i, j), 1/*MathManager.randomInt(t_heightIndex - 3, t_heightIndex + 3)*/);
+					m_tileMap[i, j] = new Tile(new Vector2(20, 20), 1);
 					m_tileMap[i, j].p_tileMap = this;
 					m_tileMap[i, j].load();
 					if (MathManager.isEven(i)) {
@@ -49,27 +49,22 @@ namespace TacticsRPG {
 		}
 
 		public Tile getTile(int x, int y) {
-			try {
+			//try {
 				return m_tileMap[x, y];
-			} catch (IndexOutOfRangeException) {
-				return null;
-			}
+			//} catch (IndexOutOfRangeException) {
+				//return null;
+			//}
 		}
 
 		public Tile getTile(Tile a_tile, Vector2 a_mapOffset) {
-			try {
-				return m_tileMap[a_tile.X + (int)a_mapOffset.X, a_tile.Y + (int)a_mapOffset.Y];
-			} catch (IndexOutOfRangeException) {
-				return null;
-			}
+			return getTile(a_tile.getMapPosition() + a_mapOffset);
 		}
 
 		public Tile getTile(Vector2 a_position) {
-			try {
-				return m_tileMap[(int)a_position.X, (int)a_position.Y];
-			} catch (IndexOutOfRangeException) {
-				return null;
+			if (a_position.X < 0 || a_position.X > m_width || a_position.Y < 0 || a_position.Y > m_height) {
+				return null;	
 			}
+			return m_tileMap[(int)a_position.X, (int)a_position.Y];
 		}
 
 		public void update() {
@@ -96,66 +91,48 @@ namespace TacticsRPG {
 			return m_spriteDict;
 		}
 
-		public LinkedList<Tile> getSurroundingTiles(Tile a_tile, int a_stepsTaken, int a_range, LinkedList<Tile> a_list) {
-			if (a_stepsTaken > a_range || a_list.Contains(a_tile)) {
-				return a_list;
-			} else {
-				a_list.AddLast(a_tile);
-				if (a_stepsTaken == a_range) {
-					return a_list;
-				}
-			}
+		public LinkedList<Tile> getRangeOfTiles(Tile a_tile, int a_range) {
+			LinkedList<Tile> lista1 = new LinkedList<Tile>();
+			LinkedList<Tile> lista2 = new LinkedList<Tile>();
+			LinkedList<Tile> lista3 = new LinkedList<Tile>();
 
-			int[] Xcheck = new int[] { 0 };
-			int[] Ycheck = new int[] { 0 };
+			lista3.AddLast(a_tile);
 
-			if (MathManager.isEven(a_tile.X)) {
-				Xcheck = new int[] { -1,  0,  1,  1,  0, -1 };
-				Ycheck = new int[] {  1, -1,  0,  1,  1,  0 };
-			} else {
-				Xcheck = new int[] {  1,  0,  1, -1,  0, -1 };
-				Ycheck = new int[] { -1, -1,  0, -1,  1,  0 };
-			}
-
-			Tile t_tile;
-			for (int i = 0; i < Xcheck.Length; i++) {
-				for (int j = 0; j < Ycheck.Length; j++) {
-					if ((t_tile = getTile(a_tile, new Vector2(Xcheck[i], Ycheck[i]))) != null) {
-						getSurroundingTiles(t_tile, a_stepsTaken + 1, a_range, a_list);
+			for (int i = 0; i < a_range; i++) {
+				lista2 = lista3;
+				lista3 = new LinkedList<Tile>();
+				if (lista2 != null && lista2.Count > 0) {
+					foreach (Tile t_tile in lista2) {
+						foreach (Tile t_tile2 in getSurroundingTiles(t_tile)) {
+							if (!lista1.Contains(t_tile2)) {
+								lista3.AddLast(t_tile2);
+								lista1.AddLast(t_tile2);
+							}
+						}
 					}
 				}
 			}
-			return a_list;
+			return lista1;
 		}
 
-		public void toggleSurroundingTiles(Tile a_tile, int a_stepsTaken, int a_range) {
-			if (a_stepsTaken > a_range) {
-				return;
-			} else {
-				a_tile.p_tileState = Tile.TileState.Toggle;
-				if (a_stepsTaken == a_range) {
-					return;
-				}
-			}
-			int[] Xcheck = new int[0];
-			int[] Ycheck = new int[0];
+		public LinkedList<Tile> getSurroundingTiles(Tile a_tile) {
+			int[] Xcheck = MathManager.isEven(a_tile.X) ? MathManager.evenX : MathManager.oddX;
+			int[] Ycheck = MathManager.isEven(a_tile.X) ? MathManager.evenY : MathManager.oddY;
 
-			if (MathManager.isEven(a_tile.X)) {
-				Xcheck = new int[] { -1,  0,  1,  1,  0, -1 };
-				Ycheck = new int[] {  1, -1,  0,  1,  1,  0 };
-			} else {
-				Xcheck = new int[] {  1,  0,  1, -1,  0, -1 };
-				Ycheck = new int[] { -1, -1,  0, -1,  1,  0 };
-			}
+			LinkedList<Tile> t_list = new LinkedList<Tile>();
 
 			Tile t_tile;
 			for (int i = 0; i < Xcheck.Length; i++) {
 				for (int j = 0; j < Xcheck.Length; j++) {
 					if ((t_tile = getTile(a_tile, new Vector2(Xcheck[i], Ycheck[i]))) != null) {
-						toggleSurroundingTiles(t_tile, a_stepsTaken + 1, a_range);
+						if (!t_list.Contains(t_tile)) {
+							t_list.AddLast(t_tile);
+						}
 					}
 				}
 			}
+
+			return t_list;
 		}
 
 		public Tile p_hover {

@@ -73,7 +73,7 @@ namespace TacticsRPG {
 
 		private void moveClick(Button a_button) {
 			Champion t_selectedChampion = m_gameState.getSelectedChampion();
-			foreach (Tile t_tile in m_gameState.getTileMap().getSurroundingTiles(t_selectedChampion.getTile(), 0, t_selectedChampion.getStat("move"), new LinkedList<Tile>())) {
+			foreach (Tile t_tile in m_gameState.getTileMap().getRangeOfTiles(t_selectedChampion.getTile(), t_selectedChampion.getStat("move"))) {
 				if (t_tile != m_gameState.getSelectedChampion().getTile()) {
 					t_tile.p_tileState = Tile.TileState.Toggle;
 					m_state = GuiState.Move;
@@ -82,7 +82,7 @@ namespace TacticsRPG {
 		}
 
 		private void attackClick(Button a_button) {
-			foreach (Tile t_tile in m_gameState.getTileMap().getSurroundingTiles(m_gameState.getSelectedChampion().getTile(), 0, 1, new LinkedList<Tile>())) {
+			foreach (Tile t_tile in m_gameState.getTileMap().getRangeOfTiles(m_gameState.getSelectedChampion().getTile(), 1)) {
 				if (t_tile != m_gameState.getSelectedChampion().getTile()) {
 					t_tile.p_tileState = Tile.TileState.Toggle;
 					m_state = GuiState.SelectTarget;

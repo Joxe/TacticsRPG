@@ -8,6 +8,10 @@ namespace TacticsRPG {
 	public class MathManager {
 		private static Random m_random = new Random();
 		private const double Rad2Deg = 180.0 / Math.PI;
+		public static readonly int[] evenX = new int[] { -1,  0,  1,  1,  0, -1 };
+		public static readonly int[] evenY = new int[] {  1, -1,  0,  1,  1,  0 };
+		public static readonly int[] oddX = new int[] {  1,  0,  1, -1,  0, -1 };
+		public static readonly int[] oddY = new int[] { -1, -1,  0, -1,  1,  0 };
 
 		public static int randomInt(int a_minimum, int a_maximum) {
 			return m_random.Next(a_minimum, a_maximum);	

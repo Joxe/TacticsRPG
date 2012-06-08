@@ -54,13 +54,8 @@ namespace TacticsRPG {
 
 				switch (a_currentMapType) {
 					case PathfindState.Hexagon:
-						if (MathManager.isEven((int)t_current.Key.getMapPosition().X)) {
-							Xcheck = new int[] { -1,  0,  1,  1,  0, -1 };
-							Ycheck = new int[] {  1, -1,  0,  1,  1,  0 };
-						} else {
-							Xcheck = new int[] {  1,  0,  1, -1,  0, -1 };
-							Ycheck = new int[] { -1, -1,  0, -1,  1,  0 };
-						}
+						Xcheck = MathManager.isEven(t_current.Key.X) ? MathManager.evenX : MathManager.oddX;
+						Ycheck = MathManager.isEven(t_current.Key.X) ? MathManager.evenY : MathManager.oddY;
 						break;
 					case PathfindState.Square:
 						Xcheck = new int[] { 0, 1, 0, -1 };
