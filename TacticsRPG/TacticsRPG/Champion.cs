@@ -245,7 +245,7 @@ namespace TacticsRPG {
 		public LinkedList<Text> statsToTextList() {
 			LinkedList<Text> t_list = new LinkedList<Text>();
 			foreach (KeyValuePair<string, int> t_kvPair in m_stats) {
-				t_list.AddLast(new Text(Vector2.Zero, t_kvPair.Key + ": " + t_kvPair.Value, "BitstreamVS", Color.Black, false));
+				t_list.AddLast(new Text(Vector2.Zero, t_kvPair.Key + ": " + t_kvPair.Value, "Arial", Color.Black, false));
 			}
 			return t_list;
 		}

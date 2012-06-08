@@ -117,7 +117,7 @@ namespace TacticsRPG {
 				m_selectedChampion = value;
 				m_selectedChampion.p_targetState = Champion.TargetState.Targeted;
 				m_championInfo.Clear();
-				m_championInfo.AddLast(new Text(new Vector2(10, 10), m_selectedChampion.ToString(), "BitstreamVS", Color.Black, false));
+				m_championInfo.AddLast(new Text(new Vector2(10, 10), m_selectedChampion.ToString(), "Arial", Color.Black, false));
 				foreach (Text t_text in m_selectedChampion.statsToTextList()) {
 					m_championInfo.AddLast(t_text);
 				}

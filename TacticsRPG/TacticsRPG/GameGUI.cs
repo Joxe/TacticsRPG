@@ -22,13 +22,13 @@ namespace TacticsRPG {
 
 		public override void load() {
 			m_gameState = (GameState)Game.getInstance().getCurrentState();
-			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 220), "Move", "BitstreamVS"));
+			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 220), "Move", "Arial"));
 			((TextButton)m_menuList.Last()).m_clickEvent += new TextButton.clickDelegate(moveClick);
-			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 200), "Attack", "BitstreamVS"));
+			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 200), "Attack", "Arial"));
 			((TextButton)m_menuList.Last()).m_clickEvent += new TextButton.clickDelegate(attackClick);
-			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 180), "Wait", "BitstreamVS"));
+			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 180), "Wait", "Arial"));
 			((TextButton)m_menuList.Last()).m_clickEvent += new TextButton.clickDelegate(waitClick);
-			m_gameStart = new TextButton(new Vector2(400, 15), "Start Game", "BitstreamVS");
+			m_gameStart = new TextButton(new Vector2(400, 15), "Start Game", "Arial");
 			m_gameStart.m_clickEvent += new TextButton.clickDelegate(gameStartClick);
 			m_gameStart.load();
 			foreach (GuiObject t_go in m_menuList) {

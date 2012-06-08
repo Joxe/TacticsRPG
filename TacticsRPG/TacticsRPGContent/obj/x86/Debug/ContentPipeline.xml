@@ -712,6 +712,15 @@
       <Output>E:\GIT\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Fonts\BitstreamVS.xnb</Output>
       <Time>2012-06-04T21:57:52+02:00</Time>
     </Item>
+    <Item>
+      <Source>Fonts\Arial.spritefont</Source>
+      <Name>Fonts\Arial</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\GIT\TacticsRPG\TacticsRPG\TacticsRPG\bin\x86\Debug\Content\Fonts\Arial.xnb</Output>
+      <Time>2012-06-08T17:40:58.8572776+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
