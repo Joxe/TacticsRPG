@@ -126,8 +126,8 @@ namespace TacticsRPG {
 			if (!m_visible) {
 				return;
 			}
-			Vector2 t_cartCoord = m_position / Game.getInstance().m_camera.getZoom();
-			float t_zoom = Game.getInstance().m_camera.getZoom();
+			Vector2 t_cartCoord = m_position / Game.getInstance().m_camera.p_zoom;
+			float t_zoom = Game.getInstance().m_camera.p_zoom;
 
 			switch (m_currentState) {
 				case State.Pressed:

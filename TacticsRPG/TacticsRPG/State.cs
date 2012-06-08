@@ -5,10 +5,8 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace TacticsRPG
-{
-	public abstract class State
-	{
+namespace TacticsRPG {
+	public abstract class State {
 		protected LinkedList<GameObject> m_gameObjectList;
 		protected LinkedList<LinkedList<GuiObject>> m_guiList;
 
@@ -28,7 +26,8 @@ namespace TacticsRPG
 				}
 			}
 			foreach (GameObject t_gameObject in m_gameObjectList) {
-				if (t_gameObject.p_isInCamera = CameraHandler.isInCamera(t_gameObject)) {
+				t_gameObject.p_isInCamera = CameraHandler.isInCamera(t_gameObject);
+				if (t_gameObject.p_isInCamera) {
 					t_gameObject.update();
 				} else {
 					//TODO out-of-camera update

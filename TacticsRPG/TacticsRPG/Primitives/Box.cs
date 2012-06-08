@@ -102,7 +102,7 @@ namespace TacticsRPG {
 					}
 				}
 			} else {
-				float t_zoom = Game.getInstance().m_camera.getZoom();
+				float t_zoom = Game.getInstance().m_camera.p_zoom;
 				Vector2 t_cartCoord;
 				t_cartCoord = m_position / t_zoom + Game.getInstance().m_camera.p_position;
 				

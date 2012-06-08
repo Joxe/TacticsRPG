@@ -37,7 +37,7 @@ namespace TacticsRPG {
 			for (int i = 0; i < m_width; i++) {
 				for (int j = 0; j < m_height; j++) {
 					//m_tileMap[i, j] = new Tile(new Vector2(i, j), MathManager.randomInt(t_heightIndex - 3, t_heightIndex + 3));
-					m_tileMap[i, j] = new Tile(new Vector2(20, 20), 1);
+					m_tileMap[i, j] = new Tile(new Vector2(i, j), 1);
 					m_tileMap[i, j].p_tileMap = this;
 					m_tileMap[i, j].load();
 					if (MathManager.isEven(i)) {
@@ -49,22 +49,18 @@ namespace TacticsRPG {
 		}
 
 		public Tile getTile(int x, int y) {
-			//try {
-				return m_tileMap[x, y];
-			//} catch (IndexOutOfRangeException) {
-				//return null;
-			//}
+			if (x < 0 || x >= m_width || y < 0 || y >= m_height) {
+				return null;
+			}
+			return m_tileMap[x, y];
 		}
 
 		public Tile getTile(Tile a_tile, Vector2 a_mapOffset) {
-			return getTile(a_tile.getMapPosition() + a_mapOffset);
+			return getTile((int)(a_tile.getMapPosition().X + a_mapOffset.X), (int)(a_tile.getMapPosition().Y + a_mapOffset.Y));
 		}
 
 		public Tile getTile(Vector2 a_position) {
-			if (a_position.X < 0 || a_position.X > m_width || a_position.Y < 0 || a_position.Y > m_height) {
-				return null;	
-			}
-			return m_tileMap[(int)a_position.X, (int)a_position.Y];
+			return getTile((int)a_position.X, (int)a_position.Y);
 		}
 
 		public void update() {

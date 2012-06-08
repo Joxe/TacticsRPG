@@ -7,16 +7,16 @@ using Microsoft.Xna.Framework;
 namespace TacticsRPG {
 	public class CameraHandler {
 		public static void cameraDrag() {
-			Vector2 t_difference = (MouseHandler.getCurPos() - Game.getInstance().getResolution() / 2) / 20 / Game.getInstance().m_camera.getZoom();
+			Vector2 t_difference = (MouseHandler.getCurPos() - Game.getInstance().getResolution() / 2) / 20 / Game.getInstance().m_camera.p_zoom;
 			Game.getInstance().m_camera.setPosition(Game.getInstance().m_camera.p_position + t_difference);
 		}
 
 		public static void zoomIn(float a_zoom) {
-			Game.getInstance().m_camera.p_zoom = Math.Min(Game.getInstance().m_camera.getZoom() + a_zoom, 2.0f);
+			Game.getInstance().m_camera.p_zoom = Math.Min(Game.getInstance().m_camera.p_zoom + a_zoom, 2.0f);
 		}
 
 		public static void zoomOut(float a_zoom) {
-			Game.getInstance().m_camera.p_zoom = Math.Max(Game.getInstance().m_camera.getZoom() - a_zoom, 0.1f);
+			Game.getInstance().m_camera.p_zoom = Math.Max(Game.getInstance().m_camera.p_zoom - a_zoom, 0.1f);
 		}
 
 		public static void move(Vector2 a_posV2) {

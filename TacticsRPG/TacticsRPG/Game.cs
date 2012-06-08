@@ -42,7 +42,7 @@ namespace TacticsRPG {
 		}
 
 		protected override void LoadContent() {
-			m_currentState.addObject(m_camera = new Camera(Vector2.Zero));
+			m_camera = new Camera(Vector2.Zero);
 			m_camera.load();
 			m_camera.p_zoom = Game.getInstance().getResolution().Y / 720;
 			m_spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -66,7 +66,7 @@ namespace TacticsRPG {
 			}
 
 			m_currentState.update();
-
+			m_camera.update();
 			base.Update(a_gameTime);
 
 			m_previousGameTime = m_currentGameTime;

@@ -5,35 +5,43 @@ using System.Text;
 using Microsoft.Xna.Framework;
 
 namespace TacticsRPG {
-	public class Rectangle : GameObject {
+	public class Rectangle {
 		public float X;
 		public float Y;
 		public float Width;
 		public float Height;
+		private GameObject m_parent;
 
-		public Rectangle(float x, float y, float width, float height) : base(new Vector2(x, y)) {
+		public Rectangle(float x, float y, float width, float height) {
+			X = x;
+			Y = y;
 			Width = width;
 			Height = height;
 		}
 
-		public override void load() {
-			X = m_position.X;
-			Y = m_position.Y;
-			base.load();
+		public void setParent(GameObject a_gameObject) {
+			m_parent = a_gameObject;
+		}
+
+		public void update() {
+			if (m_parent != null) {
+				X = m_parent.p_position.X;
+				Y = m_parent.p_position.Y;
+			}
 		}
 
 		public bool contains(Vector2 a_point) {
-			return a_point.X > m_position.X 
-				&& a_point.X < m_position.X + Width 
-				&& a_point.Y > m_position.Y
-				&& a_point.Y < m_position.Y + Height;
+			return a_point.X > X 
+				&& a_point.X < X + Width 
+				&& a_point.Y > Y
+				&& a_point.Y < Y + Height;
 		}
 
 		public bool contains(Rectangle a_rectangle) {
-			return (a_rectangle.X > m_position.X && a_rectangle.X < m_position.X + Width)
-				|| (a_rectangle.X < m_position.X + Width && a_rectangle.X > m_position.X)
-				|| (a_rectangle.Y > m_position.Y && a_rectangle.Y < m_position.Y + Height)
-				|| (a_rectangle.Y < m_position.Y + Height && a_rectangle.Y > m_position.Y);
+			return (a_rectangle.X > X && a_rectangle.X < X + Width)
+				|| (a_rectangle.X < X + Width && a_rectangle.X > X)
+				|| (a_rectangle.Y > Y && a_rectangle.Y < Y + Height)
+				|| (a_rectangle.Y < Y + Height && a_rectangle.Y > Y);
 		}
 
 		public override string ToString() {
@@ -41,7 +49,7 @@ namespace TacticsRPG {
 		}
 
 		public Microsoft.Xna.Framework.Rectangle toXNARectangle() {
-			return new Microsoft.Xna.Framework.Rectangle((int)m_position.X, (int)m_position.Y, (int)Width, (int)Height);
+			return new Microsoft.Xna.Framework.Rectangle((int)X, (int)Y, (int)Width, (int)Height);
 		}
 
 		public static Microsoft.Xna.Framework.Rectangle toXNARectangle(Rectangle a_rectangle) {

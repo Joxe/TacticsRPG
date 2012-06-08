@@ -13,7 +13,6 @@ namespace TacticsRPG {
 		private int m_height;
 		private Sprite[] m_heightSprites;
 		private TileMap m_tileMap;
-		//private Vector2 m_mapPosition;
 		private Tile m_tileAbove;
 		private bool m_hoverOverToggle;
 		private bool m_ignoreMouse;
@@ -27,7 +26,6 @@ namespace TacticsRPG {
 		public Tile(Vector2 a_position, int a_height) : base(a_position * new Vector2(TILE_WIDTH - 32, TILE_HEIGHT) - new Vector2(0, a_height * 40)) {
 			X = (int)a_position.X;
 			Y = (int)a_position.Y;
-			//m_mapPosition = a_position;
 			m_layer = 0.500f - a_position.Y / 1000f;
 
 			if (MathManager.isEven((int)a_position.X)) {
@@ -55,7 +53,6 @@ namespace TacticsRPG {
 			}
 			m_hitbox = new Rectangle(m_position.X, m_position.Y, m_tileMap.getSpriteDict()[m_tileState].getTexture().Width, m_tileMap.getSpriteDict()[m_tileState].getTexture().Height);
 			m_hitbox.setParent(this);
-			m_hitbox.move(-Game.getInstance().getResolution() / 2);
 		}
 
 		public override void update() {

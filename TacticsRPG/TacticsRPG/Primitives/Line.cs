@@ -132,7 +132,7 @@ namespace TacticsRPG {
 					Game.getInstance().m_spriteBatch.Draw(m_lineTexture, m_startPosition, null, m_lineColor, t_angle, Vector2.Zero, new Vector2(t_length, m_width), SpriteEffects.None, m_layer);
 				}
 			} else {
-				float t_zoom = Game.getInstance().m_camera.getZoom();	
+				float t_zoom = Game.getInstance().m_camera.p_zoom;	
 				Vector2 t_cartCoord = m_startPosition / t_zoom + Game.getInstance().m_camera.p_position;
 
 				Game.getInstance().m_spriteBatch.Draw(m_lineTexture, t_cartCoord, null, m_lineColor, t_angle, Vector2.Zero, new Vector2(t_length / t_zoom, m_width / t_zoom), SpriteEffects.None, m_layer);

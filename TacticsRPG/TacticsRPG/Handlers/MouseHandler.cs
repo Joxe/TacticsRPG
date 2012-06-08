@@ -76,12 +76,12 @@ namespace TacticsRPG {
 
 		public static Vector2 worldMouse() {
 			Camera t_camera = Game.getInstance().m_camera;
-			return MouseHandler.getCurPos() / t_camera.p_zoom + t_camera.p_position - ((Game.getInstance().getResolution() / 2) / t_camera.getZoom());
+			return MouseHandler.getCurPos() / t_camera.p_zoom + t_camera.p_position - ((Game.getInstance().getResolution() / 2) / t_camera.p_zoom);
 		}
 
 		public static Vector2 previousWorldMouse() {
 			Camera t_camera = Game.getInstance().m_camera;
-			return MouseHandler.getPrePos() / t_camera.p_zoom + t_camera.p_position - ((Game.getInstance().getResolution() / 2) / t_camera.getZoom());
+			return MouseHandler.getPrePos() / t_camera.p_zoom + t_camera.p_position - ((Game.getInstance().getResolution() / 2) / t_camera.p_zoom);
 		}
 	}
 }

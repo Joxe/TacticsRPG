@@ -25,7 +25,7 @@ namespace TacticsRPG {
 			t_baseStats["agility"]		= 20;
 			t_baseStats["luck"]			= 2;
 			t_baseStats["manaRegen"]	= 5;
-			t_baseStats["move"]			= 1000;
+			t_baseStats["move"]			= 3;
 			t_baseStats["jump"]			= 3;
 			t_baseStats["speed"]		= 100;
 			t_baseStats["maxHealth"]	= 140;

@@ -17,30 +17,18 @@ namespace TacticsRPG {
 		}
 
 		public override void load() {
-			m_cameraBox = new Rectangle(m_position.X - Game.getInstance().getResolution().X / 2, m_position.Y - Game.getInstance().getResolution().Y / 2, 5000, 5000);
-			//m_cameraBox = new Rectangle(m_position.X - Game.getInstance().getResolution().X / 2, m_position.Y - Game.getInstance().getResolution().Y / 2, Game.getInstance().getResolution().X * 2, Game.getInstance().getResolution().Y * 2);
+			//m_cameraBox = new Rectangle(m_position.X - Game.getInstance().getResolution().X / 2, m_position.Y - Game.getInstance().getResolution().Y / 2, 5000, 5000);
+			m_cameraBox = new Rectangle(m_position.X - Game.getInstance().getResolution().X / 2, m_position.Y - Game.getInstance().getResolution().Y / 2, Game.getInstance().getResolution().X * 2, Game.getInstance().getResolution().Y * 2);
 		}
 
 		public override void update() {
-			base.update();
-		}
-
-		public float getZoom() {
-			return m_zoom;
-		}
-
-		public float getRotation() {
-			return m_rotation;
-		}
-
-		public void setRotation(float a_rotation) {
-			m_rotation = a_rotation;
+			m_cameraBox.p_dimensions = (Game.getInstance().getResolution() * 2) / m_zoom;
+			m_cameraBox.p_coordinates = this.p_position - m_cameraBox.p_dimensions / 2;
 		}
 
 		public void setPosition(Vector2 a_posV2) {
 			m_position = a_posV2;
-			m_cameraBox.X = a_posV2.X - Game.getInstance().getResolution().X;
-			m_cameraBox.Y = a_posV2.Y - Game.getInstance().getResolution().Y;
+			//m_cameraBox.p_coordinates = a_posV2 - Game.getInstance().getResolution();
 		}
 
 		public Matrix getTransformation(GraphicsDevice a_gd) {
@@ -58,7 +46,6 @@ namespace TacticsRPG {
 
 		public Rectangle getRectangle() {
 			return m_cameraBox;
-			//return new Rectangle(m_position.X - Game.getInstance().getResolution().X, m_position.Y - Game.getInstance().getResolution().Y, Game.getInstance().getResolution().X * 2, Game.getInstance().getResolution().Y * 2);
 		}
 
 		public float p_zoom {
@@ -67,6 +54,15 @@ namespace TacticsRPG {
 			}
 			set {
 				m_zoom = Math.Max(value, 0.1f);
+			}
+		}
+
+		public float p_rotation {
+			get {
+				return m_rotation;
+			}
+			set {
+				m_rotation = value;
 			}
 		}
 	}

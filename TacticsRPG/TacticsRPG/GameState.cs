@@ -25,7 +25,7 @@ namespace TacticsRPG {
 			ClassesData.load();
 			RacesData.load();
 			m_gameGui.load();
-			createTileMap(21, 21);
+			createTileMap(20, 20);
 		}
 
 		public override void update() {
