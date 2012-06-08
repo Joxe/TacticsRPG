@@ -18,15 +18,18 @@ namespace TacticsRPG {
 
 		public GameGUI() {
 			m_guiList.AddLast(m_menuList);
-			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 220), "Move", "BitstreamVS"));
-			((TextButton)m_menuList.Last()).m_clickEvent += new TextButton.clickDelegate(moveClick);
-			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 200), "Attack", "BitstreamVS"));
-			((TextButton)m_menuList.Last()).m_clickEvent += new TextButton.clickDelegate(attackClick);
-			m_gameStart = new TextButton(new Vector2(400, 15), "Start Game", "BitstreamVS");
 		}
 
 		public override void load() {
 			m_gameState = (GameState)Game.getInstance().getCurrentState();
+			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 220), "Move", "BitstreamVS"));
+			((TextButton)m_menuList.Last()).m_clickEvent += new TextButton.clickDelegate(moveClick);
+			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 200), "Attack", "BitstreamVS"));
+			((TextButton)m_menuList.Last()).m_clickEvent += new TextButton.clickDelegate(attackClick);
+			m_menuList.AddLast(new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 180), "Wait", "BitstreamVS"));
+			((TextButton)m_menuList.Last()).m_clickEvent += new TextButton.clickDelegate(waitClick);
+			m_gameStart = new TextButton(new Vector2(400, 15), "Start Game", "BitstreamVS");
+			m_gameStart.m_clickEvent += new TextButton.clickDelegate(gameStartClick);
 			m_gameStart.load();
 			foreach (GuiObject t_go in m_menuList) {
 				t_go.load();
@@ -34,7 +37,7 @@ namespace TacticsRPG {
 		}
 
 		public override void update() {
-			m_collidedWithGui = false;
+			m_gameState.getTileMap().p_ignoreMouse = (m_collidedWithGui = collidedWithGUI());
 			updateMouse();
 			m_gameStart.update();
 			if (m_gameState.getSelectedChampion() != null) {
@@ -97,8 +100,29 @@ namespace TacticsRPG {
 			}
 		}
 
+		private void waitClick(Button a_button) {
+			
+		}
+
+		private void gameStartClick(Button a_button) {
+
+		}
+
+		private bool collidedWithGUI() {
+			foreach (GuiObject t_go in m_menuList) {
+				if (t_go.contains(MouseHandler.getCurPos())) {
+					return true;
+				}
+			}
+			return false;
+		}
+
 		public GuiState getState() {
 			return m_state;
+		}
+
+		public bool mouseOverGUI() {
+			return m_collidedWithGui;
 		}
 	}
 }

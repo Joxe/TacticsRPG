@@ -12,6 +12,7 @@ namespace TacticsRPG {
 		private string m_tileSet;
 		private Dictionary<Tile.TileState, Sprite> m_spriteDict;
 		private Tile m_hoveredTile;
+		private bool m_ignoreMouse;
 
 		public TileMap(int width, int height, string a_tileSet) {
 			m_width = width;
@@ -137,6 +138,15 @@ namespace TacticsRPG {
 			}
 			set {
 				m_hoveredTile = value;
+			}
+		}
+
+		public bool p_ignoreMouse {
+			get {
+				return m_ignoreMouse;
+			}
+			set {
+				m_ignoreMouse = value;
 			}
 		}
 

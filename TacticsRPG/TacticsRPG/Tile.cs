@@ -56,57 +56,53 @@ namespace TacticsRPG {
 		}
 
 		public override void update() {
-			if (m_isInCamera = CameraHandler.isInCamera(this)) {
-				m_hitbox.update();
-				bool t_collided = CollisionManager.hexagonContains(this, MouseHandler.worldMouse(), TILE_WIDTH, TILE_HEIGHT);
+			m_hitbox.update();
+			bool t_collided = CollisionManager.hexagonContains(this, MouseHandler.worldMouse(), TILE_WIDTH, TILE_HEIGHT);
 
-				if (t_collided && !m_ignoreMouse) {
-					m_tileMap.p_hover = this;
-					if (m_tileAbove != null) {
-						m_tileAbove.ignoreMouse(true);
-					}
-					switch (m_tileState) {
-						case TileState.Normal:
+			if (t_collided && !m_ignoreMouse && !m_tileMap.p_ignoreMouse) {
+				m_tileMap.p_hover = this;
+				if (m_tileAbove != null) {
+					m_tileAbove.ignoreMouse(true);
+				}
+				switch (m_tileState) {
+					case TileState.Normal:
+						m_tileState = TileState.Hover;
+						break;
+					case TileState.Hover:
+						if (MouseHandler.lmbDown()) {
+							m_tileState = TileState.Pressed;
+						}
+						break;
+					case TileState.Pressed:
+						if (MouseHandler.lmbUp()) {
 							m_tileState = TileState.Hover;
-							break;
-						case TileState.Hover:
-							if (MouseHandler.lmbDown()) {
-								m_tileState = TileState.Pressed;
-							}
-							break;
-						case TileState.Pressed:
-							if (MouseHandler.lmbUp()) {
-								m_tileState = TileState.Hover;
-							}
-							break;
-						case TileState.Toggle:
-							if (MouseHandler.lmbUp()) {
-								m_tileState = TileState.Normal;
-							}
-							m_tileState = TileState.Hover;
-							break;
-					}
+						}
+						break;
+					case TileState.Toggle:
+						if (MouseHandler.lmbUp()) {
+							m_tileState = TileState.Normal;
+						}
+						m_tileState = TileState.Hover;
+						break;
+				}
+			} else {
+				if (m_hoverOverToggle) {
+					m_tileState = TileState.Toggle;
 				} else {
-					if (m_hoverOverToggle) {
-						m_tileState = TileState.Toggle;
-					} else {
-						m_tileState = TileState.Normal;
-					}
-					if (m_tileAbove != null) {
-						m_tileAbove.ignoreMouse(false);
-					}
+					m_tileState = TileState.Normal;
+				}
+				if (m_tileAbove != null) {
+					m_tileAbove.ignoreMouse(false);
 				}
 			}
 			base.update();
 		}
 
 		public override void draw() {
-			if (m_isInCamera) {
-				foreach (Sprite t_sprite in m_heightSprites) {
-					t_sprite.draw(this, m_layer + 0.00001f);
-				}
-				m_tileMap.getSpriteDict()[m_tileState].draw(this);
+			foreach (Sprite t_sprite in m_heightSprites) {
+				t_sprite.draw(this, m_layer + 0.00001f);
 			}
+			m_tileMap.getSpriteDict()[m_tileState].draw(this);
 		}
 
 		public TileMap p_tileMap {

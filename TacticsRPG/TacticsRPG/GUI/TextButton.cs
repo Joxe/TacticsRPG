@@ -42,8 +42,12 @@ namespace TacticsRPG {
 			m_text.load();
 			m_bounds = m_text.getHitBox();
 			m_bounds.p_coordinates = m_parentOffset;
+			m_text.p_screenPosition = m_bounds.p_coordinates;
 		}
 
+		//Summary
+		//	Property for getting the TextButton's state
+		//	Set will automatically change the color of the button to according to the state
 		public override State p_state {
 			get {
 				return m_currentState;
@@ -71,14 +75,9 @@ namespace TacticsRPG {
 			if (!m_visible) {
 				return;
 			}
-			updateBounds();
 			m_text.update();
 			updateMouse();
 			updateKeyboard();
-		}
-
-		protected override void updateBounds() {
-			m_text.p_screenPosition = m_bounds.p_coordinates;
 		}
 
 		protected override void updateMouse() {

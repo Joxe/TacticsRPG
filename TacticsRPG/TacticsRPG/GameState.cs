@@ -12,6 +12,7 @@ namespace TacticsRPG {
 		private Champion m_selectedChampion;
 		private LinkedList<GuiObject> m_championInfo;
 		private GameGUI m_gameGui;
+		private SortedDictionary<int, Champion> m_battleQueue;
 
 		public GameState() : base() {
 			m_champions = new Dictionary<string, Champion>();
@@ -34,12 +35,18 @@ namespace TacticsRPG {
 			foreach (Champion t_champion in m_champions.Values) {
 				t_champion.update();
 			}
-			m_tileMap.update();
 			m_gameGui.update();
+			m_tileMap.update();
+			if (m_battleQueue != null) {
+				updateBattle();
+			}
 			base.update();
 		}
 
 		private void updateMouse() {
+			if (m_gameGui.mouseOverGUI()) {
+				return;
+			}
 			if (MouseHandler.mmbPressed()) {
 				CameraHandler.cameraDrag();
 			}
@@ -75,6 +82,10 @@ namespace TacticsRPG {
 				m_tileMap.p_hover.p_champion = m_champions["Din Mamma"];
 				m_champions["Din Mamma"].load();
 			}
+		}
+
+		private void updateBattle() {
+			
 		}
 
 		public override void draw() {
@@ -136,6 +147,14 @@ namespace TacticsRPG {
 		public void removeChampion(Champion a_champion) {
 			m_champions[a_champion.getName()].kill();
 			m_champions.Remove(a_champion.getName());
+		}
+
+		public void startGame() {
+			foreach (Champion t_champion in m_champions.Values) {
+				for (int i = 0; m_battleQueue.ContainsKey(t_champion.getStat("speed") + i); i++) {
+					m_battleQueue.Add(t_champion.getStat("speed") + i, t_champion);
+				}
+			}
 		}
 	}
 }

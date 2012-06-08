@@ -5,7 +5,8 @@ using System.Text;
 using Microsoft.Xna.Framework;
 
 namespace TacticsRPG {
-	public class CameraHandler {
+	//Static class in charge of handling camera movement and other camera related methods
+	public static class CameraHandler {
 		public static void cameraDrag() {
 			Vector2 t_difference = (MouseHandler.getCurPos() - Game.getInstance().getResolution() / 2) / 20 / Game.getInstance().m_camera.p_zoom;
 			Game.getInstance().m_camera.setPosition(Game.getInstance().m_camera.p_position + t_difference);
@@ -25,7 +26,6 @@ namespace TacticsRPG {
 
 		public static bool isInCamera(GameObject a_gameObject) {
 			return Game.getInstance().m_camera.getRectangle().contains(a_gameObject.p_position);
-			//TODO Gör så att den kan kolla rektanglar istället för punkter
 		}
 	}
 }

@@ -15,7 +15,6 @@ namespace TacticsRPG {
 		public event clickDelegate m_clickEvent;
 
 		protected Text m_text;
-		protected Rectangle m_bounds;
 
 		private string m_buttonTexture;
 		private Color m_textColor = Color.Black;
@@ -44,7 +43,6 @@ namespace TacticsRPG {
 		public Button(string a_buttonTexture, Vector2 a_screenPosition)
 			: base(a_screenPosition)
 		{
-			m_bounds = new Rectangle(a_screenPosition.X, a_screenPosition.Y, 0, 0);
 			m_buttonTexture = a_buttonTexture;
 		}
 
@@ -53,7 +51,6 @@ namespace TacticsRPG {
 		public Button(string a_buttonTexture, Vector2 a_screenPosition, string a_buttonText, string a_textFont, Color a_textColor, Vector2 a_textOffset)
 			: base(a_screenPosition)
 		{
-			m_bounds = new Rectangle(a_screenPosition.X, a_screenPosition.Y, 0, 0);
 			m_text = new Text(a_textOffset, a_buttonText, a_textFont, a_textColor, false);
 			m_text.setParent(this);
 			m_buttonTexture = a_buttonTexture;
@@ -227,6 +224,27 @@ namespace TacticsRPG {
 		public bool hasEvent() {
 			return m_clickEvent != null;
 		}
+
+		//Summary
+		//	Updates the button's bounds to match the largest image that it can show
+		private void updateTextureBounds() {
+			try {
+				Vector2 t_size = new Vector2(m_normalTexture.Width, m_normalTexture.Height);
+				t_size.X = Math.Max(t_size.X, m_hoverTexture.Width);
+				t_size.Y = Math.Max(t_size.Y, m_hoverTexture.Height);
+				t_size.X = Math.Max(t_size.X, m_pressedTexture.Width);
+				t_size.Y = Math.Max(t_size.Y, m_pressedTexture.Height);
+				t_size.X = Math.Max(t_size.X, m_toggleTexture.Width);
+				t_size.Y = Math.Max(t_size.Y, m_toggleTexture.Height);
+				m_bounds.p_dimensions = t_size;
+			} catch (NullReferenceException) {
+				return;
+			}
+		}
+
+		public virtual Rectangle getBox() {
+			return m_bounds;
+		}
 		#endregion
 
 		#region Button Properties
@@ -270,23 +288,5 @@ namespace TacticsRPG {
 			}
 		}
 		#endregion
-		//Summary
-		//	Updates the button's bounds to match the largest image that it can show
-		private void updateTextureBounds() {
-			//try {
-				Vector2 t_size = new Vector2(m_normalTexture.Width, m_normalTexture.Height);
-				t_size.X = Math.Max(t_size.X, m_hoverTexture.Width);
-				t_size.Y = Math.Max(t_size.Y, m_hoverTexture.Height);
-				t_size.X = Math.Max(t_size.X, m_pressedTexture.Width);
-				t_size.Y = Math.Max(t_size.Y, m_pressedTexture.Height);
-				t_size.X = Math.Max(t_size.X, m_toggleTexture.Width);
-				t_size.Y = Math.Max(t_size.Y, m_toggleTexture.Height);
-				m_bounds.p_dimensions = t_size;
-			//} catch (NullReferenceException) { }
-		}
-
-		public virtual Rectangle getBox() {
-			return m_bounds;
-		}
 	}
 }
