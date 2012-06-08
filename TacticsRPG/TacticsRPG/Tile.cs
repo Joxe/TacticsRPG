@@ -168,5 +168,9 @@ namespace TacticsRPG {
 			m_hoverOverToggle = false;
 			m_tileState = TileState.Normal;
 		}
+
+		public bool isObstructed() {
+			return m_currentChampion != null;
+		}
 	}
 }

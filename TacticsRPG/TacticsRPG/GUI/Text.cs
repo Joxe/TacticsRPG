@@ -21,9 +21,7 @@ namespace TacticsRPG {
 		public Text(Vector2 a_position, string a_text, string a_spriteFont, Color a_color, bool a_worldFont)
 			: base(a_position)
 		{
-			if (!m_worldFont) {
-				m_parent = Game.getInstance().m_camera;
-			} else {
+			if (a_worldFont) {
 				m_position	= a_position - Game.getInstance().getResolution() / 2;
 				p_parentOffset = Vector2.Zero;
 			}
@@ -35,6 +33,9 @@ namespace TacticsRPG {
 		}
 
 		public override void load() {
+			if (!m_worldFont) {
+				m_parent = Game.getInstance().m_camera;
+			} 
 			m_spriteFont = Game.getInstance().Content.Load<SpriteFont>("Fonts\\" + m_font);
 		}
 		#endregion

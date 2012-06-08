@@ -75,7 +75,7 @@ namespace TacticsRPG {
 						if (t_closedSet.ContainsKey(t_neighbor)) {
 							continue;
 						}
-						if (t_neighbor.p_champion != null) {
+						if (t_neighbor.isObstructed()) {
 							continue;
 						}
 						double t_tentativeGScore = t_current.Value + getPathValue(t_neighbor, a_endTile)/* + t_heightDifference*/;
