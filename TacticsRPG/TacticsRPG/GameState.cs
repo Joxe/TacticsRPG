@@ -12,7 +12,7 @@ namespace TacticsRPG {
 		private Champion m_selectedChampion;
 		private LinkedList<GuiObject> m_championInfo;
 		private GameGUI m_gameGui;
-		private SortedDictionary<int, Champion> m_battleQueue;
+		private List<Champion> m_battleQueue;
 
 		public GameState() : base() {
 			m_champions = new Dictionary<string, Champion>();
@@ -60,8 +60,10 @@ namespace TacticsRPG {
 				}
 			}
 			if (MouseHandler.rmbDown()) {
-				if (m_selectedChampion != null) {
-					deselectChampion();
+				if (KeyboardHandler.keyPressed(Keys.LeftControl)) {
+					if (m_selectedChampion != null) {
+						deselectChampion();
+					}
 				}
 			}
 			if (MouseHandler.scrollUp()) {
@@ -85,7 +87,16 @@ namespace TacticsRPG {
 		}
 
 		private void updateBattle() {
-			
+			if (m_selectedChampion == null) {
+				p_selectedChampion = m_battleQueue.First();
+				m_selectedChampion.championsTurn();
+			}
+			int negativeSpeed = m_selectedChampion.p_speed;
+
+			foreach (Champion t_champion in m_battleQueue) {
+				t_champion.p_speed -= negativeSpeed;
+			}
+			m_battleQueue.Sort();
 		}
 
 		public override void draw() {
@@ -116,6 +127,7 @@ namespace TacticsRPG {
 				}
 				m_selectedChampion = value;
 				m_selectedChampion.p_targetState = Champion.TargetState.Targeted;
+				m_selectedChampion.p_actionTaken = false;
 				m_championInfo.Clear();
 				m_championInfo.AddLast(new Text(new Vector2(10, 10), m_selectedChampion.ToString(), "Arial", Color.Black, false));
 				foreach (Text t_text in m_selectedChampion.statsToTextList()) {
@@ -130,6 +142,7 @@ namespace TacticsRPG {
 			m_selectedChampion.p_targetState = Champion.TargetState.Normal;
 			m_championInfo.Clear();
 			m_selectedChampion = null;
+			m_battleQueue.Sort();
 		}
 
 		public Champion getSelectedChampion() {
@@ -150,11 +163,11 @@ namespace TacticsRPG {
 		}
 
 		public void startGame() {
+			m_battleQueue = new List<Champion>();
 			foreach (Champion t_champion in m_champions.Values) {
-				for (int i = 0; m_battleQueue.ContainsKey(t_champion.getStat("speed") + i); i++) {
-					m_battleQueue.Add(t_champion.getStat("speed") + i, t_champion);
-				}
+				m_battleQueue.Add(t_champion);
 			}
+			m_battleQueue.Sort();
 		}
 	}
 }

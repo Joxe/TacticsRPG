@@ -42,6 +42,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fonts\Arial.spritefont">
+      <Name>Arial</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <Compile Include="Images\Sprites\Tiles\Test\hover.png">
       <Name>hover</Name>
       <Importer>TextureImporter</Importer>
@@ -68,11 +73,6 @@
   <ItemGroup>
     <Compile Include="Fonts\BitstreamVS.spritefont">
       <Name>BitstreamVS</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-    <Compile Include="Fonts\Arial.spritefont">
-      <Name>Arial</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>

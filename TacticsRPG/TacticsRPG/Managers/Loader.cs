@@ -12,10 +12,11 @@ namespace TacticsRPG {
 		}
 
 		public static void genGraphSettings(string a_file) {
-			if (Directory.Exists("Settings")) {
+			if (!Directory.Exists("Settings")) {
 				Directory.CreateDirectory("Settings");
 			}
-			if (!File.Exists("Settings//" + a_file)) {
+			if (!File.Exists("Settings//" + a_file + ".ini")) {
+				File.Create("Settings/" + a_file + ".ini");
 				TextWriter t_writer = new StreamWriter("Settings//" + a_file + ".ini");
 				t_writer.WriteLine("[Graphics]\nScreenWidth=1280\nScreenHeight=720\nFullscreen=false");
 				t_writer.Close();

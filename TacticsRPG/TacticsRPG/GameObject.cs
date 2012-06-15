@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace TacticsRPG {
-	public class GameObject {
+	public class GameObject : IComparable<GameObject> {
 		protected Vector2		m_position;
 		protected Vector2		m_parentOffset;
 		protected GameObject	m_parent;
@@ -76,6 +76,10 @@ namespace TacticsRPG {
 			} else {
 				return new Rectangle(m_position.X, m_position.Y, 1, 1);
 			}
+		}
+
+		public virtual int CompareTo(GameObject a_gameObject) {
+			return 0;
 		}
 	}
 }

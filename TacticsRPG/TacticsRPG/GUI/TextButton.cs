@@ -13,10 +13,11 @@ namespace TacticsRPG {
 		private Color m_hoverColor;
 		private Color m_pressedColor;
 		private Color m_toggleColor;
+		private Color m_disabledColor;
 
 		//Summary
 		//	Button-subclass for creating a button from a SpriteFont
-		public TextButton(Vector2 a_position, string a_text, string a_font, Color a_normal, Color a_hover, Color a_pressed, Color a_toggle)
+		public TextButton(Vector2 a_position, string a_text, string a_font, Color a_normal, Color a_hover, Color a_pressed, Color a_toggle, Color a_disable)
 			: base(a_position)
 		{
 			m_normalColor = a_normal;
@@ -35,6 +36,7 @@ namespace TacticsRPG {
 			m_hoverColor = new Color(62, 67, 68);
 			m_pressedColor = new Color(40, 40, 40);
 			m_toggleColor = new Color(0, 0, 255);
+			m_disabledColor = new Color(255, 0, 0);
 			m_text = new Text(m_parentOffset, a_text, a_font, m_normalColor, false);
 		}
 
@@ -67,6 +69,9 @@ namespace TacticsRPG {
 					case Button.State.Toggled:
 						m_text.p_color = m_toggleColor;
 						break;
+					case Button.State.Disabled:
+						m_text.p_color = m_disabledColor;
+						break;
 				}
 			}
 		}
@@ -76,6 +81,9 @@ namespace TacticsRPG {
 				return;
 			}
 			m_text.update();
+			if (m_currentState == Button.State.Disabled) {
+				return;
+			}
 			updateMouse();
 			updateKeyboard();
 		}

@@ -15,6 +15,8 @@ namespace TacticsRPG {
 		private readonly Vector2 m_tileOffset = new Vector2(64, -64);
 		private readonly Vector2 m_targetOffset = new Vector2(-10, 150);
 		private static Sprite m_targetRecticle;
+		private int m_speed;
+		private bool m_actionTaken;
 
 		private Stack<Tile> m_moveQueue = new Stack<Tile>();
 		private Dictionary<string, int> m_stats = new Dictionary<string, int>();
@@ -50,6 +52,7 @@ namespace TacticsRPG {
 			m_stats.Add("currentHealth", m_stats["maxHealth"]);
 			m_stats.Add("currentMana", m_stats["maxMana"]);
 			m_stats.Add("level", 1);
+			m_stats.Add("moveLeft", m_stats["move"]);
 			calculateAttack();
 			calculateDefense();
 			calculateMagic();
@@ -61,6 +64,8 @@ namespace TacticsRPG {
 				m_targetRecticle.load();
 				m_targetRecticle.p_offset = m_targetOffset;
 			}
+
+			p_speed = m_stats["speed"];
 		}
 
 		public override void load() {
@@ -98,12 +103,17 @@ namespace TacticsRPG {
 			base.draw();
 		}
 
-		public void moveTo(Tile a_tile) {
+		public bool moveTo(Tile a_tile) {
 			if (m_moveQueue.Count == 0) {
-				if ((m_moveQueue = AStar.findPath(m_currentPosition, a_tile, AStar.PathfindState.Hexagon)).Count > m_stats["move"] + 1) {
+				if ((m_moveQueue = AStar.findPath(m_currentPosition, a_tile, AStar.PathfindState.Hexagon)).Count > m_stats["moveLeft"] + 1) {
 					m_moveQueue.Clear();
+				} else {
+					m_stats["moveLeft"] -= m_moveQueue.Count - 1;
+					p_speed += 50;
+					return true;
 				}
 			}
+			return false;
 		}
 
 		public void faceTile(Tile a_tile) {
@@ -218,6 +228,24 @@ namespace TacticsRPG {
 			}
 		}
 
+		public int p_speed {
+			get {
+				return m_speed;
+			}
+			set {
+				m_speed = Math.Max(0, value);
+			}
+		}
+
+		public bool p_actionTaken {
+			get {
+				return m_actionTaken;
+			}
+			set {
+				m_actionTaken = value;
+			}
+		}
+
 		public override string ToString() {
 			return m_name + " " + m_race.getName() + " " + m_class.getName();
 		}
@@ -267,6 +295,8 @@ namespace TacticsRPG {
 		}
 
 		public void attack(Champion a_champion) {
+			faceTile(a_champion.getTile());
+			p_actionTaken = true;
 			a_champion.damage(MathManager.attack(this, a_champion));
 		}
 
@@ -283,6 +313,15 @@ namespace TacticsRPG {
 
 		public void kill() {
 			m_currentPosition.p_champion = null;
+		}
+
+		public override int CompareTo(GameObject a_gameObject) {
+			return p_speed.CompareTo(((Champion)a_gameObject).p_speed);
+		}
+
+		public void championsTurn() {
+			p_actionTaken = false;
+			m_stats["moveLeft"] = m_stats["move"];
 		}
 	}
 }

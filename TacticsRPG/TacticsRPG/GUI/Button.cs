@@ -29,7 +29,7 @@ namespace TacticsRPG {
 
 		protected State m_currentState = State.Normal;
 		public enum State {
-			Normal,	Hover,	Pressed,	Toggled
+			Normal,	Hover,	Pressed,	Toggled, Disabled
 		}
 		#endregion
 
@@ -75,7 +75,7 @@ namespace TacticsRPG {
 		
 		#region Update & Draw
 		public override void update() {
-			if (!m_visible) {
+			if (!m_visible || m_currentState == State.Disabled) {
 				return;
 			}
 			updateBounds();
@@ -123,21 +123,25 @@ namespace TacticsRPG {
 			if (!m_visible) {
 				return;
 			}
-			Vector2 t_cartCoord = m_position / Game.getInstance().m_camera.p_zoom;
 			float t_zoom = Game.getInstance().m_camera.p_zoom;
+			Vector2 t_cartCoord = m_position / t_zoom;
+			Vector2 t_zoomedScale = new Vector2(1.0f / t_zoom, 1.0f / t_zoom);
 
 			switch (m_currentState) {
 				case State.Pressed:
-					Game.getInstance().m_spriteBatch.Draw(m_pressedTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, new Vector2(1.0f / t_zoom, 1.0f / t_zoom), SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_pressedTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, t_zoomedScale, SpriteEffects.None, m_layer);
 					break;
 				case State.Hover:
-					Game.getInstance().m_spriteBatch.Draw(m_hoverTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, new Vector2(1.0f / t_zoom, 1.0f / t_zoom), SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_hoverTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, t_zoomedScale, SpriteEffects.None, m_layer);
 					break;
 				case State.Toggled:
-					Game.getInstance().m_spriteBatch.Draw(m_toggleTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, new Vector2(1.0f / t_zoom, 1.0f / t_zoom), SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_toggleTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, t_zoomedScale, SpriteEffects.None, m_layer);
 					break;
 				case State.Normal:
-					Game.getInstance().m_spriteBatch.Draw(m_normalTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, new Vector2(1.0f / t_zoom, 1.0f / t_zoom), SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_normalTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, t_zoomedScale, SpriteEffects.None, m_layer);
+					break;
+				case State.Disabled:
+					Game.getInstance().m_spriteBatch.Draw(m_normalTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, t_zoomedScale, SpriteEffects.None, m_layer);
 					break;
 			}
 			if (m_text != null) {

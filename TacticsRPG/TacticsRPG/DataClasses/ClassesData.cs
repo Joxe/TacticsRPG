@@ -43,7 +43,7 @@ namespace TacticsRPG {
 			t_baseStats["manaRegen"]	= 15;
 			t_baseStats["move"]			= 2;
 			t_baseStats["jump"]			= 2;
-			t_baseStats["speed"]		= 90;
+			t_baseStats["speed"]		= 100;
 			t_baseStats["maxHealth"]	= 90;
 			t_baseStats["maxMana"]		= 70;
 
