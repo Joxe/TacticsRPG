@@ -17,9 +17,13 @@ namespace TacticsRPG {
 		private static Sprite m_targetRecticle;
 		private int m_speed;
 		private bool m_actionTaken;
+		private bool m_male;
+		private int m_faceNumber;
 
 		private Stack<Tile> m_moveQueue = new Stack<Tile>();
 		private Dictionary<string, int> m_stats = new Dictionary<string, int>();
+		private Dictionary<KeyValuePair<HeroState, FacingState>, Sprite> m_faceSprites;
+		private Dictionary<KeyValuePair<HeroState, FacingState>, Sprite> m_bodySprites;
 
 		private HeroState m_heroState = HeroState.Idle;
 		public enum HeroState {
@@ -36,41 +40,53 @@ namespace TacticsRPG {
 			Up, TopLeft, TopRight, BottomLeft, BottomRight, Down
 		}
 
-		public Champion(Vector2 a_position, string a_name, string a_class, string a_race) 
+		public Champion(Vector2 a_position, string a_name, string a_class, bool a_male, string a_race) 
 			: base(((GameState)Game.getInstance().getCurrentState()).getTileMap().getTile(a_position).p_position + new Vector2(64, -64)) 
 		{
 			m_name = a_name;
 			m_layer = 0.300f;
-			m_race = ChampionRace.getRace(a_race.Split('_')[0]);
-			m_class = ChampionClass.getClass(a_class.Split('_')[0]);
-			foreach (KeyValuePair<string, int> t_kvPair in m_class.getBaseStats()) {
-				m_stats.Add(t_kvPair.Key, t_kvPair.Value);
-			}
+			m_male = a_male;
+			m_faceNumber = 1;
+			m_race = RacesData.getRace(a_race);
+			m_class = ClassesData.getClass(a_class);
+
+			m_stats = m_class.getBaseStats();
 			foreach (KeyValuePair<string, int> t_kvPair in RacesData.getStats(m_race)) {
 				m_stats[t_kvPair.Key] += t_kvPair.Value;
 			}
-			m_stats.Add("currentHealth", m_stats["maxHealth"]);
-			m_stats.Add("currentMana", m_stats["maxMana"]);
-			m_stats.Add("level", 1);
-			m_stats.Add("moveLeft", m_stats["move"]);
-			calculateAttack();
-			calculateDefense();
-			calculateMagic();
-			calculateResist();
+			m_stats.Add("CurrentHealth", m_stats["MaxHealth"]);
+			m_stats.Add("CurrentMana", m_stats["MaxMana"]);
+			m_stats.Add("Level", 1);
+			m_stats.Add("MoveLeft", m_stats["Move"]);
+			p_speed = m_stats["Speed"];
+
 			m_currentPosition = ((GameState)Game.getInstance().getCurrentState()).getTileMap().getTile(a_position);
-			
+			m_bodySprites = new Dictionary<KeyValuePair<HeroState, FacingState>, Sprite>();
+		}
+
+		public override void load() {
+			foreach (HeroState t_heroState in Enum.GetValues(typeof(HeroState))) {
+				foreach (FacingState t_facingState in Enum.GetValues(typeof(FacingState))) {
+					int i = Enum.GetValues(typeof(FacingState)).Length;
+					KeyValuePair<HeroState, FacingState> t_kvPair = new KeyValuePair<HeroState, FacingState>(t_heroState, t_facingState);
+					m_bodySprites.Add(t_kvPair, new Sprite("Classes/" + m_class.getName() + (m_male ? "Male" : "Female") + "/" + t_heroState.ToString() + "/" + t_facingState.ToString(), 1));
+					m_bodySprites[t_kvPair].load();
+				}
+			}
+
+			m_hitbox = new Rectangle(m_position.X, m_position.Y, m_bodySprites.First().Value.getSize().X, m_bodySprites.First().Value.getSize().Y);
+			m_hitbox.setParent(this);
+
 			if (m_targetRecticle == null) {
 				m_targetRecticle = new Sprite("Indicators/target", 1);
 				m_targetRecticle.load();
 				m_targetRecticle.p_offset = m_targetOffset;
 			}
 
-			p_speed = m_stats["speed"];
-		}
-
-		public override void load() {
-			m_hitbox = new Rectangle(m_position.X, m_position.Y, m_class.getSpriteSize().X, m_class.getSpriteSize().Y);
-			m_hitbox.setParent(this);
+			calculateAttack();
+			calculateDefense();
+			calculateMagic();
+			calculateResist();
 		}
 
 		public override void update() {
@@ -95,20 +111,20 @@ namespace TacticsRPG {
 		}
 
 		public override void draw() {
-			m_class.draw(this);
-			m_race.draw(this);
+			m_bodySprites[new KeyValuePair<HeroState, FacingState>(p_state, p_facing)].draw(this, p_layer - 0.001f);
 			if (m_targetState == TargetState.Targeted) {
 				m_targetRecticle.draw(this, m_layer + 0.001f);
 			}
 			base.draw();
 		}
 
+		#region Movement & Facing
 		public bool moveTo(Tile a_tile) {
 			if (m_moveQueue.Count == 0) {
-				if ((m_moveQueue = AStar.findPath(m_currentPosition, a_tile, AStar.PathfindState.Hexagon)).Count > m_stats["moveLeft"] + 1) {
+				if ((m_moveQueue = AStar.findPath(m_currentPosition, a_tile, AStar.PathfindState.Hexagon)).Count > m_stats["MoveLeft"] + 1) {
 					m_moveQueue.Clear();
 				} else {
-					m_stats["moveLeft"] -= m_moveQueue.Count - 1;
+					m_stats["MoveLeft"] -= m_moveQueue.Count - 1;
 					p_speed += 50;
 					return true;
 				}
@@ -168,39 +184,43 @@ namespace TacticsRPG {
 				}
 			}
 		}
+		#endregion
 
+		#region Stat Calculators
 		public void calculateAttack() {
-			if (m_stats.ContainsKey("attack")) {
-				m_stats["attack"] = (int)Math.Floor(StatsCalculator.summedAttack(this) + 0.5f);
+			if (m_stats.ContainsKey("Attack")) {
+				m_stats["Attack"] = (int)Math.Floor(StatsCalculator.summedAttack(this) + 0.5f);
 			} else {
-				m_stats.Add("attack", (int)Math.Floor(StatsCalculator.summedAttack(this) + 0.5f));
+				m_stats.Add("Attack", (int)Math.Floor(StatsCalculator.summedAttack(this) + 0.5f));
 			}
 		}
 
 		public void calculateDefense() {
-			if (m_stats.ContainsKey("defense")) {
-				m_stats["defense"] = (int)Math.Floor(StatsCalculator.summedDefense(this) + 0.5f);
+			if (m_stats.ContainsKey("Defense")) {
+				m_stats["Defense"] = (int)Math.Floor(StatsCalculator.summedDefense(this) + 0.5f);
 			} else {
-				m_stats.Add("defense", (int)Math.Floor(StatsCalculator.summedDefense(this) + 0.5f));
-			}
-		}
-
-		public void calculateResist() {
-			if (m_stats.ContainsKey("magicResist")) {
-				m_stats["magicResist"] = (int)Math.Floor(StatsCalculator.summedResist(this) + 0.5f);
-			} else {
-				m_stats.Add("magicResist", (int)Math.Floor(StatsCalculator.summedResist(this) + 0.5f));
+				m_stats.Add("Defense", (int)Math.Floor(StatsCalculator.summedDefense(this) + 0.5f));
 			}
 		}
 
 		public void calculateMagic() {
-			if (m_stats.ContainsKey("magicAttack")) {
-				m_stats["magicAttack"] = (int)Math.Floor(StatsCalculator.summedMagic(this) + 0.5f);
+			if (m_stats.ContainsKey("MagicAttack")) {
+				m_stats["MagicAttack"] = (int)Math.Floor(StatsCalculator.summedMagic(this) + 0.5f);
 			} else {
-				m_stats.Add("magicAttack", (int)Math.Floor(StatsCalculator.summedMagic(this) + 0.5f));
+				m_stats.Add("MagicAttack", (int)Math.Floor(StatsCalculator.summedMagic(this) + 0.5f));
 			}
 		}
 
+		public void calculateResist() {
+			if (m_stats.ContainsKey("MagicResist")) {
+				m_stats["MagicResist"] = (int)Math.Floor(StatsCalculator.summedResist(this) + 0.5f);
+			} else {
+				m_stats.Add("MagicResist", (int)Math.Floor(StatsCalculator.summedResist(this) + 0.5f));
+			}
+		}
+		#endregion
+
+		#region Champion Properties
 		public TargetState p_targetState {
 			get {
 				return m_targetState;
@@ -245,6 +265,7 @@ namespace TacticsRPG {
 				m_actionTaken = value;
 			}
 		}
+		#endregion
 
 		public override string ToString() {
 			return m_name + " " + m_race.getName() + " " + m_class.getName();
@@ -301,8 +322,8 @@ namespace TacticsRPG {
 		}
 
 		public void damage(int a_damage) {
-			m_stats["currentHealth"] -= a_damage;
-			if (m_stats["currentHealth"] <= 0) {
+			m_stats["CurrentHealth"] -= a_damage;
+			if (m_stats["CurrentHealth"] <= 0) {
 				((GameState)Game.getInstance().getCurrentState()).removeChampion(this);
 			}
 		}
@@ -321,7 +342,7 @@ namespace TacticsRPG {
 
 		public void championsTurn() {
 			p_actionTaken = false;
-			m_stats["moveLeft"] = m_stats["move"];
+			m_stats["MoveLeft"] = m_stats["Move"];
 		}
 	}
 }

@@ -6,59 +6,30 @@ using System.Text;
 
 namespace TacticsRPG {
 	public static class ClassesData {
+		private static Dictionary<string, ChampionClass> m_classes;
+
 		public static void load() {
-			string[] t_classesDirectory = Directory.GetDirectories("Content/Images/Sprites/Classes/");
-			ChampionClass[] t_availableClasses = new ChampionClass[t_classesDirectory.Length];
-
-			for (int i = 0; i < t_classesDirectory.Length; i++) {
-				string[] t_class = t_classesDirectory[i].Split('/');
-				t_availableClasses[i] = new ChampionClass(t_class[t_class.Length - 1]);
-				t_availableClasses[i].p_male = t_classesDirectory[i].Split('_')[1].Equals("Male");
-				t_availableClasses[i].load();
+			m_classes = new Dictionary<string, ChampionClass>();
+			List<ChampionClass> t_classList = XMLParser.loadAvailableClasses();
+			foreach (ChampionClass t_class in t_classList) {
+				m_classes.Add(t_class.getName(), t_class);
 			}
-		}
-
-		private static Dictionary<string, int> Warrior() {	
-			Dictionary<string, int> t_baseStats = new Dictionary<string, int>();
-			t_baseStats["strength"]		= 40;
-			t_baseStats["intellect"]	= 10;
-			t_baseStats["agility"]		= 20;
-			t_baseStats["luck"]			= 2;
-			t_baseStats["manaRegen"]	= 5;
-			t_baseStats["move"]			= 3;
-			t_baseStats["jump"]			= 3;
-			t_baseStats["speed"]		= 100;
-			t_baseStats["maxHealth"]	= 140;
-			t_baseStats["maxMana"]		= 40;
-
-			return t_baseStats;
-		}
-
-		private static Dictionary<string, int> Mage() {
-			Dictionary<string, int> t_baseStats = new Dictionary<string, int>();
-			t_baseStats["strength"]		= 10;
-			t_baseStats["intellect"]	= 50;
-			t_baseStats["agility"]		= 15;
-			t_baseStats["luck"]			= 2;
-			t_baseStats["manaRegen"]	= 15;
-			t_baseStats["move"]			= 2;
-			t_baseStats["jump"]			= 2;
-			t_baseStats["speed"]		= 100;
-			t_baseStats["maxHealth"]	= 90;
-			t_baseStats["maxMana"]		= 70;
-
-			return t_baseStats;
 		}
 
 		public static Dictionary<string, int> getStats(ChampionClass a_class) {
-			string t_class = a_class.getName().Split('_')[0];
-			if (t_class.Equals("Warrior")) {
-				return Warrior();
+			return m_classes[a_class.ToString()].getBaseStats();
+		}
+		
+		public static List<ChampionClass> availableClasses() {
+			return m_classes.Values.ToList();
+		}
+
+		public static ChampionClass getClass(string a_class) {
+			try {
+				return m_classes[a_class];
+			} catch (InvalidOperationException) {
+				return null;
 			}
-			if (t_class.Equals("Mage")) {
-				return Mage();
-			}
-			return new Dictionary<string, int>();
 		}
 
 		#region Attack

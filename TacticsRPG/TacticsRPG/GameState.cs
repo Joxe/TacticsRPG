@@ -75,12 +75,12 @@ namespace TacticsRPG {
 
 		private void updateKeyboard() {
 			if (KeyboardHandler.keyPressed(Keys.D)) {
-				m_champions.Add("Joxe", new Champion(m_tileMap.p_hover.getMapPosition(), "Joxe", "Warrior_Male", "Human"));
+				m_champions.Add("Joxe", new Champion(m_tileMap.p_hover.getMapPosition(), "Joxe", "Warrior", true, "Human"));
 				m_tileMap.p_hover.p_champion = m_champions["Joxe"];
 				m_champions["Joxe"].load();
 			}
 			if (KeyboardHandler.keyPressed(Keys.F)) {
-				m_champions.Add("Din Mamma", new Champion(m_tileMap.p_hover.getMapPosition(), "Din Mamma", "Mage_Female", "Human"));
+				m_champions.Add("Din Mamma", new Champion(m_tileMap.p_hover.getMapPosition(), "Din Mamma", "Mage", false, "Human"));
 				m_tileMap.p_hover.p_champion = m_champions["Din Mamma"];
 				m_champions["Din Mamma"].load();
 			}
@@ -142,7 +142,9 @@ namespace TacticsRPG {
 			m_selectedChampion.p_targetState = Champion.TargetState.Normal;
 			m_championInfo.Clear();
 			m_selectedChampion = null;
-			m_battleQueue.Sort();
+			if (m_battleQueue != null) {
+				m_battleQueue.Sort();
+			}
 		}
 
 		public Champion getSelectedChampion() {

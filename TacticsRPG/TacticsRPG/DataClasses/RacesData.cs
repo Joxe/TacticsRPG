@@ -6,39 +6,30 @@ using System.Text;
 
 namespace TacticsRPG {
 	public static class RacesData {
+		private static Dictionary<string, ChampionRace> m_races;
+
 		public static void load() {
-			string[] t_racesDirectory = Directory.GetDirectories("Content/Images/Sprites/Races/");
-			ChampionRace[] t_availableRaces = new ChampionRace[t_racesDirectory.Length];
-
-			for (int i = 0; i < t_racesDirectory.Length; i++) {
-				string[] t_race = t_racesDirectory[i].Split('/');
-				t_availableRaces[i] = new ChampionRace(t_race[t_race.Length - 1]);
-				t_availableRaces[i].p_male = t_racesDirectory[i].Split('_')[1].Equals("Male");
-				t_availableRaces[i].load();
+			m_races	= new Dictionary<string, ChampionRace>();
+			List<ChampionRace> t_raceList = XMLParser.loadAvailableRaces();
+			foreach (ChampionRace t_race in t_raceList) {
+				m_races.Add(t_race.getName(), t_race);
 			}
-		}
-
-		private static Dictionary<string, int> Human() {
-			Dictionary<string, int> t_baseStats = new Dictionary<string, int>();
-			t_baseStats["strength"]		= 20;
-			t_baseStats["intellect"]	= 10;
-			t_baseStats["agility"]		= 15;
-			t_baseStats["luck"]			= 1;
-			t_baseStats["manaRegen"]	= 5;
-			t_baseStats["move"]			= 2;
-			t_baseStats["jump"]			= 2;
-			t_baseStats["speed"]		= 50;
-			t_baseStats["maxHealth"]	= 80;
-			t_baseStats["maxMana"]		= 40;
-
-			return t_baseStats;
 		}
 
 		public static Dictionary<string, int> getStats(ChampionRace a_race) {
-			if (a_race.getName().Split('_')[0].Equals("Human")) {
-				return Human();
+			return m_races[a_race.getName()].getBaseStats();
+		}
+
+		public static List<ChampionRace> availableRaces() {
+			return m_races.Values.ToList();
+		}
+
+		public static ChampionRace getRace(string a_race) {
+			try {
+				return m_races[a_race];
+			} catch (InvalidOperationException) {
+				return null;
 			}
-			return new Dictionary<string, int>();
 		}
 
 		#region Attack
