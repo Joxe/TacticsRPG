@@ -12,10 +12,15 @@ namespace TacticsRPG {
 			List<ChampionRace> t_returnList = new List<ChampionRace>();
 
 			t_xmlDocument.Load("XML Data/RacesData.xml");
-			XmlNode t_raceNode = t_xmlDocument.SelectSingleNode("RacesData");
+			XmlNode t_raceNode = t_xmlDocument.SelectSingleNode("/RacesData/BaseStats");
 			for (int i = 0; i < t_raceNode.ChildNodes.Count; i++) {
 				t_returnList.Add(new ChampionRace(t_raceNode.ChildNodes[i].Name));
 				t_returnList.Last().setBaseStats(t_raceNode.ChildNodes[i]);
+			}
+
+			t_raceNode = t_xmlDocument.SelectSingleNode("/RacesData/Ratios");
+			for (int i = 0; i < t_raceNode.ChildNodes.Count; i++) {
+				t_returnList.ElementAt(i).setBaseRatios(t_raceNode.ChildNodes[i]);
 			}
 
 			return t_returnList;
@@ -26,10 +31,15 @@ namespace TacticsRPG {
 			List<ChampionClass> t_returnList = new List<ChampionClass>();
 
 			t_xmlDocument.Load("XML Data/ClassesData.xml");
-			XmlNode t_raceNode = t_xmlDocument.SelectSingleNode("ClassesData");
-			for (int i = 0; i < t_raceNode.ChildNodes.Count; i++) {
-				t_returnList.Add(new ChampionClass(t_raceNode.ChildNodes[i].Name));
-				t_returnList.Last().setBaseStats(t_raceNode.ChildNodes[i]);
+			XmlNode t_classNode = t_xmlDocument.SelectSingleNode("/ClassesData/BaseStats");
+			for (int i = 0; i < t_classNode.ChildNodes.Count; i++) {
+				t_returnList.Add(new ChampionClass(t_classNode.ChildNodes[i].Name));
+				t_returnList.Last().setBaseStats(t_classNode.ChildNodes[i]);
+			}
+
+			t_classNode = t_xmlDocument.SelectSingleNode("/ClassesData/Ratios");
+			for (int i = 0; i < t_classNode.ChildNodes.Count; i++) {
+				t_returnList.ElementAt(i).setBaseRatios(t_classNode.ChildNodes[i]);
 			}
 
 			return t_returnList;

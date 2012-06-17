@@ -1,27 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ClassesData>
-	<Warrior>
-		<Strength />	40
-		<Intellect />	10
-		<Agility />		20
-		<Luck />		2
-		<ManaRegen/>	5
-		<Move/>			3
-		<Jump />		3
-		<Speed />		100
-		<MaxHealth />	140
-		<MaxMana />		40
-	</Warrior>
-	<Mage>
-		<Strength />	10
-		<Intellect />	50
-		<Agility />		15
-		<Luck />		2
-		<ManaRegen/>	15
-		<Move/>			2
-		<Jump />		2
-		<Speed />		100
-		<MaxHealth />	90
-		<MaxMana />		70
-	</Mage>
+	<BaseStats>
+		<Warrior>
+			<Strength />	40
+			<Intellect />	10
+			<Agility />		20
+			<Luck />		2
+			<ManaRegen/>	5
+			<Move/>			3
+			<Jump />		3
+			<Speed />		100
+			<MaxHealth />	140
+			<MaxMana />		40
+		</Warrior>
+		<Mage>
+			<Strength />	10
+			<Intellect />	50
+			<Agility />		15
+			<Luck />		2
+			<ManaRegen/>	15
+			<Move/>			2
+			<Jump />		2
+			<Speed />		100
+			<MaxHealth />	90
+			<MaxMana />		70
+		</Mage>
+	</BaseStats>
+	<Ratios>
+		<Warrior>
+			<Attack>
+				<Strength />	2.0
+				<Agility />		1.5
+				<Intellect />	0.2
+			</Attack>
+			<Defense>
+				<Strength />	1.5
+				<Agility />		1.1
+				<Intellect />	0.8
+			</Defense>
+			<MagicAttack>
+				<Strength />	0.3
+				<Agility />		0.2
+				<Intellect />	0.1
+			</MagicAttack>
+			<MagicResist>
+				<Strength />	0.5
+				<Agility />		0.3
+				<Intellect />	0.1
+			</MagicResist>
+		</Warrior>
+		<Mage>
+			<Attack>
+				<Strength />	0.1
+				<Agility />		0.2
+				<Intellect />	0.3
+			</Attack>
+			<Defense>
+				<Strength />	0.2
+				<Agility />		0.3
+				<Intellect />	1.0
+			</Defense>
+			<MagicAttack>
+				<Strength />	1.0
+				<Agility />		1.4
+				<Intellect />	3.0
+			</MagicAttack>
+			<MagicResist>
+				<Strength />	0.5
+				<Agility />		1.2
+				<Intellect />	2.5
+			</MagicResist>
+		</Mage>
+	</Ratios>
 </ClassesData>
+
+<!--
+<Class>
+	<Attack>
+		<Strength />
+		<Agility />
+		<Intellect />
+	</Attack>
+	<Defense>
+		<Strength />
+		<Agility />
+		<Intellect />
+	</Defense>
+	<MagicAttack>
+		<Strength />
+		<Agility />
+		<Intellect />
+	</MagicAttack>
+	<MagicResist>
+		<Strength />
+		<Agility />
+		<Intellect />
+	</MagicResist>
+</Class>
+-->
+
+<!--
+<Class>
+	<Strength />	0
+	<Intellect />	0
+	<Agility />		0
+	<Luck />		0
+	<ManaRegen/>	0
+	<Move/>			0
+	<Jump />		0
+	<Speed />		0
+	<MaxHealth />	0
+	<MaxMana />		0
+</Class>
+-->
