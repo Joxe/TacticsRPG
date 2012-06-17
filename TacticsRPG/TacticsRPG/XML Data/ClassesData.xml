@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ClassesData>
+	<Warrior>
+		<Strength />	40
+		<Intellect />	10
+		<Agility />		20
+		<Luck />		2
+		<ManaRegen/>	5
+		<Move/>			3
+		<Jump />		3
+		<Speed />		100
+		<MaxHealth />	140
+		<MaxMana />		40
+	</Warrior>
+	<Mage>
+		<Strength />	10
+		<Intellect />	50
+		<Agility />		15
+		<Luck />		2
+		<ManaRegen/>	15
+		<Move/>			2
+		<Jump />		2
+		<Speed />		100
+		<MaxHealth />	90
+		<MaxMana />		70
+	</Mage>
+</ClassesData>
