@@ -25,11 +25,15 @@ namespace TacticsRPG {
 		}
 
 		public static ChampionRace getRace(string a_race) {
+			#if DEBUG
+			return m_races[a_race];
+			#else
 			try {
 				return m_races[a_race];
 			} catch (InvalidOperationException) {
 				return null;
 			}
+			#endif
 		}
 	}
 }

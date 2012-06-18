@@ -232,6 +232,16 @@ namespace TacticsRPG {
 		//Summary
 		//	Updates the button's bounds to match the largest image that it can show
 		private void updateTextureBounds() {
+			#if DEBUG
+			Vector2 t_size = new Vector2(m_normalTexture.Width, m_normalTexture.Height);
+			t_size.X = Math.Max(t_size.X, m_hoverTexture.Width);
+			t_size.Y = Math.Max(t_size.Y, m_hoverTexture.Height);
+			t_size.X = Math.Max(t_size.X, m_pressedTexture.Width);
+			t_size.Y = Math.Max(t_size.Y, m_pressedTexture.Height);
+			t_size.X = Math.Max(t_size.X, m_toggleTexture.Width);
+			t_size.Y = Math.Max(t_size.Y, m_toggleTexture.Height);
+			m_bounds.p_dimensions = t_size;
+			#else
 			try {
 				Vector2 t_size = new Vector2(m_normalTexture.Width, m_normalTexture.Height);
 				t_size.X = Math.Max(t_size.X, m_hoverTexture.Width);
@@ -244,6 +254,7 @@ namespace TacticsRPG {
 			} catch (NullReferenceException) {
 				return;
 			}
+			#endif
 		}
 
 		public virtual Rectangle getBox() {

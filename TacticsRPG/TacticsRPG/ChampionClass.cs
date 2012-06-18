@@ -22,19 +22,27 @@ namespace TacticsRPG {
 		}
 
 		public int getStat(string a_stat) {
+			#if DEBUG
+			return m_baseStats[a_stat];
+			#else
 			try {
 				return m_baseStats[a_stat];
 			} catch (InvalidOperationException) {
 				return 0;
 			}
+			#endif
 		}
 
 		public float getRatio(string a_ratio) {
+			#if DEBUG
+			return m_baseRatios[a_ratio];
+			#else
 			try {
 				return m_baseRatios[a_ratio];
 			} catch (InvalidOperationException) {
 				return 0;
 			}
+			#endif
 		}
 
 		public override string ToString() {

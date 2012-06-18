@@ -25,11 +25,15 @@ namespace TacticsRPG {
 		}
 
 		public static ChampionClass getClass(string a_class) {
+			#if DEBUG
+			return m_classes[a_class];
+			#else
 			try {
 				return m_classes[a_class];
 			} catch (InvalidOperationException) {
 				return null;
 			}
+			#endif
 		}
 	}
 }
