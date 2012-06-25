@@ -42,6 +42,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fonts\Arial.spritefont">
+      <Name>Arial</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <Compile Include="Images\Sprites\Tiles\Test\hover.png">
       <Name>hover</Name>
       <Importer>TextureImporter</Importer>
@@ -71,11 +76,6 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
-    <Compile Include="Fonts\Arial.spritefont">
-      <Name>Arial</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
     <None Include="Settings\settings.ini">
       <Name>settings</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -96,366 +96,366 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Idle\BottomLeft.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Idle\BottomLeft.png">
       <Name>BottomLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Idle\BottomRight.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Idle\BottomRight.png">
       <Name>BottomRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Idle\Down.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Idle\Down.png">
       <Name>Down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Idle\TopLeft.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Idle\TopLeft.png">
       <Name>TopLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Idle\TopRight.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Idle\TopRight.png">
       <Name>TopRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Idle\Up.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Idle\Up.png">
       <Name>Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Walking\BottomLeft.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Walking\BottomLeft.png">
       <Name>BottomLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Walking\BottomRight.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Walking\BottomRight.png">
       <Name>BottomRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Walking\Down.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Walking\Down.png">
       <Name>Down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Walking\TopLeft.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Walking\TopLeft.png">
       <Name>TopLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Walking\TopRight.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Walking\TopRight.png">
       <Name>TopRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Female\Walking\Up.png">
+    <Compile Include="Images\Sprites\Classes\WarriorFemale\Walking\Up.png">
       <Name>Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Idle\BottomLeft.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Idle\BottomLeft.png">
       <Name>BottomLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Idle\BottomRight.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Idle\BottomRight.png">
       <Name>BottomRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Idle\Down.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Idle\Down.png">
       <Name>Down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Idle\TopLeft.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Idle\TopLeft.png">
       <Name>TopLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Idle\TopRight.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Idle\TopRight.png">
       <Name>TopRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Idle\Up.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Idle\Up.png">
       <Name>Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Walking\BottomLeft.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Walking\BottomLeft.png">
       <Name>BottomLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Walking\BottomRight.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Walking\BottomRight.png">
       <Name>BottomRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Walking\Down.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Walking\Down.png">
       <Name>Down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Walking\TopLeft.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Walking\TopLeft.png">
       <Name>TopLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Walking\TopRight.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Walking\TopRight.png">
       <Name>TopRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Warrior_Male\Walking\Up.png">
-      <Name>Up</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Images\Sprites\Races\Human_Female\Idle\BottomLeft.png">
-      <Name>BottomLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Idle\BottomRight.png">
-      <Name>BottomRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Idle\Down.png">
-      <Name>Down</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Idle\TopLeft.png">
-      <Name>TopLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Idle\TopRight.png">
-      <Name>TopRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Idle\Up.png">
-      <Name>Up</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Walking\BottomLeft.png">
-      <Name>BottomLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Walking\BottomRight.png">
-      <Name>BottomRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Walking\Down.png">
-      <Name>Down</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Walking\TopLeft.png">
-      <Name>TopLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Walking\TopRight.png">
-      <Name>TopRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Female\Walking\Up.png">
-      <Name>Up</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Idle\BottomLeft.png">
-      <Name>BottomLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Idle\BottomRight.png">
-      <Name>BottomRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Idle\Down.png">
-      <Name>Down</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Idle\TopLeft.png">
-      <Name>TopLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Idle\TopRight.png">
-      <Name>TopRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Idle\Up.png">
-      <Name>Up</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Walking\BottomLeft.png">
-      <Name>BottomLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Walking\BottomRight.png">
-      <Name>BottomRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Walking\Down.png">
-      <Name>Down</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Walking\TopLeft.png">
-      <Name>TopLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Walking\TopRight.png">
-      <Name>TopRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Races\Human_Male\Walking\Up.png">
+    <Compile Include="Images\Sprites\Classes\WarriorMale\Walking\Up.png">
       <Name>Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Idle\BottomLeft.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Idle\BottomLeft.png">
       <Name>BottomLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Idle\BottomRight.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Idle\BottomRight.png">
       <Name>BottomRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Idle\Down.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Idle\Down.png">
       <Name>Down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Idle\TopLeft.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Idle\TopLeft.png">
       <Name>TopLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Idle\TopRight.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Idle\TopRight.png">
       <Name>TopRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Idle\Up.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Idle\Up.png">
       <Name>Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Walking\BottomLeft.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Walking\BottomLeft.png">
       <Name>BottomLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Walking\BottomRight.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Walking\BottomRight.png">
       <Name>BottomRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Walking\Down.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Walking\Down.png">
       <Name>Down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Walking\TopLeft.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Walking\TopLeft.png">
       <Name>TopLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Walking\TopRight.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Walking\TopRight.png">
       <Name>TopRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Female\Walking\Up.png">
+    <Compile Include="Images\Sprites\Classes\MageFemale\Walking\Up.png">
       <Name>Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Idle\BottomLeft.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Idle\BottomLeft.png">
       <Name>BottomLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Idle\BottomRight.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Idle\BottomRight.png">
       <Name>BottomRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Idle\Down.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Idle\Down.png">
       <Name>Down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Idle\TopLeft.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Idle\TopLeft.png">
       <Name>TopLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Idle\TopRight.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Idle\TopRight.png">
       <Name>TopRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Idle\Up.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Idle\Up.png">
       <Name>Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Walking\BottomLeft.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Walking\BottomLeft.png">
       <Name>BottomLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Walking\BottomRight.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Walking\BottomRight.png">
       <Name>BottomRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Walking\Down.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Walking\Down.png">
       <Name>Down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Walking\TopLeft.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Walking\TopLeft.png">
       <Name>TopLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Walking\TopRight.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Walking\TopRight.png">
       <Name>TopRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Classes\Mage_Male\Walking\Up.png">
+    <Compile Include="Images\Sprites\Classes\MageMale\Walking\Up.png">
+      <Name>Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Idle\BottomLeft.png">
+      <Name>BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Idle\BottomRight.png">
+      <Name>BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Idle\Down.png">
+      <Name>Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Idle\TopLeft.png">
+      <Name>TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Idle\TopRight.png">
+      <Name>TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Idle\Up.png">
+      <Name>Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Walking\BottomLeft.png">
+      <Name>BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Walking\BottomRight.png">
+      <Name>BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Walking\Down.png">
+      <Name>Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Walking\TopLeft.png">
+      <Name>TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Walking\TopRight.png">
+      <Name>TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanFemale01\Walking\Up.png">
+      <Name>Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Idle\BottomLeft.png">
+      <Name>BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Idle\BottomRight.png">
+      <Name>BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Idle\Down.png">
+      <Name>Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Idle\TopLeft.png">
+      <Name>TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Idle\TopRight.png">
+      <Name>TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Idle\Up.png">
+      <Name>Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Walking\BottomLeft.png">
+      <Name>BottomLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Walking\BottomRight.png">
+      <Name>BottomRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Walking\Down.png">
+      <Name>Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Walking\TopLeft.png">
+      <Name>TopLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Walking\TopRight.png">
+      <Name>TopRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\Races\HumanMale01\Walking\Up.png">
       <Name>Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

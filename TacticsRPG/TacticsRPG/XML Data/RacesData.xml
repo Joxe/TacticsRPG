@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RacesData>
+	<BaseStats>
+		<Human>
+			<Strength />	20
+			<Intellect />	10
+			<Agility />		15
+			<Luck />		1
+			<ManaRegen/>	5
+			<Move/>			2
+			<Jump />		2
+			<Speed />		50
+			<MaxHealth />	90
+			<MaxMana />		40
+		</Human>
+	</BaseStats>
+	<Ratios>
+		<Human>
+			<Attack>
+				<Strength />	1,3
+				<Agility />		1.2
+				<Intellect />	1.1
+			</Attack>
+			<Defense>
+				<Strength />	1.3
+				<Agility />		1.2
+				<Intellect />	1.1
+			</Defense>
+			<MagicAttack>
+				<Strength />	0.5
+				<Agility />		0.3
+				<Intellect />	0.1
+			</MagicAttack>
+			<MagicResist>
+				<Strength />	0.5
+				<Agility />		0.3
+				<Intellect />	0.1
+			</MagicResist>
+		</Human>
+	</Ratios>
+</RacesData>

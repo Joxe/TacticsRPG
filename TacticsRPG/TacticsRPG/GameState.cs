@@ -12,7 +12,7 @@ namespace TacticsRPG {
 		private Champion m_selectedChampion;
 		private LinkedList<GuiObject> m_championInfo;
 		private GameGUI m_gameGui;
-		private KeyValuePair<int, Champion>[] m_battleQueue;
+		private List<Champion> m_battleQueue;
 
 		public GameState() : base() {
 			m_champions = new Dictionary<string, Champion>();
@@ -60,8 +60,10 @@ namespace TacticsRPG {
 				}
 			}
 			if (MouseHandler.rmbDown()) {
-				if (m_selectedChampion != null) {
-					deselectChampion();
+				if (KeyboardHandler.keyPressed(Keys.LeftControl)) {
+					if (m_selectedChampion != null) {
+						deselectChampion();
+					}
 				}
 			}
 			if (MouseHandler.scrollUp()) {
@@ -73,12 +75,12 @@ namespace TacticsRPG {
 
 		private void updateKeyboard() {
 			if (KeyboardHandler.keyPressed(Keys.D)) {
-				m_champions.Add("Joxe", new Champion(m_tileMap.p_hover.getMapPosition(), "Joxe", "Warrior_Male", "Human"));
+				m_champions.Add("Joxe", new Champion(m_tileMap.p_hover.getMapPosition(), "Joxe", "Warrior", true, "Human"));
 				m_tileMap.p_hover.p_champion = m_champions["Joxe"];
 				m_champions["Joxe"].load();
 			}
 			if (KeyboardHandler.keyPressed(Keys.F)) {
-				m_champions.Add("Din Mamma", new Champion(m_tileMap.p_hover.getMapPosition(), "Din Mamma", "Mage_Female", "Human"));
+				m_champions.Add("Din Mamma", new Champion(m_tileMap.p_hover.getMapPosition(), "Din Mamma", "Mage", false, "Human"));
 				m_tileMap.p_hover.p_champion = m_champions["Din Mamma"];
 				m_champions["Din Mamma"].load();
 			}
@@ -86,16 +88,15 @@ namespace TacticsRPG {
 
 		private void updateBattle() {
 			if (m_selectedChampion == null) {
-				int t_lowestScore = int.MaxValue;
-				int t_lowestIndex = 0;
-				for (int i = 0; i < m_battleQueue.Length; i++) {
-					if (m_battleQueue[i].Key < t_lowestScore) {
-						t_lowestIndex = i;
-						t_lowestScore = m_battleQueue[i].Key;
-					}
-				}
-				p_selectedChampion = m_battleQueue[t_lowestIndex].Value;
+				p_selectedChampion = m_battleQueue.First();
+				m_selectedChampion.championsTurn();
 			}
+			int negativeSpeed = m_selectedChampion.p_speed;
+
+			foreach (Champion t_champion in m_battleQueue) {
+				t_champion.p_speed -= negativeSpeed;
+			}
+			m_battleQueue.Sort();
 		}
 
 		public override void draw() {
@@ -126,6 +127,7 @@ namespace TacticsRPG {
 				}
 				m_selectedChampion = value;
 				m_selectedChampion.p_targetState = Champion.TargetState.Targeted;
+				m_selectedChampion.p_actionTaken = false;
 				m_championInfo.Clear();
 				m_championInfo.AddLast(new Text(new Vector2(10, 10), m_selectedChampion.ToString(), "Arial", Color.Black, false));
 				foreach (Text t_text in m_selectedChampion.statsToTextList()) {
@@ -140,6 +142,9 @@ namespace TacticsRPG {
 			m_selectedChampion.p_targetState = Champion.TargetState.Normal;
 			m_championInfo.Clear();
 			m_selectedChampion = null;
+			if (m_battleQueue != null) {
+				m_battleQueue.Sort();
+			}
 		}
 
 		public Champion getSelectedChampion() {
@@ -160,14 +165,11 @@ namespace TacticsRPG {
 		}
 
 		public void startGame() {
-			if (m_battleQueue == null) {
-				m_battleQueue = new KeyValuePair<int, Champion>[m_champions.Count];
-			}
-			int t_index = 0;
+			m_battleQueue = new List<Champion>();
 			foreach (Champion t_champion in m_champions.Values) {
-				m_battleQueue[t_index] = new KeyValuePair<int, Champion>(t_champion.getStat("speed"), t_champion);
-				t_index++;
+				m_battleQueue.Add(t_champion);
 			}
+			m_battleQueue.Sort();
 		}
 	}
 }
