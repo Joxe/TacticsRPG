@@ -12,7 +12,7 @@ namespace TacticsRPG {
 		private Champion m_selectedChampion;
 		private LinkedList<GuiObject> m_championInfo;
 		private GameGUI m_gameGui;
-		private SortedDictionary<int, Champion> m_battleQueue;
+		private KeyValuePair<int, Champion>[] m_battleQueue;
 
 		public GameState() : base() {
 			m_champions = new Dictionary<string, Champion>();
@@ -85,7 +85,17 @@ namespace TacticsRPG {
 		}
 
 		private void updateBattle() {
-			
+			if (m_selectedChampion == null) {
+				int t_lowestScore = int.MaxValue;
+				int t_lowestIndex = 0;
+				for (int i = 0; i < m_battleQueue.Length; i++) {
+					if (m_battleQueue[i].Key < t_lowestScore) {
+						t_lowestIndex = i;
+						t_lowestScore = m_battleQueue[i].Key;
+					}
+				}
+				p_selectedChampion = m_battleQueue[t_lowestIndex].Value;
+			}
 		}
 
 		public override void draw() {
@@ -150,10 +160,13 @@ namespace TacticsRPG {
 		}
 
 		public void startGame() {
+			if (m_battleQueue == null) {
+				m_battleQueue = new KeyValuePair<int, Champion>[m_champions.Count];
+			}
+			int t_index = 0;
 			foreach (Champion t_champion in m_champions.Values) {
-				for (int i = 0; m_battleQueue.ContainsKey(t_champion.getStat("speed") + i); i++) {
-					m_battleQueue.Add(t_champion.getStat("speed") + i, t_champion);
-				}
+				m_battleQueue[t_index] = new KeyValuePair<int, Champion>(t_champion.getStat("speed"), t_champion);
+				t_index++;
 			}
 		}
 	}

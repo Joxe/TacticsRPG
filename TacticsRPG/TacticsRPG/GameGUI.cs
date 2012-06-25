@@ -105,7 +105,7 @@ namespace TacticsRPG {
 		}
 
 		private void gameStartClick(Button a_button) {
-
+			m_gameState.startGame();
 		}
 
 		private bool collidedWithGUI() {

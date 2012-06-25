@@ -15,6 +15,7 @@ namespace TacticsRPG {
 		private readonly Vector2 m_tileOffset = new Vector2(64, -64);
 		private readonly Vector2 m_targetOffset = new Vector2(-10, 150);
 		private static Sprite m_targetRecticle;
+		private Player m_owningPlayer;
 
 		private Stack<Tile> m_moveQueue = new Stack<Tile>();
 		private Dictionary<string, int> m_stats = new Dictionary<string, int>();
@@ -106,6 +107,7 @@ namespace TacticsRPG {
 			}
 		}
 
+		#region Champion Facing
 		public void faceTile(Tile a_tile) {
 			if (a_tile.getMapPosition().X < m_currentPosition.getMapPosition().X) {
 				if (MathManager.isEven((int)m_currentPosition.getMapPosition().X)) {
@@ -158,7 +160,9 @@ namespace TacticsRPG {
 				}
 			}
 		}
+		#endregion
 
+		#region Stat-calculations
 		public void calculateAttack() {
 			if (m_stats.ContainsKey("attack")) {
 				m_stats["attack"] = (int)Math.Floor(StatsCalculator.summedAttack(this) + 0.5f);
@@ -190,7 +194,9 @@ namespace TacticsRPG {
 				m_stats.Add("magicAttack", (int)Math.Floor(StatsCalculator.summedMagic(this) + 0.5f));
 			}
 		}
+		#endregion
 
+		#region Champion Properties
 		public TargetState p_targetState {
 			get {
 				return m_targetState;
@@ -218,6 +224,16 @@ namespace TacticsRPG {
 			}
 		}
 
+		public Player p_owningPlayer {
+			get {
+				return m_owningPlayer;
+			}
+			set {
+				m_owningPlayer = value;
+			}
+		}
+		#endregion
+
 		public override string ToString() {
 			return m_name + " " + m_race.getName() + " " + m_class.getName();
 		}
@@ -236,10 +252,6 @@ namespace TacticsRPG {
 			} else {
 				return 0;
 			}
-		}
-
-		public Dictionary<string, int> getStats() {
-			return m_stats;
 		}
 
 		public LinkedList<Text> statsToTextList() {
