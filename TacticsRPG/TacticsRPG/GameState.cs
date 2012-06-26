@@ -25,6 +25,8 @@ namespace TacticsRPG {
 			Game.getInstance().m_camera.load();
 			ClassesData.load();
 			RacesData.load();
+			ElementsData.load();
+			AbilitiesData.load();
 			m_gameGui.load();
 			createTileMap(20, 20);
 		}
@@ -145,10 +147,6 @@ namespace TacticsRPG {
 			if (m_battleQueue != null) {
 				m_battleQueue.Sort();
 			}
-		}
-
-		public Champion getSelectedChampion() {
-			return m_selectedChampion;
 		}
 
 		public LinkedList<Champion> getChampions() {

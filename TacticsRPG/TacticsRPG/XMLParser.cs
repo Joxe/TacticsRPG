@@ -26,7 +26,7 @@ namespace TacticsRPG {
 			return t_returnList;
 		}
 
-		public static List<ChampionClass> loadAvailableClasses() {
+		public static List<ChampionClass>  loadAvailableClasses() {
 			XmlDocument t_xmlDocument = new XmlDocument();
 			List<ChampionClass> t_returnList = new List<ChampionClass>();
 
@@ -43,6 +43,65 @@ namespace TacticsRPG {
 			}
 
 			return t_returnList;
+		}
+
+		public static List<Element> loadAvailableElements() {
+			XmlDocument t_xmlDocument = new XmlDocument();
+			List<Element> t_returnList = new List<Element>();
+
+			t_xmlDocument.Load("XML Data/ElementsData.xml");
+			XmlNode t_elementNode = t_xmlDocument.SelectSingleNode("/ElementsData");
+			for (int i = 0; i < t_elementNode.ChildNodes.Count; i++) {
+				t_returnList.Add(new Element(t_elementNode.ChildNodes[i].Name));
+			}
+
+			return t_returnList;
+		}
+
+		public static void loadElementProperties(List<Element> a_elementList) {
+			XmlDocument t_xmlDocument = new XmlDocument();
+			t_xmlDocument.Load("XML Data/ElementsData.xml");
+
+			foreach (Element t_element in a_elementList) {
+				XmlNodeList t_propertyList = t_xmlDocument.SelectNodes("ElementsData/" + t_element.getName() + "/Strength");
+				foreach (XmlNode t_node in t_propertyList) {
+					t_element.addStrength(ElementsData.getElement(t_node.NextSibling.InnerText.Trim()));
+				}
+
+				t_propertyList = t_xmlDocument.SelectNodes("ElementsData/" + t_element.getName() + "/Weakness");
+				foreach (XmlNode t_node in t_propertyList) {
+					t_element.addWeakness(ElementsData.getElement(t_node.NextSibling.InnerText.Trim()));
+				}
+			}
+		}
+		
+		public static List<Ability> loadAvailableAbilities() {
+			XmlDocument t_xmlDocument = new XmlDocument();
+			List<Ability> t_returnList = new List<Ability>();
+
+			t_xmlDocument.Load("XML Data/AbilitiesData.xml");
+			XmlNodeList t_abilityNodes = t_xmlDocument.SelectSingleNode("AbilitiesData").ChildNodes;
+			for (int i = 0; i < t_abilityNodes.Count; i++) {
+				t_returnList.Add(new Ability(t_abilityNodes[i].Name));
+			}
+
+			foreach (Ability t_ability in t_returnList) {
+				XmlNode t_abilityNode = t_xmlDocument.SelectSingleNode("AbilitiesData/" + t_ability.getName());
+				t_ability.setProperties(
+					t_abilityNode.SelectSingleNode("Desc").NextSibling.InnerText.Trim(),
+					int.Parse(t_abilityNode.SelectSingleNode("Range").NextSibling.InnerText.Trim()),
+					int.Parse(t_abilityNode.SelectSingleNode("AoE").NextSibling.InnerText.Trim()),
+					int.Parse(t_abilityNode.SelectSingleNode("Cost").NextSibling.InnerText.Trim()),
+					ElementsData.getElement(t_abilityNode.SelectSingleNode("Element").NextSibling.InnerText.Trim())
+				);
+			}
+
+			return t_returnList;
+		}
+
+		public static void setAbilities(Champion a_champion) {
+			XmlDocument t_xmlDocument = new XmlDocument();
+
 		}
 	}
 }

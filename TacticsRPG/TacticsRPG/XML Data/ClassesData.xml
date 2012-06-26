@@ -72,6 +72,11 @@
 			</MagicResist>
 		</Mage>
 	</Ratios>
+	<Abilities>
+		<Warrior>
+			<Ability />	Dafuq
+		</Warrior>
+	</Abilities>
 </ClassesData>
 
 <!--

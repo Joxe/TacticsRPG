@@ -20,10 +20,10 @@ namespace TacticsRPG {
 		public TextButton(Vector2 a_position, string a_text, string a_font, Color a_normal, Color a_hover, Color a_pressed, Color a_toggle, Color a_disable)
 			: base(a_position)
 		{
-			m_normalColor = a_normal;
-			m_hoverColor = a_hover;
-			m_pressedColor = a_pressed;
-			m_toggleColor = a_toggle;
+			m_normalColor	= a_normal;
+			m_hoverColor	= a_hover;
+			m_pressedColor	= a_pressed;
+			m_toggleColor	= a_toggle;
 			m_text = new Text(m_parentOffset, a_text, a_font, a_normal, false);
 		}
 
@@ -32,11 +32,11 @@ namespace TacticsRPG {
 		public TextButton(Vector2 a_position, string a_text, string a_font) 
 			: base(a_position)
 		{
-			m_normalColor = new Color(0, 0, 0);
-			m_hoverColor = new Color(62, 67, 68);
-			m_pressedColor = new Color(40, 40, 40);
-			m_toggleColor = new Color(0, 0, 255);
-			m_disabledColor = new Color(255, 0, 0);
+			m_normalColor	= new Color(0	, 0	, 0);
+			m_hoverColor	= new Color(62	, 67, 68);
+			m_pressedColor	= new Color(40	, 40, 40);
+			m_toggleColor	= new Color(0	, 0	, 255);
+			m_disabledColor	= new Color(255	, 0	, 0);
 			m_text = new Text(m_parentOffset, a_text, a_font, m_normalColor, false);
 		}
 

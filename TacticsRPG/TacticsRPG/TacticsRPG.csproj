@@ -110,7 +110,9 @@
     <Compile Include="ChampionClass.cs" />
     <Compile Include="ChampionRace.cs" />
     <Compile Include="Ability.cs" />
+    <Compile Include="DataClasses\AbilitiesData.cs" />
     <Compile Include="DataClasses\ClassesData.cs" />
+    <Compile Include="DataClasses\ElementsData.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="DataClasses\RacesData.cs" />
     <Compile Include="GameGUI.cs" />
@@ -150,6 +152,14 @@
     <Compile Include="XMLParser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="XML Data\AbilitiesData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="XML Data\ElementsData.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="XML Data\RacesData.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -157,6 +167,7 @@
     <Content Include="GameThumbnail.png" />
     <Content Include="XML Data\ClassesData.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

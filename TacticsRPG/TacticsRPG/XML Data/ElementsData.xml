@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ElementsData>
+	<Fire>
+		<Strength />	Ice
+		<Strength />	Lightning
+		<Weakness />	Water
+	</Fire>
+	<Ice>
+		
+	</Ice>
+	<Lightning>
+		<Strength />	Water
+	</Lightning>
+	<Water>
+		<Strength />	Fire
+		<Weakness />	Lightning
+	</Water>
+</ElementsData>

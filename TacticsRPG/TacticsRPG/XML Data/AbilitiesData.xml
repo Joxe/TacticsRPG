@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AbilitiesData>
+	<Dafuq>
+		<Desc />	Bajsar på motståndet så hårt att det dör
+		<Range />	5
+		<AoE />		2
+		<Cost />	10
+		<Element />	Fire
+	</Dafuq>
+</AbilitiesData>

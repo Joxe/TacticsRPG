@@ -79,5 +79,7 @@ Content\Images\Sprites\Races\HumanMale01\Walking\TopLeft.xnb
 Content\Images\Sprites\Races\HumanMale01\Walking\TopRight.xnb
 Content\Images\Sprites\Races\HumanMale01\Walking\Up.xnb
 Content\Settings\settings.ini
+XML Data\AbilitiesData.xml
+XML Data\ElementsData.xml
 XML Data\RacesData.xml
 XML Data\ClassesData.xml
