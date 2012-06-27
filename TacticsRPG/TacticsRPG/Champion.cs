@@ -26,6 +26,8 @@ namespace TacticsRPG {
 		private Dictionary<KeyValuePair<HeroState, FacingState>, Sprite> m_faceSprites;
 		private Dictionary<KeyValuePair<HeroState, FacingState>, Sprite> m_bodySprites;
 
+		private List<Ability> m_abilities;
+
 		private HeroState m_heroState = HeroState.Idle;
 		public enum HeroState {
 			Idle,	Walking
@@ -351,6 +353,19 @@ namespace TacticsRPG {
 		public void championsTurn() {
 			p_actionTaken = false;
 			m_stats["MoveLeft"] = m_stats["Move"];
+		}
+
+		public List<Ability> getAbilities() {
+			List<Ability> t_returnList = new List<Ability>();
+			
+			foreach (Ability t_ability in m_class.getAbilities()) {
+				t_returnList.Add(t_ability);
+			}
+			foreach (Ability t_ability in m_race.getAbilities()) {
+				t_returnList.Add(t_ability);
+			}
+
+			return t_returnList;
 		}
 	}
 }

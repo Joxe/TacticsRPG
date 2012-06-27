@@ -32,7 +32,7 @@ namespace TacticsRPG {
 
 				string[] t_splitPath = Regex.Split(a_fileList[i], "//");
 				string[] t_extless = t_splitPath[t_splitPath.Length - 1].Split('.');
-				t_guiList.AddLast(new Button(a_buttonGraphic, new Vector2(0, 0), t_extless[0], "VerdanaBold", Color.Black, new Vector2(0, 0)));
+				t_guiList.AddLast(new Button(a_buttonGraphic, new Vector2(0, 0), t_extless[0], "Arial", Color.Black, new Vector2(0, 0)));
 				j++;
 			}
 			return t_guiList;
@@ -51,9 +51,18 @@ namespace TacticsRPG {
 		public static LinkedList<Button> createNumeratedList(int a_numberOfElements, string a_buttonGraphic) {
 			LinkedList<Button> t_guiList = new LinkedList<Button>();
 			for (int i = 0; i < a_numberOfElements; i++) {
-				t_guiList.AddLast(new Button(a_buttonGraphic, new Vector2(0, 0), (i + 1).ToString(), "VerdanaBold", Color.Black, new Vector2(0, 0)));
+				t_guiList.AddLast(new Button(a_buttonGraphic, new Vector2(0, 0), (i + 1).ToString(), "Arial", Color.Black, new Vector2(0, 0)));
 			}
 			return t_guiList;
+		}
+
+		public static List<Button> createAbilityList(List<Ability> t_list) {
+			List<Button> t_returnList = new List<Button>();
+			foreach (Ability t_ability in t_list) {
+				t_returnList.Add(new TextButton(Vector2.Zero, t_ability.getName(), "Arial"));
+				t_returnList.Last().load();
+			}
+			return t_returnList;
 		}
 
 		public static void setListPosition(LinkedList<GuiObject> a_list, Vector2 a_position) {

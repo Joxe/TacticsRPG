@@ -162,6 +162,7 @@
     </Content>
     <Content Include="XML Data\RacesData.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />

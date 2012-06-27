@@ -27,6 +27,7 @@ namespace TacticsRPG {
 			RacesData.load();
 			ElementsData.load();
 			AbilitiesData.load();
+			XMLParser.setAbilities();
 			m_gameGui.load();
 			createTileMap(20, 20);
 		}

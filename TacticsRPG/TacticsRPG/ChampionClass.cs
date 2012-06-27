@@ -11,10 +11,11 @@ namespace TacticsRPG {
 		private string m_name;
 		private Dictionary<string, int> m_baseStats;
 		private Dictionary<string, float> m_baseRatios;
+		private List<Ability> m_abilities;
 
 		public ChampionClass(string a_class) {
 			m_name = a_class.Split('_')[0];
-			m_baseStats = new Dictionary<string, int>();
+			m_abilities = new List<Ability>();
 		}
 
 		public Dictionary<string, int> getBaseStats() {
@@ -72,6 +73,16 @@ namespace TacticsRPG {
 					m_baseRatios.Add(t_name, float.Parse(t_currentRatio.ChildNodes.Item(j).Value, CultureInfo.InvariantCulture));
 				}
 			}
+		}
+
+		public void addAbility(Ability a_ability) {
+			if (!m_abilities.Contains(a_ability)) {
+				m_abilities.Add(a_ability);
+			}
+		}
+
+		public List<Ability> getAbilities() {
+			return m_abilities;
 		}
 	}
 }

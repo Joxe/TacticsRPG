@@ -99,9 +99,34 @@ namespace TacticsRPG {
 			return t_returnList;
 		}
 
-		public static void setAbilities(Champion a_champion) {
+		public static void setAbilities() {
 			XmlDocument t_xmlDocument = new XmlDocument();
 
+			t_xmlDocument.Load("XML Data/ClassesData.xml");
+			foreach (ChampionClass t_class in ClassesData.availableClasses()) {
+				XmlNodeList t_abilityList = t_xmlDocument.SelectNodes("/ClassesData/Abilities/" + t_class.getName());
+				string t_trimmedAbility;
+				for (int i = 0; i < t_abilityList.Count; i++) {
+					t_trimmedAbility = t_abilityList[i].InnerText.Trim();
+					if (t_trimmedAbility.Equals("")) {
+						continue;
+					}
+					t_class.addAbility(AbilitiesData.getAbility(t_trimmedAbility));
+				}
+			}
+
+			t_xmlDocument.Load("XML Data/RacesData.xml");
+			foreach (ChampionRace t_race in RacesData.availableRaces()) {
+				XmlNodeList t_abilityList = t_xmlDocument.SelectNodes("/RacesData/Abilities/" + t_race.getName());
+				string t_trimmedAbility;
+				for (int i = 0; i < t_abilityList.Count; i++) {
+					t_trimmedAbility = t_abilityList[i].InnerText.Trim();
+					if (t_trimmedAbility.Equals("")) {
+						continue;
+					}
+					t_race.addAbility(AbilitiesData.getAbility(t_trimmedAbility));
+				}
+			}
 		}
 	}
 }

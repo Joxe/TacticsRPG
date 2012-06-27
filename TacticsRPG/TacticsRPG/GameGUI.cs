@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace TacticsRPG {
 	public class GameGUI : State {
@@ -15,6 +16,8 @@ namespace TacticsRPG {
 		private TextButton btn_action;
 		private TextButton btn_wait;
 
+		private List<Button> m_abilityButtons;
+
 		private GuiState m_state = GuiState.Normal;
 		public enum GuiState {
 			Normal,		SelectTarget,	Move,	SelectFacing
@@ -22,6 +25,7 @@ namespace TacticsRPG {
 
 		public GameGUI() {
 			m_guiList.AddLast(m_menuList);
+			m_abilityButtons = new List<Button>();
 		}
 
 		public override void load() {
@@ -45,6 +49,9 @@ namespace TacticsRPG {
 			updateMouse();
 			m_gameStart.update();
 			if (m_gameState.p_selectedChampion != null) {
+				foreach (Button t_button in m_abilityButtons) {
+					t_button.update();
+				}
 				base.update();
 				if (m_gameState.p_selectedChampion.getStat("MoveLeft") <= 0) {
 					btn_move.p_state = Button.State.Disabled;
@@ -53,11 +60,18 @@ namespace TacticsRPG {
 					btn_action.p_state = Button.State.Disabled;
 				}
 			}
+
+			if (KeyboardHandler.keyDown(Keys.A)) {
+				m_abilityButtons = GuiListManager.createAbilityList(m_gameState.p_selectedChampion.getAbilities());
+			}
 		}
 
 		public override void draw() {
 			m_gameStart.draw();
 			if (m_gameState.p_selectedChampion != null) {
+				foreach (Button t_button in m_abilityButtons) {
+					t_button.draw();
+				}
 				base.draw();
 			}
 		}
