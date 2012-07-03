@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<EffectData>
+	<Damage>
+		<Effect>
+			<Name	/> Normal Damage
+			<Damage	/> 40-50
+			<Desc	/> This does normal damage, 40 to 50 in fact, plus character stats when that is implemented.
+		</Effect>
+	</Damage>
+	<DoT>
+		<Effect>
+			<Name	/> Damage over Time
+			<Turns	/> 1-3
+			<Desc	/> This does damage over time from 1 up to 3 turns.
+		</Effect>
+	</DoT>
+</EffectData>
