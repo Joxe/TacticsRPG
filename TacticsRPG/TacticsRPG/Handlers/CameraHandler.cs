@@ -8,8 +8,8 @@ namespace TacticsRPG {
 	//Static class in charge of handling camera movement and other camera related methods
 	public static class CameraHandler {
 		public static void cameraDrag() {
-			Vector2 t_difference = (MouseHandler.getCurPos() - Game.getInstance().getResolution() / 2) / 20 / Game.getInstance().m_camera.p_zoom;
-			Game.getInstance().m_camera.setPosition(Game.getInstance().m_camera.p_position + t_difference);
+			Vector2 l_difference = (MouseHandler.getCurPos() - Game.getInstance().getResolution() / 2) / 20 / Game.getInstance().m_camera.p_zoom;
+			Game.getInstance().m_camera.setPosition(Game.getInstance().m_camera.p_position + l_difference);
 		}
 
 		public static void zoomIn(float a_zoom) {

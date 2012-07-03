@@ -29,15 +29,15 @@ namespace TacticsRPG {
 		}
 
 		public void load() {
-			foreach (Sprite t_sprite in m_spriteDict.Values) {
-				t_sprite.load();
+			foreach (Sprite l_sprite in m_spriteDict.Values) {
+				l_sprite.load();
 			}
 			
-			int t_heightIndex = MathManager.randomInt(3, 7);
+			int l_heightIndex = MathManager.randomInt(3, 7);
 
 			for (int i = 0; i < m_width; i++) {
 				for (int j = 0; j < m_height; j++) {
-					//m_tileMap[i, j] = new Tile(new Vector2(i, j), MathManager.randomInt(t_heightIndex - 3, t_heightIndex + 3));
+					//m_tileMap[i, j] = new Tile(new Vector2(i, j), MathManager.randomInt(l_heightIndex - 3, l_heightIndex + 3));
 					m_tileMap[i, j] = new Tile(new Vector2(i, j), 1);
 					m_tileMap[i, j].p_tileMap = this;
 					m_tileMap[i, j].load();
@@ -89,47 +89,47 @@ namespace TacticsRPG {
 		}
 
 		public LinkedList<Tile> getRangeOfTiles(Tile a_tile, int a_range) {
-			LinkedList<Tile> lista1 = new LinkedList<Tile>();
-			LinkedList<Tile> lista2 = new LinkedList<Tile>();
-			LinkedList<Tile> lista3 = new LinkedList<Tile>();
+			LinkedList<Tile> l_list1 = new LinkedList<Tile>();
+			LinkedList<Tile> l_list2 = new LinkedList<Tile>();
+			LinkedList<Tile> l_list3 = new LinkedList<Tile>();
 
-			lista3.AddLast(a_tile);
+			l_list3.AddLast(a_tile);
 
 			for (int i = 0; i < a_range; i++) {
-				lista2 = lista3;
-				lista3 = new LinkedList<Tile>();
-				if (lista2 != null && lista2.Count > 0) {
-					foreach (Tile t_tile in lista2) {
-						foreach (Tile t_tile2 in getSurroundingTiles(t_tile)) {
-							if (!lista1.Contains(t_tile2)) {
-								lista3.AddLast(t_tile2);
-								lista1.AddLast(t_tile2);
+				l_list2 = l_list3;
+				l_list3 = new LinkedList<Tile>();
+				if (l_list2 != null && l_list2.Count > 0) {
+					foreach (Tile l_tile in l_list2) {
+						foreach (Tile l_tile2 in getSurroundingTiles(l_tile)) {
+							if (!l_list1.Contains(l_tile2)) {
+								l_list3.AddLast(l_tile2);
+								l_list1.AddLast(l_tile2);
 							}
 						}
 					}
 				}
 			}
-			return lista1;
+			return l_list1;
 		}
 
 		public LinkedList<Tile> getSurroundingTiles(Tile a_tile) {
 			int[] Xcheck = MathManager.isEven(a_tile.X) ? MathManager.evenX : MathManager.oddX;
 			int[] Ycheck = MathManager.isEven(a_tile.X) ? MathManager.evenY : MathManager.oddY;
 
-			LinkedList<Tile> t_list = new LinkedList<Tile>();
+			LinkedList<Tile> l_list = new LinkedList<Tile>();
 
-			Tile t_tile;
+			Tile l_tile;
 			for (int i = 0; i < Xcheck.Length; i++) {
 				for (int j = 0; j < Xcheck.Length; j++) {
-					if ((t_tile = getTile(a_tile, new Vector2(Xcheck[i], Ycheck[i]))) != null) {
-						if (!t_list.Contains(t_tile)) {
-							t_list.AddLast(t_tile);
+					if ((l_tile = getTile(a_tile, new Vector2(Xcheck[i], Ycheck[i]))) != null) {
+						if (!l_list.Contains(l_tile)) {
+							l_list.AddLast(l_tile);
 						}
 					}
 				}
 			}
 
-			return t_list;
+			return l_list;
 		}
 
 		public Tile p_hover {
@@ -159,17 +159,17 @@ namespace TacticsRPG {
 		}
 
 		public LinkedList<Tile> toLinkedList(Tile.TileState a_state) {
-			LinkedList<Tile> t_list = new LinkedList<Tile>();
+			LinkedList<Tile> l_list = new LinkedList<Tile>();
 
 			for (int i = 0; i < m_width; i++) {
 				for (int j = 0; j < m_height; j++) {
 					if (m_tileMap[i, j].p_tileState == a_state) {
-						t_list.AddLast(m_tileMap[i, j]);
+						l_list.AddLast(m_tileMap[i, j]);
 					}
 				}
 			}
 
-			return t_list;
+			return l_list;
 		}
 	}
 }

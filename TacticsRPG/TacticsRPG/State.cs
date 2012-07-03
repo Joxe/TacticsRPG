@@ -18,17 +18,17 @@ namespace TacticsRPG {
 		public abstract void load();
 		
 		public virtual void update() {
-			foreach (LinkedList<GuiObject> t_list in m_guiList) {
-				foreach (GuiObject t_go in t_list) {
-					if (t_go.p_visible) {
-						t_go.update();
+			foreach (LinkedList<GuiObject> l_list in m_guiList) {
+				foreach (GuiObject l_go in l_list) {
+					if (l_go.p_visible) {
+						l_go.update();
 					}
 				}
 			}
-			foreach (GameObject t_gameObject in m_gameObjectList) {
-				t_gameObject.p_isInCamera = CameraHandler.isInCamera(t_gameObject);
-				if (t_gameObject.p_isInCamera) {
-					t_gameObject.update();
+			foreach (GameObject l_gameObject in m_gameObjectList) {
+				l_gameObject.p_isInCamera = CameraHandler.isInCamera(l_gameObject);
+				if (l_gameObject.p_isInCamera) {
+					l_gameObject.update();
 				} else {
 					//TODO out-of-camera update
 				}
@@ -36,16 +36,16 @@ namespace TacticsRPG {
 		}
 
 		public virtual void draw() {
-			foreach (LinkedList<GuiObject> t_list in m_guiList) {
-				foreach (GuiObject t_go in t_list) {
-					if (t_go.p_visible) {
-						t_go.draw();
+			foreach (LinkedList<GuiObject> l_list in m_guiList) {
+				foreach (GuiObject l_go in l_list) {
+					if (l_go.p_visible) {
+						l_go.draw();
 					}
 				}
 			}
-			foreach (GameObject t_gameObject in m_gameObjectList) {
-				if (t_gameObject.p_isInCamera) {
-					t_gameObject.draw();
+			foreach (GameObject l_gameObject in m_gameObjectList) {
+				if (l_gameObject.p_isInCamera) {
+					l_gameObject.draw();
 				}
 			}
 		}

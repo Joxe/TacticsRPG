@@ -10,18 +10,18 @@ namespace TacticsRPG {
 		private int m_range;
 		private int m_aoe;
 		private int m_cost;
-		private Element m_element;
+		private List<Effect> m_effects;
 
 		public Ability(string a_name) {
 			m_name		= a_name;
 		}
 
-		public void setProperties(string a_desc, int a_range, int a_aoe, int a_cost, Element a_element) {
+		public void setProperties(string a_desc, int a_range, int a_aoe, int a_cost) {
 			m_desc		= a_desc;
 			m_range		= a_range;
 			m_aoe		= a_aoe;
 			m_cost		= a_cost;
-			m_element	= a_element;
+			m_effects	= new List<Effect>();
 		}
 
 		public string getName() {
@@ -44,8 +44,23 @@ namespace TacticsRPG {
 			return m_cost;
 		}
 
-		public Element getElement() {
-			return m_element;
+		public void addEffect(Effect a_effect) {
+			if (!m_effects.Contains(a_effect)) {
+				m_effects.Add(a_effect);
+			}
+		}
+
+		public List<Effect> getEffects() {
+			return m_effects;
+		}
+
+		public void invokeAbility(Tile a_tile) {
+			LinkedList<Tile> l_affectedTiles = ((GameState)Game.getInstance().getCurrentState()).getTileMap().getRangeOfTiles(a_tile, m_aoe);
+			foreach (Tile l_tile in l_affectedTiles) {
+				foreach (Effect l_effect in m_effects) {
+					l_tile.castEffect(l_effect);
+				}
+			}
 		}
 	}
 }

@@ -11,27 +11,27 @@ namespace TacticsRPG {
 		}
 
 		public static bool hexagonContains(GameObject a_hexagon, Vector2 a_point, int a_width, int a_height) {
-			float t_middleX = a_hexagon.p_position.X + a_width / 2;
+			float l_middleX = a_hexagon.p_position.X + a_width / 2;
 
-			Vector2 t_ptLeft		= new Vector2(a_hexagon.p_position.X					, a_hexagon.p_position.Y + a_height / 2	);
-			Vector2 t_ptTopLeft		= new Vector2(a_hexagon.p_position.X + (a_width * 0.25f), a_hexagon.p_position.Y					);
-			Vector2 t_ptTopRight	= new Vector2(a_hexagon.p_position.X + (a_width * 0.75f), a_hexagon.p_position.Y					);
-			Vector2 t_ptRight		= new Vector2(a_hexagon.p_position.X + a_width			, a_hexagon.p_position.Y + a_height / 2	);
-			Vector2 t_ptBtmRight	= new Vector2(a_hexagon.p_position.X + (a_width * 0.75f), a_hexagon.p_position.Y + a_height		);
-			Vector2 t_ptBtmLeft		= new Vector2(a_hexagon.p_position.X + (a_width * 0.25f), a_hexagon.p_position.Y + a_height		);
+			Vector2 l_ptLeft		= new Vector2(a_hexagon.p_position.X					, a_hexagon.p_position.Y + a_height / 2	);
+			Vector2 l_ptTopLeft		= new Vector2(a_hexagon.p_position.X + (a_width * 0.25f), a_hexagon.p_position.Y					);
+			Vector2 l_ptTopRight	= new Vector2(a_hexagon.p_position.X + (a_width * 0.75f), a_hexagon.p_position.Y					);
+			Vector2 l_ptRight		= new Vector2(a_hexagon.p_position.X + a_width			, a_hexagon.p_position.Y + a_height / 2	);
+			Vector2 l_ptBtmRight	= new Vector2(a_hexagon.p_position.X + (a_width * 0.75f), a_hexagon.p_position.Y + a_height		);
+			Vector2 l_ptBtmLeft		= new Vector2(a_hexagon.p_position.X + (a_width * 0.25f), a_hexagon.p_position.Y + a_height		);
 
 			if ((a_point.X > a_hexagon.p_position.X && a_point.X < a_hexagon.p_position.X + a_width) && (a_point.Y > a_hexagon.p_position.Y && a_point.Y < a_hexagon.p_position.Y + a_height)) {
-				if (a_point.Y < t_ptLeft.Y) {
-					if (a_point.X < t_middleX) {
-						return CollisionManager.isLeftOfLine(t_ptLeft, t_ptTopLeft, a_point);
+				if (a_point.Y < l_ptLeft.Y) {
+					if (a_point.X < l_middleX) {
+						return CollisionManager.isLeftOfLine(l_ptLeft, l_ptTopLeft, a_point);
 					} else {
-						return CollisionManager.isLeftOfLine(t_ptTopRight, t_ptRight, a_point);
+						return CollisionManager.isLeftOfLine(l_ptTopRight, l_ptRight, a_point);
 					}
 				} else {
-					if (a_point.X < t_middleX) {
-						return !CollisionManager.isLeftOfLine(t_ptLeft, t_ptBtmLeft, a_point);
+					if (a_point.X < l_middleX) {
+						return !CollisionManager.isLeftOfLine(l_ptLeft, l_ptBtmLeft, a_point);
 					} else {
-						return !CollisionManager.isLeftOfLine(t_ptBtmRight, t_ptRight, a_point);
+						return !CollisionManager.isLeftOfLine(l_ptBtmRight, l_ptRight, a_point);
 					}
 				}
 			} else {

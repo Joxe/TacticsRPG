@@ -16,7 +16,7 @@ namespace TacticsRPG {
 		private Tile m_tileAbove;
 		private bool m_hoverOverToggle;
 		private bool m_ignoreMouse;
-		private Champion m_currentChampion;
+		private BattlefieldObject m_obstructingObject;
 
 		private TileState m_tileState;
 		public enum TileState {
@@ -57,9 +57,9 @@ namespace TacticsRPG {
 
 		public override void update() {
 			m_hitbox.update();
-			bool t_collided = CollisionManager.hexagonContains(this, MouseHandler.worldMouse(), TILE_WIDTH, TILE_HEIGHT);
+			bool l_collided = CollisionManager.hexagonContains(this, MouseHandler.worldMouse(), TILE_WIDTH, TILE_HEIGHT);
 
-			if (t_collided && !m_ignoreMouse && !m_tileMap.p_ignoreMouse) {
+			if (l_collided && !m_ignoreMouse && !m_tileMap.p_ignoreMouse) {
 				m_tileMap.p_hover = this;
 				if (m_tileAbove != null) {
 					m_tileAbove.ignoreMouse(true);
@@ -99,8 +99,8 @@ namespace TacticsRPG {
 		}
 
 		public override void draw() {
-			foreach (Sprite t_sprite in m_heightSprites) {
-				t_sprite.draw(this, m_layer + 0.00001f);
+			foreach (Sprite l_sprite in m_heightSprites) {
+				l_sprite.draw(this, m_layer + 0.00001f);
 			}
 			m_tileMap.getSpriteDict()[m_tileState].draw(this);
 		}
@@ -143,12 +143,12 @@ namespace TacticsRPG {
 			}
 		}
 
-		public Champion p_champion {
+		public BattlefieldObject p_object {
 			get {
-				return m_currentChampion;
+				return m_obstructingObject;
 			}
 			set {
-				m_currentChampion = value;
+				m_obstructingObject = value;
 			}
 		}
 
@@ -166,7 +166,21 @@ namespace TacticsRPG {
 		}
 
 		public bool isObstructed() {
-			return m_currentChampion != null;
+			return m_obstructingObject != null;
+		}
+
+		public void castAbility(Ability a_ability) {
+			foreach (Tile l_tile in m_tileMap.getRangeOfTiles(this, a_ability.getRange())) {
+				foreach (Effect l_effect in a_ability.getEffects()) {
+					l_tile.castEffect(l_effect);
+				}
+			}
+		}
+
+		public void castEffect(Effect a_effect) {
+			if (m_obstructingObject != null) {
+				m_obstructingObject.addEffect(a_effect);
+			}
 		}
 	}
 }

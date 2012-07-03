@@ -39,8 +39,8 @@ namespace TacticsRPG {
 			m_gameStart = new TextButton(new Vector2(400, 15), "Start Game", "Arial");
 			m_gameStart.m_clickEvent += new TextButton.clickDelegate(gameStartClick);
 			m_gameStart.load();
-			foreach (GuiObject t_go in m_menuList) {
-				t_go.load();
+			foreach (GuiObject l_go in m_menuList) {
+				l_go.load();
 			}
 		}
 
@@ -49,8 +49,8 @@ namespace TacticsRPG {
 			updateMouse();
 			m_gameStart.update();
 			if (m_gameState.p_selectedChampion != null) {
-				foreach (Button t_button in m_abilityButtons) {
-					t_button.update();
+				foreach (Button l_button in m_abilityButtons) {
+					l_button.update();
 				}
 				base.update();
 				if (m_gameState.p_selectedChampion.getStat("MoveLeft") <= 0) {
@@ -69,8 +69,8 @@ namespace TacticsRPG {
 		public override void draw() {
 			m_gameStart.draw();
 			if (m_gameState.p_selectedChampion != null) {
-				foreach (Button t_button in m_abilityButtons) {
-					t_button.draw();
+				foreach (Button l_button in m_abilityButtons) {
+					l_button.draw();
 				}
 				base.draw();
 			}
@@ -80,27 +80,27 @@ namespace TacticsRPG {
 			if (MouseHandler.lmbPressed()) {
 				switch (m_state) {
 					case GuiState.SelectTarget:
-						foreach (Champion t_champion in m_gameState.getChampions()) {
-							if (t_champion.getHitBox().contains(MouseHandler.worldMouse()) && t_champion.getTile().p_tileState == Tile.TileState.Toggle) {
-								((GameState)Game.getInstance().getCurrentState()).p_selectedChampion.attack(t_champion);
+						foreach (Champion l_champion in m_gameState.getChampions()) {
+							if (l_champion.getHitBox().contains(MouseHandler.worldMouse()) && l_champion.getTile().p_tileState == Tile.TileState.Toggle) {
+								((GameState)Game.getInstance().getCurrentState()).p_selectedChampion.attack(l_champion);
 								restoreStates();
 								break;
 							}
 						}
 						break;
 					case GuiState.Move:
-						foreach (Tile t_tile in m_gameState.getTileMap().toLinkedList(Tile.TileState.Toggle)) {
-							if (t_tile != null && t_tile.getHitBox().contains(MouseHandler.worldMouse())) {
-								m_gameState.p_selectedChampion.moveTo(t_tile);
+						foreach (Tile l_tile in m_gameState.getTileMap().toLinkedList(Tile.TileState.Toggle)) {
+							if (l_tile != null && l_tile.getHitBox().contains(MouseHandler.worldMouse())) {
+								m_gameState.p_selectedChampion.moveTo(l_tile);
 								restoreStates();
 								break;
 							}
 						}
 						break;
 					case GuiState.SelectFacing:
-						foreach (Tile t_tile in m_gameState.getTileMap().toLinkedList(Tile.TileState.Toggle)) {
-							if (t_tile != null && t_tile.getHitBox().contains(MouseHandler.worldMouse())) {
-								m_gameState.p_selectedChampion.faceTile(t_tile);
+						foreach (Tile l_tile in m_gameState.getTileMap().toLinkedList(Tile.TileState.Toggle)) {
+							if (l_tile != null && l_tile.getHitBox().contains(MouseHandler.worldMouse())) {
+								m_gameState.p_selectedChampion.faceTile(l_tile);
 								m_gameState.deselectChampion();
 								restoreStates();
 								break;
@@ -145,9 +145,9 @@ namespace TacticsRPG {
 		#endregion
 
 		private void toggleTiles(int a_range) {
-			foreach (Tile t_tile in m_gameState.getTileMap().getRangeOfTiles(m_gameState.p_selectedChampion.getTile(), a_range)) {
-				if (t_tile != m_gameState.p_selectedChampion.getTile()) {
-					t_tile.p_tileState = Tile.TileState.Toggle;
+			foreach (Tile l_tile in m_gameState.getTileMap().getRangeOfTiles(m_gameState.p_selectedChampion.getTile(), a_range)) {
+				if (l_tile != m_gameState.p_selectedChampion.getTile()) {
+					l_tile.p_tileState = Tile.TileState.Toggle;
 				}
 			}
 		}
@@ -157,8 +157,8 @@ namespace TacticsRPG {
 		}
 
 		private bool collidedWithGUI() {
-			foreach (GuiObject t_go in m_menuList) {
-				if (t_go.contains(MouseHandler.getCurPos())) {
+			foreach (GuiObject l_go in m_menuList) {
+				if (l_go.contains(MouseHandler.getCurPos())) {
 					return true;
 				}
 			}

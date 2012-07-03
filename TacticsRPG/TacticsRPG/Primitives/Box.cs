@@ -70,12 +70,12 @@ namespace TacticsRPG {
 				m_lineList.AddLast(new Line(btmRight,	btmLeft	, Vector2.Zero, Vector2.Zero, a_lineColor, a_lineWidth, a_worldBox));
 				m_lineList.AddLast(new Line(btmLeft,	topLeft	, Vector2.Zero, Vector2.Zero, a_lineColor, a_lineWidth, a_worldBox));
 			} else {
-				Vector2 t_camera = Game.getInstance().m_camera.p_position;
-				Vector2 t_halfResolution = Game.getInstance().getResolution() / 2;
-				m_lineList.AddLast(new Line(t_camera, t_camera, topLeft	 - t_halfResolution, topRight - t_halfResolution, a_lineColor, a_lineWidth, a_worldBox));
-				m_lineList.AddLast(new Line(t_camera, t_camera, topRight - t_halfResolution, btmRight - t_halfResolution, a_lineColor, a_lineWidth, a_worldBox));
-				m_lineList.AddLast(new Line(t_camera, t_camera, btmRight - t_halfResolution, btmLeft  - t_halfResolution, a_lineColor, a_lineWidth, a_worldBox));
-				m_lineList.AddLast(new Line(t_camera, t_camera, btmLeft	 - t_halfResolution, topLeft  - t_halfResolution, a_lineColor, a_lineWidth, a_worldBox));
+				Vector2 l_camera = Game.getInstance().m_camera.p_position;
+				Vector2 l_halfResolution = Game.getInstance().getResolution() / 2;
+				m_lineList.AddLast(new Line(l_camera, l_camera, topLeft	 - l_halfResolution, topRight - l_halfResolution, a_lineColor, a_lineWidth, a_worldBox));
+				m_lineList.AddLast(new Line(l_camera, l_camera, topRight - l_halfResolution, btmRight - l_halfResolution, a_lineColor, a_lineWidth, a_worldBox));
+				m_lineList.AddLast(new Line(l_camera, l_camera, btmRight - l_halfResolution, btmLeft  - l_halfResolution, a_lineColor, a_lineWidth, a_worldBox));
+				m_lineList.AddLast(new Line(l_camera, l_camera, btmLeft	 - l_halfResolution, topLeft  - l_halfResolution, a_lineColor, a_lineWidth, a_worldBox));
 			}
 		}
 		#endregion
@@ -83,8 +83,8 @@ namespace TacticsRPG {
 		#region Update & Draw
 		public override void update() {
 			if (m_timer >= (float)Game.getInstance().getGameTime().TotalGameTime.TotalMilliseconds) {
-				float t_moveDelta = ((float)Game.getInstance().getGameTime().TotalGameTime.TotalMilliseconds - m_timeStart) / (m_timer - m_timeStart);
-				Vector2 tLerp = Vector2.Lerp(m_from, m_to, t_moveDelta);
+				float l_moveDelta = ((float)Game.getInstance().getGameTime().TotalGameTime.TotalMilliseconds - m_timeStart) / (m_timer - m_timeStart);
+				Vector2 tLerp = Vector2.Lerp(m_from, m_to, l_moveDelta);
 				p_position = tLerp;
 			} else if (m_timer > 0) {
 				p_position = m_to;
@@ -97,20 +97,20 @@ namespace TacticsRPG {
 				Game.getInstance().m_spriteBatch.Draw(m_boxTexture, m_position, null, m_boxColor, 0.0f, Vector2.Zero, new Vector2(m_width, m_height), SpriteEffects.None, m_layer);
 				
 				if (m_lineList != null && m_lineList.Count > 0) {
-					foreach (Line t_line in m_lineList) {
-						t_line.draw();
+					foreach (Line l_line in m_lineList) {
+						l_line.draw();
 					}
 				}
 			} else {
-				float t_zoom = Game.getInstance().m_camera.p_zoom;
-				Vector2 t_cartCoord;
-				t_cartCoord = m_position / t_zoom + Game.getInstance().m_camera.p_position;
+				float l_zoom = Game.getInstance().m_camera.p_zoom;
+				Vector2 l_cartCoord;
+				l_cartCoord = m_position / l_zoom + Game.getInstance().m_camera.p_position;
 				
-				Game.getInstance().m_spriteBatch.Draw(m_boxTexture, t_cartCoord, null, m_boxColor, 0.0f, Vector2.Zero, new Vector2(m_width / t_zoom, m_height / t_zoom), SpriteEffects.None, m_layer);
+				Game.getInstance().m_spriteBatch.Draw(m_boxTexture, l_cartCoord, null, m_boxColor, 0.0f, Vector2.Zero, new Vector2(m_width / l_zoom, m_height / l_zoom), SpriteEffects.None, m_layer);
 				
 				if (m_lineList != null && m_lineList.Count > 0) {
-					foreach (Line t_line in m_lineList) {
-						t_line.draw();
+					foreach (Line l_line in m_lineList) {
+						l_line.draw();
 					}
 				}
 			}
@@ -131,8 +131,8 @@ namespace TacticsRPG {
 		}
 
 		public void setLineColor(Color a_color) {
-			foreach (Line t_line in m_lineList) {
-				t_line.setColor(a_color);
+			foreach (Line l_line in m_lineList) {
+				l_line.setColor(a_color);
 			}
 		}
 

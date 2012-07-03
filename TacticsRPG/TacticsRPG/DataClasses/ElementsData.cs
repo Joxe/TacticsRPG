@@ -9,9 +9,9 @@ namespace TacticsRPG {
 
 		public static void load() {
 			m_elements = new Dictionary<string,Element>();
-			List<Element> t_elementList = XMLParser.loadAvailableElements();
-			foreach (Element t_element in t_elementList) {
-				m_elements.Add(t_element.getName(), t_element);
+			List<Element> l_elementList = XMLParser.loadAvailableElements();
+			foreach (Element l_element in l_elementList) {
+				m_elements.Add(l_element.getName(), l_element);
 			}
 			XMLParser.loadElementProperties(m_elements.Values.ToList());
 		}

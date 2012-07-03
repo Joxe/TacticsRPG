@@ -33,9 +33,9 @@ namespace TacticsRPG {
 
 		public Song loadSong(string a_path) {
 			if (!m_loadedMusic.ContainsKey(a_path)) {
-				Song t_ret = Game.getInstance().Content.Load<Song>("Sounds//Music//" + a_path);
-				m_loadedMusic.Add(a_path, t_ret);
-				return t_ret;
+				Song l_ret = Game.getInstance().Content.Load<Song>("Sounds//Music//" + a_path);
+				m_loadedMusic.Add(a_path, l_ret);
+				return l_ret;
 			} else {
 				return m_loadedMusic[a_path];
 			}

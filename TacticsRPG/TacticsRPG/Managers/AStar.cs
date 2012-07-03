@@ -16,46 +16,46 @@ namespace TacticsRPG {
 		}
 
 		public static Stack<Tile> findPath(Vector2 a_startPos, Vector2 a_endPos, PathfindState a_currentMapType) {
-			TileMap t_tileMap = ((GameState)Game.getInstance().getCurrentState()).getTileMap();
-			return findPath(t_tileMap.getTile(a_startPos), t_tileMap.getTile(a_endPos), a_currentMapType);
+			TileMap l_tileMap = ((GameState)Game.getInstance().getCurrentState()).getTileMap();
+			return findPath(l_tileMap.getTile(a_startPos), l_tileMap.getTile(a_endPos), a_currentMapType);
 		}
 
 		public static Stack<Tile> findPath(Tile a_startTile, Tile a_endTile, PathfindState a_currentMapType) {
-			TileMap t_tileMap = ((GameState)Game.getInstance().getCurrentState()).getTileMap();
-			Dictionary<Tile, double> t_closedSet	= new Dictionary<Tile, double>();
-			Dictionary<Tile, double> t_openSet		= new Dictionary<Tile, double>();
-			Dictionary<Tile, Tile> t_cameFrom = new Dictionary<Tile, Tile>();
+			TileMap l_tileMap = ((GameState)Game.getInstance().getCurrentState()).getTileMap();
+			Dictionary<Tile, double> l_closedSet	= new Dictionary<Tile, double>();
+			Dictionary<Tile, double> l_openSet		= new Dictionary<Tile, double>();
+			Dictionary<Tile, Tile> l_cameFrom		= new Dictionary<Tile, Tile>();
 
-			Tile t_neighbor;
+			Tile l_neighbor;
 
 			int[] Xcheck = new int[] { 0 };
 			int[] Ycheck = new int[] { 0 };
 
-			t_openSet.Add(a_startTile, getPathValue(a_startTile, a_endTile));
-			t_cameFrom.Add(a_startTile, a_startTile);
+			l_openSet.Add(a_startTile, getPathValue(a_startTile, a_endTile));
+			l_cameFrom.Add(a_startTile, a_startTile);
 
-			while (t_openSet.Count > 0) {
-				KeyValuePair<Tile, double> t_current = t_openSet.First();
+			while (l_openSet.Count > 0) {
+				KeyValuePair<Tile, double> l_current = l_openSet.First();
 
-				foreach (KeyValuePair<Tile, double> t_kvPair in t_openSet) {
-					if (t_kvPair.Value < t_current.Value) {
-						t_current = t_kvPair;
+				foreach (KeyValuePair<Tile, double> l_kvPair in l_openSet) {
+					if (l_kvPair.Value < l_current.Value) {
+						l_current = l_kvPair;
 					}
 				}
 
-				if (t_current.Key.getMapPosition() == a_endTile.getMapPosition()) {
-					Stack<Tile> t_reconstructedPath = new Stack<Tile>();
-					t_reconstructedPath.Push(t_current.Key);
-					return reconstructPath(t_cameFrom, t_current.Key, t_reconstructedPath);
+				if (l_current.Key.getMapPosition() == a_endTile.getMapPosition()) {
+					Stack<Tile> l_reconstructedPath = new Stack<Tile>();
+					l_reconstructedPath.Push(l_current.Key);
+					return reconstructPath(l_cameFrom, l_current.Key, l_reconstructedPath);
 				}
 
-				t_openSet.Remove(t_current.Key);
-				t_closedSet.Add(t_current.Key, t_current.Value);
+				l_openSet.Remove(l_current.Key);
+				l_closedSet.Add(l_current.Key, l_current.Value);
 
 				switch (a_currentMapType) {
 					case PathfindState.Hexagon:
-						Xcheck = MathManager.isEven(t_current.Key.X) ? MathManager.evenX : MathManager.oddX;
-						Ycheck = MathManager.isEven(t_current.Key.X) ? MathManager.evenY : MathManager.oddY;
+						Xcheck = MathManager.isEven(l_current.Key.X) ? MathManager.evenX : MathManager.oddX;
+						Ycheck = MathManager.isEven(l_current.Key.X) ? MathManager.evenY : MathManager.oddY;
 						break;
 					case PathfindState.Square:
 						Xcheck = new int[] { 0, 1, 0, -1 };
@@ -63,26 +63,23 @@ namespace TacticsRPG {
 						break;
 				}
 
-
 				for (int i = 0; i < Xcheck.Length && i < Ycheck.Length; i++) {
-					int t_newX = (int)t_current.Key.getMapPosition().X + Xcheck[i];
-					int t_newY = (int)t_current.Key.getMapPosition().Y + Ycheck[i];
+					int l_newX = (int)l_current.Key.getMapPosition().X + Xcheck[i];
+					int l_newY = (int)l_current.Key.getMapPosition().Y + Ycheck[i];
 
-					t_neighbor = t_tileMap.getTile(t_newX, t_newY);
+					l_neighbor = l_tileMap.getTile(l_newX, l_newY);
 
-					if (t_neighbor != null) {
-						//int t_heightDifference = t_current.Key.p_height + t_neighbor.p_height;
-						if (t_closedSet.ContainsKey(t_neighbor)) {
+					if (l_neighbor != null) {
+						//int l_heightDifference = l_current.Key.p_height + l_neighbor.p_height;
+						if (l_closedSet.ContainsKey(l_neighbor) || l_neighbor.isObstructed()) {
 							continue;
 						}
-						if (t_neighbor.isObstructed()) {
-							continue;
-						}
-						double t_tentativeGScore = t_current.Value + getPathValue(t_neighbor, a_endTile)/* + t_heightDifference*/;
 
-						if (!t_openSet.ContainsKey(t_neighbor) || t_tentativeGScore < t_openSet[t_neighbor]) {
-							t_openSet[t_neighbor] = t_tentativeGScore;
-							t_cameFrom[t_neighbor] = t_current.Key;
+						double l_tentativeGScore = l_current.Value + getPathValue(l_neighbor, a_endTile)/* + l_heightDifference*/;
+
+						if (!l_openSet.ContainsKey(l_neighbor) || l_tentativeGScore < l_openSet[l_neighbor]) {
+							l_openSet[l_neighbor] = l_tentativeGScore;
+							l_cameFrom[l_neighbor] = l_current.Key;
 						}
 					}
 				}

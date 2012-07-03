@@ -1,4 +1,4 @@
 E:\Visual Studio Projects\TacticsRPG\TacticsRPG\TacticsRPGContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Joxe\Documents\Visual Studio 2010\Projects\TacticsRPG\TacticsRPG\TacticsRPGContent\obj\x86\Debug\ResolveAssemblyReference.cache
-E:\GIT\TacticsRPG\TacticsRPG\TacticsRPGContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Joxe\Documents\GIT\TacticsRPG\TacticsRPG\TacticsRPGContent\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\GIT\TacticsRPG\TacticsRPG\TacticsRPGContent\obj\x86\Debug\ResolveAssemblyReference.cache

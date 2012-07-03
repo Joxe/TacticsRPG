@@ -41,44 +41,44 @@ namespace TacticsRPG {
 		#region Start- & Endpoint Methods
 
 		public void setTexture(string a_path) {
-			float t_length = Vector2.Distance(m_startPosition, m_endPosition); 
+			float l_length = Vector2.Distance(m_startPosition, m_endPosition); 
 
-			Texture2D t_texture = Game.getInstance().Content.Load<Texture2D>(a_path);
-			Color[] t_colorArray = new Color[t_texture.Width * t_texture.Height];
-			t_texture.GetData(t_colorArray);
+			Texture2D l_texture = Game.getInstance().Content.Load<Texture2D>(a_path);
+			Color[] l_colorArray = new Color[l_texture.Width * l_texture.Height];
+			l_texture.GetData(l_colorArray);
 
-			m_lineTexture = new Texture2D(Game.getInstance().GraphicsDevice, t_texture.Width, (int)t_length, false, SurfaceFormat.Color);
-			Color[] t_lineTexture = new Color[m_lineTexture.Width * (int)t_length];
-			m_lineTexture.GetData(t_lineTexture);
+			m_lineTexture = new Texture2D(Game.getInstance().GraphicsDevice, l_texture.Width, (int)l_length, false, SurfaceFormat.Color);
+			Color[] l_lineTexture = new Color[m_lineTexture.Width * (int)l_length];
+			m_lineTexture.GetData(l_lineTexture);
 
-			for (int i = 0, j = 0; i < t_lineTexture.Length; i++, j++) {
-				if (j >= t_colorArray.Length) {
+			for (int i = 0, j = 0; i < l_lineTexture.Length; i++, j++) {
+				if (j >= l_colorArray.Length) {
 					j = 0;
 				}
-				t_lineTexture[i] = t_colorArray[j];
+				l_lineTexture[i] = l_colorArray[j];
 			}
 
-			m_lineTexture.SetData(t_lineTexture);
+			m_lineTexture.SetData(l_lineTexture);
 			m_hasTexture = true;
 		}
 
 		public void updateTexture() {
-			float t_length = Vector2.Distance(m_startPosition, m_endPosition);			
-			Color[] t_colorArray = new Color[m_lineTexture.Width * m_lineTexture.Height];
-			m_lineTexture.GetData(t_colorArray);
+			float l_length = Vector2.Distance(m_startPosition, m_endPosition);			
+			Color[] l_colorArray = new Color[m_lineTexture.Width * m_lineTexture.Height];
+			m_lineTexture.GetData(l_colorArray);
 
-			m_lineTexture = new Texture2D(Game.getInstance().GraphicsDevice, m_lineTexture.Width, (int)t_length, false, SurfaceFormat.Color);
-			Color[] t_lineTexture = new Color[m_lineTexture.Width * (int)t_length];
-			m_lineTexture.GetData(t_lineTexture);
+			m_lineTexture = new Texture2D(Game.getInstance().GraphicsDevice, m_lineTexture.Width, (int)l_length, false, SurfaceFormat.Color);
+			Color[] l_lineTexture = new Color[m_lineTexture.Width * (int)l_length];
+			m_lineTexture.GetData(l_lineTexture);
 
-			for (int i = 0, j = 0; i < t_lineTexture.Length; i++, j++) {
-				if (j >= t_colorArray.Length) {
+			for (int i = 0, j = 0; i < l_lineTexture.Length; i++, j++) {
+				if (j >= l_colorArray.Length) {
 					j = 0;
 				}
-				t_lineTexture[i] = t_colorArray[j];
+				l_lineTexture[i] = l_colorArray[j];
 			}
 
-			m_lineTexture.SetData(t_lineTexture);
+			m_lineTexture.SetData(l_lineTexture);
 			m_hasTexture = true;
 		}
 
@@ -121,21 +121,21 @@ namespace TacticsRPG {
 		#region Draw
 		public override void draw()
 		{
-			float t_angle = (float)Math.Atan2(m_endPosition.Y - m_startPosition.Y, m_endPosition.X - m_startPosition.X);
-			float t_length = Vector2.Distance(m_startPosition, m_endPosition);
-			Rectangle drawRect = new Rectangle(m_startPosition.X + m_startOffset.X, m_startPosition.Y + m_startOffset.Y, m_width, t_length);
+			float l_angle = (float)Math.Atan2(m_endPosition.Y - m_startPosition.Y, m_endPosition.X - m_startPosition.X);
+			float l_length = Vector2.Distance(m_startPosition, m_endPosition);
+			Rectangle drawRect = new Rectangle(m_startPosition.X + m_startOffset.X, m_startPosition.Y + m_startOffset.Y, m_width, l_length);
 
 			if (m_worldLine) {
 				if (m_hasTexture) {
-					Game.getInstance().m_spriteBatch.Draw(m_lineTexture, m_startPosition, null, m_lineColor, t_angle - (float)(Math.PI / 2), Vector2.Zero, new Vector2(1, 1), SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_lineTexture, m_startPosition, null, m_lineColor, l_angle - (float)(Math.PI / 2), Vector2.Zero, new Vector2(1, 1), SpriteEffects.None, m_layer);
 				} else {
-					Game.getInstance().m_spriteBatch.Draw(m_lineTexture, m_startPosition, null, m_lineColor, t_angle, Vector2.Zero, new Vector2(t_length, m_width), SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_lineTexture, m_startPosition, null, m_lineColor, l_angle, Vector2.Zero, new Vector2(l_length, m_width), SpriteEffects.None, m_layer);
 				}
 			} else {
-				float t_zoom = Game.getInstance().m_camera.p_zoom;	
-				Vector2 t_cartCoord = m_startPosition / t_zoom + Game.getInstance().m_camera.p_position;
+				float l_zoom = Game.getInstance().m_camera.p_zoom;	
+				Vector2 l_cartCoord = m_startPosition / l_zoom + Game.getInstance().m_camera.p_position;
 
-				Game.getInstance().m_spriteBatch.Draw(m_lineTexture, t_cartCoord, null, m_lineColor, t_angle, Vector2.Zero, new Vector2(t_length / t_zoom, m_width / t_zoom), SpriteEffects.None, m_layer);
+				Game.getInstance().m_spriteBatch.Draw(m_lineTexture, l_cartCoord, null, m_lineColor, l_angle, Vector2.Zero, new Vector2(l_length / l_zoom, m_width / l_zoom), SpriteEffects.None, m_layer);
 			}
 		}
 		#endregion

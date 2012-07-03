@@ -58,8 +58,8 @@ namespace TacticsRPG {
 
 		#region TextField Methods
 		private bool contains(Keys a_key, Keys[] a_keyset) {
-			foreach (Keys t_key in a_keyset) {
-				if (t_key == a_key) {
+			foreach (Keys l_key in a_keyset) {
+				if (l_key == a_key) {
 					return true;
 				}
 			}
@@ -107,15 +107,15 @@ namespace TacticsRPG {
 			}
 
 			if (m_writing) {
-				foreach (KeyValuePair<Keys, TimeSpan> t_keyPair in m_lastPressedKeys) {
-					if (!KeyboardHandler.keyPressed(t_keyPair.Key)) {
-						m_repeatKeys.Add(t_keyPair.Key);
-					} else if (t_keyPair.Value + m_repeatTime < Game.getInstance().getGameTime().TotalGameTime) {
-						m_repeatKeys.Add(t_keyPair.Key);
+				foreach (KeyValuePair<Keys, TimeSpan> l_keyPair in m_lastPressedKeys) {
+					if (!KeyboardHandler.keyPressed(l_keyPair.Key)) {
+						m_repeatKeys.Add(l_keyPair.Key);
+					} else if (l_keyPair.Value + m_repeatTime < Game.getInstance().getGameTime().TotalGameTime) {
+						m_repeatKeys.Add(l_keyPair.Key);
 					}
 				}
-				foreach (Keys t_key in m_repeatKeys) {
-					m_lastPressedKeys.Remove(t_key);
+				foreach (Keys l_key in m_repeatKeys) {
+					m_lastPressedKeys.Remove(l_key);
 				}
 				m_repeatKeys.Clear();
 
@@ -152,16 +152,16 @@ namespace TacticsRPG {
 
 		#region Swedish
 		private void updateSweden(GameTime a_gameTime) {
-			Keys[] t_keys = KeyboardHandler.getPressedKeys();
-			foreach (Keys t_key in t_keys) {
-				if (!m_lastPressedKeys.ContainsKey(t_key)) {
-					if (t_key == Keys.Back) {
+			Keys[] l_keys = KeyboardHandler.getPressedKeys();
+			foreach (Keys l_key in l_keys) {
+				if (!m_lastPressedKeys.ContainsKey(l_key)) {
+					if (l_key == Keys.Back) {
 						m_textToShow.erase(1);
-					} else if (t_key == Keys.Space) {
+					} else if (l_key == Keys.Space) {
 						m_textToShow.addText(" ");
-					} else if (m_acceptLetters && contains(t_key, m_acptLetters)) {
+					} else if (m_acceptLetters && contains(l_key, m_acptLetters)) {
 						if (KeyboardHandler.keyPressed(Keys.LeftShift) || KeyboardHandler.keyPressed(Keys.RightShift)) {
-							switch (t_key) {
+							switch (l_key) {
 								case Keys.OemSemicolon:
 									m_textToShow.addText("^");
 									break;
@@ -193,11 +193,11 @@ namespace TacticsRPG {
 									m_textToShow.addText("`");
 									break;
 								default:
-									m_textToShow.addText((char)t_key);
+									m_textToShow.addText((char)l_key);
 									break;
 							}
 						} else {
-							switch (t_key) {
+							switch (l_key) {
 								case Keys.OemSemicolon:
 									m_textToShow.addText("¨");
 									break;
@@ -232,42 +232,42 @@ namespace TacticsRPG {
 									m_textToShow.addText("´");
 									break;
 								default:
-									m_textToShow.addText(char.ToLower((char)t_key));
+									m_textToShow.addText(char.ToLower((char)l_key));
 									break;
 							}
 						}
 					} else if (m_acceptSpecials || m_acceptNumbers) {
 						if (m_acceptSpecials && (KeyboardHandler.keyPressed(Keys.LeftShift) || KeyboardHandler.keyPressed(Keys.RightShift))) {
-							if (t_key == Keys.D0) {
+							if (l_key == Keys.D0) {
 								m_textToShow.addText("=");
-							} else if (t_key == Keys.D1) {
+							} else if (l_key == Keys.D1) {
 								m_textToShow.addText("!");
-							} else if (t_key == Keys.D2) {
+							} else if (l_key == Keys.D2) {
 								m_textToShow.addText("\"");
-							} else if (t_key == Keys.D3) {
+							} else if (l_key == Keys.D3) {
 								m_textToShow.addText("#");
-							} else if (t_key == Keys.D4) {
+							} else if (l_key == Keys.D4) {
 								m_textToShow.addText("¤");
-							} else if (t_key == Keys.D5) {
+							} else if (l_key == Keys.D5) {
 								m_textToShow.addText("%");
-							} else if (t_key == Keys.D6) {
+							} else if (l_key == Keys.D6) {
 								m_textToShow.addText("&");
-							} else if (t_key == Keys.D7) {
+							} else if (l_key == Keys.D7) {
 								m_textToShow.addText("/");
-							} else if (t_key == Keys.D8) {
+							} else if (l_key == Keys.D8) {
 								m_textToShow.addText("(");
-							} else if (t_key == Keys.D9) {
+							} else if (l_key == Keys.D9) {
 								m_textToShow.addText(")");
 							}
 						} else {
-							if (contains(t_key, m_acptNumbers)) {
-								string t_string = t_key.ToString().Replace("D", string.Empty);
-								m_textToShow.addText(t_string);
+							if (contains(l_key, m_acptNumbers)) {
+								string l_string = l_key.ToString().Replace("D", string.Empty);
+								m_textToShow.addText(l_string);
 							}
 						}
 					}
-					if (!(KeyboardHandler.keyWasDown(t_key) && !m_lastPressedKeys.ContainsKey(t_key))) {
-						m_lastPressedKeys.Add(t_key, a_gameTime.TotalGameTime);
+					if (!(KeyboardHandler.keyWasDown(l_key) && !m_lastPressedKeys.ContainsKey(l_key))) {
+						m_lastPressedKeys.Add(l_key, a_gameTime.TotalGameTime);
 					}
 				}
 			}

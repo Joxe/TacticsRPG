@@ -95,10 +95,10 @@ namespace TacticsRPG {
 			if (m_worldFont) {
 				Game.getInstance().m_spriteBatch.DrawString(m_spriteFont, m_text, m_position, m_color);
 			} else {	
-				float t_zoom = Game.getInstance().m_camera.p_zoom;
+				float l_zoom = Game.getInstance().m_camera.p_zoom;
 				
 				try {
-					Game.getInstance().m_spriteBatch.DrawString(m_spriteFont, m_text, m_position + p_parentOffset / t_zoom, m_color, m_rotation, Vector2.Zero, 1.0f / t_zoom, SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.DrawString(m_spriteFont, m_text, m_position + p_parentOffset / l_zoom, m_color, m_rotation, Vector2.Zero, 1.0f / l_zoom, SpriteEffects.None, m_layer);
 				} catch (System.ArgumentException) {
 					erase(1);
 				}

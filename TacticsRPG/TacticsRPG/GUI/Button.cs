@@ -63,10 +63,10 @@ namespace TacticsRPG {
 				setPressedTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/" + m_buttonTexture + "_pressed"));
 				setToggleTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/" + m_buttonTexture + "_toggle"));
 			} else {
-				setNormalTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_select_hotkey_normal"));
-				setHoverTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_select_hotkey_hover"));
-				setPressedTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_select_hotkey_pressed"));
-				setToggleTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_select_hotkey_toggle"));
+				setNormalTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_normal"));
+				setHoverTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_hover"));
+				setPressedTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_pressed"));
+				setToggleTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_toggle"));
 			}
 			updateBounds();
 			updateTextureBounds();
@@ -123,25 +123,25 @@ namespace TacticsRPG {
 			if (!m_visible) {
 				return;
 			}
-			float t_zoom = Game.getInstance().m_camera.p_zoom;
-			Vector2 t_cartCoord = m_position / t_zoom;
-			Vector2 t_zoomedScale = new Vector2(1.0f / t_zoom, 1.0f / t_zoom);
+			float l_zoom = Game.getInstance().m_camera.p_zoom;
+			Vector2 l_cartCoord = m_position / l_zoom;
+			Vector2 l_zoomedScale = new Vector2(1.0f / l_zoom, 1.0f / l_zoom);
 
 			switch (m_currentState) {
 				case State.Pressed:
-					Game.getInstance().m_spriteBatch.Draw(m_pressedTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, t_zoomedScale, SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_pressedTexture, l_cartCoord, null, Color.White, 0.0f, Vector2.Zero, l_zoomedScale, SpriteEffects.None, m_layer);
 					break;
 				case State.Hover:
-					Game.getInstance().m_spriteBatch.Draw(m_hoverTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, t_zoomedScale, SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_hoverTexture, l_cartCoord, null, Color.White, 0.0f, Vector2.Zero, l_zoomedScale, SpriteEffects.None, m_layer);
 					break;
 				case State.Toggled:
-					Game.getInstance().m_spriteBatch.Draw(m_toggleTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, t_zoomedScale, SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_toggleTexture, l_cartCoord, null, Color.White, 0.0f, Vector2.Zero, l_zoomedScale, SpriteEffects.None, m_layer);
 					break;
 				case State.Normal:
-					Game.getInstance().m_spriteBatch.Draw(m_normalTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, t_zoomedScale, SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_normalTexture, l_cartCoord, null, Color.White, 0.0f, Vector2.Zero, l_zoomedScale, SpriteEffects.None, m_layer);
 					break;
 				case State.Disabled:
-					Game.getInstance().m_spriteBatch.Draw(m_normalTexture, t_cartCoord, null, Color.White, 0.0f, Vector2.Zero, t_zoomedScale, SpriteEffects.None, m_layer);
+					Game.getInstance().m_spriteBatch.Draw(m_normalTexture, l_cartCoord, null, Color.White, 0.0f, Vector2.Zero, l_zoomedScale, SpriteEffects.None, m_layer);
 					break;
 			}
 			if (m_text != null) {
@@ -200,25 +200,25 @@ namespace TacticsRPG {
 			if (m_hotkey == null) {
 				return false;
 			}
-			Keys[] t_keys = KeyboardHandler.getPressedKeys(); 
-			foreach (Keys t_key in m_hotkey) {
-				if (t_keys.Contains(t_key)) {
+			Keys[] l_keys = KeyboardHandler.getPressedKeys(); 
+			foreach (Keys l_key in m_hotkey) {
+				if (l_keys.Contains(l_key)) {
 					continue;
 				}
 				return false;
 			}
 
-			bool t_returnValue = true;
+			bool l_returnValue = true;
 			if (!m_hotkey.Contains(Keys.LeftShift) && !m_hotkey.Contains(Keys.RightShift)) {
-				t_returnValue = !KeyboardHandler.keyPressed(Keys.LeftShift) && !KeyboardHandler.keyPressed(Keys.LeftShift);
+				l_returnValue = !KeyboardHandler.keyPressed(Keys.LeftShift) && !KeyboardHandler.keyPressed(Keys.LeftShift);
 			}
-			if (!m_hotkey.Contains(Keys.LeftControl) && !m_hotkey.Contains(Keys.RightControl) && t_returnValue) {
-				t_returnValue = !KeyboardHandler.keyPressed(Keys.LeftControl) && !KeyboardHandler.keyPressed(Keys.RightControl);
+			if (!m_hotkey.Contains(Keys.LeftControl) && !m_hotkey.Contains(Keys.RightControl) && l_returnValue) {
+				l_returnValue = !KeyboardHandler.keyPressed(Keys.LeftControl) && !KeyboardHandler.keyPressed(Keys.RightControl);
 			}
-			if (!m_hotkey.Contains(Keys.LeftAlt) && !m_hotkey.Contains(Keys.RightAlt) && t_returnValue) {
-				t_returnValue = !KeyboardHandler.keyPressed(Keys.LeftAlt) && !KeyboardHandler.keyPressed(Keys.RightAlt);
+			if (!m_hotkey.Contains(Keys.LeftAlt) && !m_hotkey.Contains(Keys.RightAlt) && l_returnValue) {
+				l_returnValue = !KeyboardHandler.keyPressed(Keys.LeftAlt) && !KeyboardHandler.keyPressed(Keys.RightAlt);
 			}
-			return t_returnValue;
+			return l_returnValue;
 		}
 
 		public virtual void invokeClickEvent() {
@@ -233,24 +233,24 @@ namespace TacticsRPG {
 		//	Updates the button's bounds to match the largest image that it can show
 		private void updateTextureBounds() {
 			#if DEBUG
-			Vector2 t_size = new Vector2(m_normalTexture.Width, m_normalTexture.Height);
-			t_size.X = Math.Max(t_size.X, m_hoverTexture.Width);
-			t_size.Y = Math.Max(t_size.Y, m_hoverTexture.Height);
-			t_size.X = Math.Max(t_size.X, m_pressedTexture.Width);
-			t_size.Y = Math.Max(t_size.Y, m_pressedTexture.Height);
-			t_size.X = Math.Max(t_size.X, m_toggleTexture.Width);
-			t_size.Y = Math.Max(t_size.Y, m_toggleTexture.Height);
-			m_bounds.p_dimensions = t_size;
+			Vector2 l_size = new Vector2(m_normalTexture.Width, m_normalTexture.Height);
+			l_size.X = Math.Max(l_size.X, m_hoverTexture.Width);
+			l_size.Y = Math.Max(l_size.Y, m_hoverTexture.Height);
+			l_size.X = Math.Max(l_size.X, m_pressedTexture.Width);
+			l_size.Y = Math.Max(l_size.Y, m_pressedTexture.Height);
+			l_size.X = Math.Max(l_size.X, m_toggleTexture.Width);
+			l_size.Y = Math.Max(l_size.Y, m_toggleTexture.Height);
+			m_bounds.p_dimensions = l_size;
 			#else
 			try {
-				Vector2 t_size = new Vector2(m_normalTexture.Width, m_normalTexture.Height);
-				t_size.X = Math.Max(t_size.X, m_hoverTexture.Width);
-				t_size.Y = Math.Max(t_size.Y, m_hoverTexture.Height);
-				t_size.X = Math.Max(t_size.X, m_pressedTexture.Width);
-				t_size.Y = Math.Max(t_size.Y, m_pressedTexture.Height);
-				t_size.X = Math.Max(t_size.X, m_toggleTexture.Width);
-				t_size.Y = Math.Max(t_size.Y, m_toggleTexture.Height);
-				m_bounds.p_dimensions = t_size;
+				Vector2 l_size = new Vector2(m_normalTexture.Width, m_normalTexture.Height);
+				l_size.X = Math.Max(l_size.X, m_hoverTexture.Width);
+				l_size.Y = Math.Max(l_size.Y, m_hoverTexture.Height);
+				l_size.X = Math.Max(l_size.X, m_pressedTexture.Width);
+				l_size.Y = Math.Max(l_size.Y, m_pressedTexture.Height);
+				l_size.X = Math.Max(l_size.X, m_toggleTexture.Width);
+				l_size.Y = Math.Max(l_size.Y, m_toggleTexture.Height);
+				m_bounds.p_dimensions = l_size;
 			} catch (NullReferenceException) {
 				return;
 			}

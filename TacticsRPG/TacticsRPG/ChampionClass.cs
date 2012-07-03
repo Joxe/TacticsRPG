@@ -56,7 +56,7 @@ namespace TacticsRPG {
 
 		public void setBaseStats(XmlNode a_xmlNode) {
 			m_baseStats = new Dictionary<string, int>();
-			XmlNode t_thisClass = a_xmlNode.SelectSingleNode(m_name);
+			XmlNode l_thisClass = a_xmlNode.SelectSingleNode(m_name);
 
 			for (int i = 0; i < a_xmlNode.ChildNodes.Count; i++) {
 				m_baseStats.Add(a_xmlNode.ChildNodes.Item(i++).Name, int.Parse(a_xmlNode.ChildNodes.Item(i).Value));
@@ -68,9 +68,9 @@ namespace TacticsRPG {
 
 			for (int i = 0; i < a_xmlNode.ChildNodes.Count; i++) {
 				for (int j = 0; j < a_xmlNode.ChildNodes.Item(i).ChildNodes.Count; j++) {
-					XmlNode t_currentRatio = a_xmlNode.ChildNodes.Item(i);
-					string t_name = t_currentRatio.Name + t_currentRatio.ChildNodes.Item(j++).Name;
-					m_baseRatios.Add(t_name, float.Parse(t_currentRatio.ChildNodes.Item(j).Value, CultureInfo.InvariantCulture));
+					XmlNode l_currentRatio = a_xmlNode.ChildNodes.Item(i);
+					string l_name = l_currentRatio.Name + l_currentRatio.ChildNodes.Item(j++).Name;
+					m_baseRatios.Add(l_name, float.Parse(l_currentRatio.ChildNodes.Item(j).Value, CultureInfo.InvariantCulture));
 				}
 			}
 		}

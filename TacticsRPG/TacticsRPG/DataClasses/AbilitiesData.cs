@@ -9,10 +9,10 @@ namespace TacticsRPG {
 
 		public static void load() {
 			m_abilities = new Dictionary<string, Ability>();
-			List<Ability> t_abilityList = XMLParser.loadAvailableAbilities();
+			List<Ability> l_abilityList = XMLParser.loadAvailableAbilities();
 
-			foreach (Ability t_ability in t_abilityList) {
-				m_abilities.Add(t_ability.getName(), t_ability);
+			foreach (Ability l_ability in l_abilityList) {
+				m_abilities.Add(l_ability.getName(), l_ability);
 			}
 		}
 

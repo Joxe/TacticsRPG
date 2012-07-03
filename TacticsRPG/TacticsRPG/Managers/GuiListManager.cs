@@ -9,92 +9,92 @@ using System.Text.RegularExpressions;
 namespace TacticsRPG {
 	public class GuiListManager {
 		public static LinkedList<Button> createListFromDirectory(string a_path, string[] a_extension, string a_buttonGraphic) {
-			string[] t_fileList = Directory.GetFiles(a_path);
-			return createListFromStringArray(t_fileList, a_extension, a_buttonGraphic);
+			string[] l_fileList = Directory.GetFiles(a_path);
+			return createListFromStringArray(l_fileList, a_extension, a_buttonGraphic);
 		}
 
 		public static LinkedList<Button> createListFromStringArray(string[] a_fileList, string[] a_extension, string a_buttonGraphic) {
-			LinkedList<Button> t_guiList = new LinkedList<Button>();
+			LinkedList<Button> l_guiList = new LinkedList<Button>();
 
 			for (int i = 0, j = 0; i < a_fileList.Length; i++) {
-				bool t_accepted = false;
+				bool l_accepted = false;
 
-				foreach (string t_ext in a_extension) {
-					if (a_fileList[i].EndsWith(t_ext)) {
-						t_accepted = true;
+				foreach (string l_ext in a_extension) {
+					if (a_fileList[i].EndsWith(l_ext)) {
+						l_accepted = true;
 						continue;
 					}
 				}
 
-				if (!t_accepted) {
+				if (!l_accepted) {
 					continue;
 				}
 
-				string[] t_splitPath = Regex.Split(a_fileList[i], "//");
-				string[] t_extless = t_splitPath[t_splitPath.Length - 1].Split('.');
-				t_guiList.AddLast(new Button(a_buttonGraphic, new Vector2(0, 0), t_extless[0], "Arial", Color.Black, new Vector2(0, 0)));
+				string[] l_splitPath = Regex.Split(a_fileList[i], "//");
+				string[] l_extless = l_splitPath[l_splitPath.Length - 1].Split('.');
+				l_guiList.AddLast(new Button(a_buttonGraphic, new Vector2(0, 0), l_extless[0], "Arial", Color.Black, new Vector2(0, 0)));
 				j++;
 			}
-			return t_guiList;
+			return l_guiList;
 		}
 
 		public static LinkedList<Text> createTextListFromArray(string[] a_array, string a_font, Color a_color) {
-			LinkedList<Text> t_guiList = new LinkedList<Text>();
+			LinkedList<Text> l_guiList = new LinkedList<Text>();
 			
 			for (int i = 0; i < a_array.Length; i++) {
-				t_guiList.AddLast(new Text(Vector2.Zero, a_array[i], a_font, a_color, false));
+				l_guiList.AddLast(new Text(Vector2.Zero, a_array[i], a_font, a_color, false));
 			}
 
-			return t_guiList;
+			return l_guiList;
 		}
 
 		public static LinkedList<Button> createNumeratedList(int a_numberOfElements, string a_buttonGraphic) {
-			LinkedList<Button> t_guiList = new LinkedList<Button>();
+			LinkedList<Button> l_guiList = new LinkedList<Button>();
 			for (int i = 0; i < a_numberOfElements; i++) {
-				t_guiList.AddLast(new Button(a_buttonGraphic, new Vector2(0, 0), (i + 1).ToString(), "Arial", Color.Black, new Vector2(0, 0)));
+				l_guiList.AddLast(new Button(a_buttonGraphic, new Vector2(0, 0), (i + 1).ToString(), "Arial", Color.Black, new Vector2(0, 0)));
 			}
-			return t_guiList;
+			return l_guiList;
 		}
 
-		public static List<Button> createAbilityList(List<Ability> t_list) {
-			List<Button> t_returnList = new List<Button>();
-			foreach (Ability t_ability in t_list) {
-				t_returnList.Add(new TextButton(Vector2.Zero, t_ability.getName(), "Arial"));
-				t_returnList.Last().load();
+		public static List<Button> createAbilityList(List<Ability> l_list) {
+			List<Button> l_returnList = new List<Button>();
+			foreach (Ability l_ability in l_list) {
+				l_returnList.Add(new TextButton(Vector2.Zero, l_ability.getName(), "Arial"));
+				l_returnList.Last().load();
 			}
-			return t_returnList;
+			return l_returnList;
 		}
 
 		public static void setListPosition(LinkedList<GuiObject> a_list, Vector2 a_position) {
-			foreach (GuiObject t_go in a_list) {
-				t_go.p_position = a_position;
+			foreach (GuiObject l_go in a_list) {
+				l_go.p_position = a_position;
 			}
 		}
 
 		public static void setListPosition(LinkedList<GuiObject> a_list, Vector2 a_position, Vector2 a_offset) {
 			int i = 0;
-			foreach (GuiObject t_go in a_list) {
-				t_go.p_parentOffset = a_position + a_offset * i++ - Game.getInstance().getResolution() / 2;
+			foreach (GuiObject l_go in a_list) {
+				l_go.p_parentOffset = a_position + a_offset * i++ - Game.getInstance().getResolution() / 2;
 			}
 		}
 
 		public static void setListDistance(LinkedList<GuiObject> a_list, Vector2 a_distance) {
 			int i = 0;
-			foreach (GuiObject t_go in a_list) {
-				t_go.p_parentOffset = a_distance * i;
+			foreach (GuiObject l_go in a_list) {
+				l_go.p_parentOffset = a_distance * i;
 				i++;
 			}
 		}
 
 		public static void setSelection(LinkedList<Button> a_list, Button.State a_selection) {
-			foreach (Button t_button in a_list) {
-				t_button.p_state = a_selection;
+			foreach (Button l_button in a_list) {
+				l_button.p_state = a_selection;
 			}
 		}
 
 		public static void loadList(LinkedList<GuiObject> a_list) {
-			foreach (GuiObject t_text in a_list) {
-				t_text.load();
+			foreach (GuiObject l_text in a_list) {
+				l_text.load();
 			}
 		}
 	}

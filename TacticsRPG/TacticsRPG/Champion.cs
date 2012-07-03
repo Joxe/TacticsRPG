@@ -6,22 +6,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace TacticsRPG {
-	public class Champion : TexturedObject {
+	public class Champion : BattlefieldObject {
 		private string m_name;
 		private ChampionClass m_class;
 		private ChampionRace m_race;
-		private Tile m_currentPosition;
-		private float m_lerpValue;
-		private readonly Vector2 m_tileOffset = new Vector2(64, -64);
-		private readonly Vector2 m_targetOffset = new Vector2(-10, 150);
-		private static Sprite m_targetRecticle;
 		private Player m_owningPlayer;
 		private int m_speed;
 		private bool m_actionTaken;
 		private bool m_male;
 		private int m_faceNumber;
 
-		private Stack<Tile> m_moveQueue = new Stack<Tile>();
 		private Dictionary<string, int> m_stats = new Dictionary<string, int>();
 		private Dictionary<KeyValuePair<HeroState, FacingState>, Sprite> m_faceSprites;
 		private Dictionary<KeyValuePair<HeroState, FacingState>, Sprite> m_bodySprites;
@@ -31,16 +25,6 @@ namespace TacticsRPG {
 		private HeroState m_heroState = HeroState.Idle;
 		public enum HeroState {
 			Idle,	Walking
-		}
-
-		private TargetState m_targetState = TargetState.Normal;
-		public enum TargetState {
-			Normal,	Targeted
-		}
-
-		private FacingState m_facingState = FacingState.BottomRight;
-		public enum FacingState {
-			Up, TopLeft, TopRight, BottomLeft, BottomRight, Down
 		}
 
 		public Champion(Vector2 a_position, string a_name, string a_class, bool a_male, string a_race) 
@@ -54,8 +38,8 @@ namespace TacticsRPG {
 			m_class = ClassesData.getClass(a_class);
 
 			m_stats = m_class.getBaseStats();
-			foreach (KeyValuePair<string, int> t_kvPair in RacesData.getStats(m_race)) {
-				m_stats[t_kvPair.Key] += t_kvPair.Value;
+			foreach (KeyValuePair<string, int> l_kvPair in RacesData.getStats(m_race)) {
+				m_stats[l_kvPair.Key] += l_kvPair.Value;
 			}
 			m_stats.Add("CurrentHealth", m_stats["MaxHealth"]);
 			m_stats.Add("CurrentMana", m_stats["MaxMana"]);
@@ -68,23 +52,19 @@ namespace TacticsRPG {
 		}
 
 		public override void load() {
-			foreach (HeroState t_heroState in Enum.GetValues(typeof(HeroState))) {
-				foreach (FacingState t_facingState in Enum.GetValues(typeof(FacingState))) {
+			foreach (HeroState l_heroState in Enum.GetValues(typeof(HeroState))) {
+				foreach (FacingState l_facingState in Enum.GetValues(typeof(FacingState))) {
 					int i = Enum.GetValues(typeof(FacingState)).Length;
-					KeyValuePair<HeroState, FacingState> t_kvPair = new KeyValuePair<HeroState, FacingState>(t_heroState, t_facingState);
-					m_bodySprites.Add(t_kvPair, new Sprite("Classes/" + m_class.getName() + (m_male ? "Male" : "Female") + "/" + t_heroState.ToString() + "/" + t_facingState.ToString(), 1));
-					m_bodySprites[t_kvPair].load();
+					KeyValuePair<HeroState, FacingState> l_kvPair = new KeyValuePair<HeroState, FacingState>(l_heroState, l_facingState);
+					m_bodySprites.Add(l_kvPair, new Sprite("Classes/" + m_class.getName() + (m_male ? "Male" : "Female") + "/" + l_heroState.ToString() + "/" + l_facingState.ToString(), 1));
+					m_bodySprites[l_kvPair].load();
 				}
 			}
 
 			m_hitbox = new Rectangle(m_position.X, m_position.Y, m_bodySprites.First().Value.getSize().X, m_bodySprites.First().Value.getSize().Y);
 			m_hitbox.setParent(this);
 
-			if (m_targetRecticle == null) {
-				m_targetRecticle = new Sprite("Indicators/target", 1);
-				m_targetRecticle.load();
-				m_targetRecticle.p_offset = m_targetOffset;
-			}
+			base.load();
 
 			calculateAttack();
 			calculateDefense();
@@ -93,36 +73,17 @@ namespace TacticsRPG {
 		}
 
 		public override void update() {
-			if (m_moveQueue.Count > 0) {
-				m_currentPosition.p_champion = null;
-				if (m_lerpValue < 1.0f) {
-					m_position = Vector2.Lerp(m_currentPosition.p_position, m_moveQueue.Peek().p_position, m_lerpValue) + m_tileOffset;
-					m_lerpValue += 0.05f;
-				} else {
-					m_position = m_moveQueue.Peek().p_position + m_tileOffset;
-					m_currentPosition = m_moveQueue.Pop();
-					if (m_moveQueue.Count > 0) {
-						faceTile(m_moveQueue.Peek());
-					} else {
-						m_currentPosition.p_champion = this;
-					}
-					m_lerpValue = 0.0f;
-				}
-			}
 			m_hitbox.update();
 			base.update();
 		}
 
 		public override void draw() {
 			m_bodySprites[new KeyValuePair<HeroState, FacingState>(p_state, p_facing)].draw(this, p_layer - 0.001f);
-			if (m_targetState == TargetState.Targeted) {
-				m_targetRecticle.draw(this, m_layer + 0.001f);
-			}
 			base.draw();
 		}
 
 		#region Movement & Facing
-		public bool moveTo(Tile a_tile) {
+		public override bool moveTo(Tile a_tile) {
 			if (m_moveQueue.Count == 0) {
 				if ((m_moveQueue = AStar.findPath(m_currentPosition, a_tile, AStar.PathfindState.Hexagon)).Count > m_stats["MoveLeft"] + 1) {
 					m_moveQueue.Clear();
@@ -133,61 +94,6 @@ namespace TacticsRPG {
 				}
 			}
 			return false;
-		}
-		#endregion
-
-		#region Champion Facing
-		public void faceTile(Tile a_tile) {
-			if (a_tile.getMapPosition().X < m_currentPosition.getMapPosition().X) {
-				if (MathManager.isEven((int)m_currentPosition.getMapPosition().X)) {
-					m_facingState = a_tile.getMapPosition().Y == m_currentPosition.getMapPosition().Y
-						? m_facingState = FacingState.TopLeft
-						: m_facingState = FacingState.BottomLeft;
-				} else {
-					m_facingState = a_tile.getMapPosition().Y == m_currentPosition.getMapPosition().Y
-						? m_facingState = FacingState.BottomLeft
-						: m_facingState = FacingState.TopLeft;
-				}
-			} else if (a_tile.getMapPosition().X > m_currentPosition.getMapPosition().X) {
-				if (MathManager.isEven((int)m_currentPosition.getMapPosition().X)) {
-					m_facingState = a_tile.getMapPosition().Y == m_currentPosition.getMapPosition().Y 
-						? m_facingState = FacingState.TopRight
-						: m_facingState = FacingState.BottomRight;
-				} else {
-					m_facingState = a_tile.getMapPosition().Y == m_currentPosition.getMapPosition().Y 
-						? m_facingState = FacingState.BottomRight
-						: m_facingState = FacingState.TopRight;
-				}
-			} else {
-				m_facingState = a_tile.getMapPosition().Y < m_currentPosition.getMapPosition().Y
-					? m_facingState = FacingState.Up
-					: m_facingState = FacingState.Down;
-			}
-		}
-
-		public void faceObject(GameObject a_gameObject) {
-			double t_angle = MathManager.angle(
-				m_position + m_hitbox.p_dimensions / 2, 
-				a_gameObject.p_position + new Vector2(a_gameObject.getHitBox().X, a_gameObject.getHitBox().Y) / 2
-			);
-			
-			if (t_angle > 0) {
-				if (t_angle <= 70) {
-					m_facingState = FacingState.TopRight;
-				} else if (t_angle <= 130 && t_angle > 70) {
-					m_facingState = FacingState.Up;
-				} else if (t_angle <= 180 && t_angle > 130) {
-					m_facingState = FacingState.TopLeft;
-				}
-			} else {
-				if (t_angle >= -70) {
-					m_facingState = FacingState.BottomRight;
-				} else if (t_angle >= -130 && t_angle < -70) {
-					m_facingState = FacingState.Down;
-				} else if (t_angle >= -180 && t_angle < -130) {
-					m_facingState = FacingState.BottomLeft;
-				}
-			}
 		}
 		#endregion
 
@@ -226,30 +132,12 @@ namespace TacticsRPG {
 		#endregion
 
 		#region Champion Properties
-		public TargetState p_targetState {
-			get {
-				return m_targetState;
-			}
-			set {
-				m_targetState = value;
-			}
-		}
-
 		public HeroState p_state {
 			get {
 				return m_heroState;
 			}
 			set {
 				m_heroState = value;
-			}
-		}
-
-		public FacingState p_facing {
-			get {
-				return m_facingState;
-			}
-			set {
-				m_facingState = value;
 			}
 		}
 
@@ -302,11 +190,11 @@ namespace TacticsRPG {
 		}
 
 		public LinkedList<Text> statsToTextList() {
-			LinkedList<Text> t_list = new LinkedList<Text>();
-			foreach (KeyValuePair<string, int> t_kvPair in m_stats) {
-				t_list.AddLast(new Text(Vector2.Zero, t_kvPair.Key + ": " + t_kvPair.Value, "Arial", Color.Black, false));
+			LinkedList<Text> l_list = new LinkedList<Text>();
+			foreach (KeyValuePair<string, int> l_kvPair in m_stats) {
+				l_list.AddLast(new Text(Vector2.Zero, l_kvPair.Key + ": " + l_kvPair.Value, "Arial", Color.Black, false));
 			}
-			return t_list;
+			return l_list;
 		}
 
 		public ChampionRace getRace() {
@@ -315,14 +203,6 @@ namespace TacticsRPG {
 
 		public ChampionClass getClass() {
 			return m_class;
-		}
-
-		public Vector2 getMapPosition() {
-			return m_currentPosition.getMapPosition();
-		}
-
-		public Tile getTile() {
-			return m_currentPosition;
 		}
 
 		public void attack(Champion a_champion) {
@@ -343,7 +223,7 @@ namespace TacticsRPG {
 		}
 
 		public void kill() {
-			m_currentPosition.p_champion = null;
+			m_currentPosition.p_object = null;
 		}
 
 		public override int CompareTo(GameObject a_gameObject) {
@@ -356,16 +236,16 @@ namespace TacticsRPG {
 		}
 
 		public List<Ability> getAbilities() {
-			List<Ability> t_returnList = new List<Ability>();
+			List<Ability> l_returnList = new List<Ability>();
 			
-			foreach (Ability t_ability in m_class.getAbilities()) {
-				t_returnList.Add(t_ability);
+			foreach (Ability l_ability in m_class.getAbilities()) {
+				l_returnList.Add(l_ability);
 			}
-			foreach (Ability t_ability in m_race.getAbilities()) {
-				t_returnList.Add(t_ability);
+			foreach (Ability l_ability in m_race.getAbilities()) {
+				l_returnList.Add(l_ability);
 			}
 
-			return t_returnList;
+			return l_returnList;
 		}
 	}
 }

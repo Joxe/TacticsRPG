@@ -35,8 +35,8 @@ namespace TacticsRPG {
 		public override void update() {
 			updateMouse();
 			updateKeyboard();
-			foreach (Champion t_champion in m_champions.Values) {
-				t_champion.update();
+			foreach (Champion l_champion in m_champions.Values) {
+				l_champion.update();
 			}
 			m_gameGui.update();
 			m_tileMap.update();
@@ -55,9 +55,9 @@ namespace TacticsRPG {
 			}
 			if (MouseHandler.lmbDown()) {
 				if (m_gameGui.getState() != GameGUI.GuiState.SelectTarget) {
-					foreach (Champion t_champion in m_champions.Values) {
-						if (t_champion.getHitBox().contains(MouseHandler.worldMouse())) {
-							p_selectedChampion = t_champion;
+					foreach (Champion l_champion in m_champions.Values) {
+						if (l_champion.getHitBox().contains(MouseHandler.worldMouse())) {
+							p_selectedChampion = l_champion;
 						}
 					}
 				}
@@ -79,12 +79,12 @@ namespace TacticsRPG {
 		private void updateKeyboard() {
 			if (KeyboardHandler.keyPressed(Keys.D)) {
 				m_champions.Add("Joxe", new Champion(m_tileMap.p_hover.getMapPosition(), "Joxe", "Warrior", true, "Human"));
-				m_tileMap.p_hover.p_champion = m_champions["Joxe"];
+				m_tileMap.p_hover.p_object = m_champions["Joxe"];
 				m_champions["Joxe"].load();
 			}
 			if (KeyboardHandler.keyPressed(Keys.F)) {
 				m_champions.Add("Din Mamma", new Champion(m_tileMap.p_hover.getMapPosition(), "Din Mamma", "Mage", false, "Human"));
-				m_tileMap.p_hover.p_champion = m_champions["Din Mamma"];
+				m_tileMap.p_hover.p_object = m_champions["Din Mamma"];
 				m_champions["Din Mamma"].load();
 			}
 		}
@@ -96,16 +96,16 @@ namespace TacticsRPG {
 			}
 			int negativeSpeed = m_selectedChampion.p_speed;
 
-			foreach (Champion t_champion in m_battleQueue) {
-				t_champion.p_speed -= negativeSpeed;
+			foreach (Champion l_champion in m_battleQueue) {
+				l_champion.p_speed -= negativeSpeed;
 			}
 			m_battleQueue.Sort();
 		}
 
 		public override void draw() {
 			m_tileMap.draw();
-			foreach (Champion t_champion in m_champions.Values) {
-				t_champion.draw();
+			foreach (Champion l_champion in m_champions.Values) {
+				l_champion.draw();
 			}
 			m_gameGui.draw();
 			base.draw();
@@ -133,8 +133,8 @@ namespace TacticsRPG {
 				m_selectedChampion.p_actionTaken = false;
 				m_championInfo.Clear();
 				m_championInfo.AddLast(new Text(new Vector2(10, 10), m_selectedChampion.ToString(), "Arial", Color.Black, false));
-				foreach (Text t_text in m_selectedChampion.statsToTextList()) {
-					m_championInfo.AddLast(t_text);
+				foreach (Text l_text in m_selectedChampion.statsToTextList()) {
+					m_championInfo.AddLast(l_text);
 				}
 				GuiListManager.setListPosition(m_championInfo, new Vector2(10, 10), new Vector2(0, 20));
 				GuiListManager.loadList(m_championInfo);
@@ -151,11 +151,11 @@ namespace TacticsRPG {
 		}
 
 		public LinkedList<Champion> getChampions() {
-			LinkedList<Champion> t_list = new LinkedList<Champion>();
-			foreach (Champion t_champion in m_champions.Values) {
-				t_list.AddLast(t_champion);
+			LinkedList<Champion> l_list = new LinkedList<Champion>();
+			foreach (Champion l_champion in m_champions.Values) {
+				l_list.AddLast(l_champion);
 			}
-			return t_list;
+			return l_list;
 		}
 
 		public void removeChampion(Champion a_champion) {
@@ -165,8 +165,8 @@ namespace TacticsRPG {
 
 		public void startGame() {
 			m_battleQueue = new List<Champion>();
-			foreach (Champion t_champion in m_champions.Values) {
-				m_battleQueue.Add(t_champion);
+			foreach (Champion l_champion in m_champions.Values) {
+				m_battleQueue.Add(l_champion);
 			}
 			m_battleQueue.Sort();
 		}

@@ -10,9 +10,9 @@ namespace TacticsRPG {
 
 		public static void load() {
 			m_classes = new Dictionary<string, ChampionClass>();
-			List<ChampionClass> t_classList = XMLParser.loadAvailableClasses();
-			foreach (ChampionClass t_class in t_classList) {
-				m_classes.Add(t_class.getName(), t_class);
+			List<ChampionClass> l_classList = XMLParser.loadAvailableClasses();
+			foreach (ChampionClass l_class in l_classList) {
+				m_classes.Add(l_class.getName(), l_class);
 			}
 		}
 

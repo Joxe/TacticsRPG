@@ -3,8 +3,8 @@
 	<Dafuq>
 		<Desc />	Bajsar på motståndet så hårt att det dör
 		<Range />	5
-		<AoE />		2
+		<AoE />		1
 		<Cost />	10
-		<Element />	Fire
+		<Effect />	Normal Damage
 	</Dafuq>
 </AbilitiesData>

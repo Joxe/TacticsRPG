@@ -7,81 +7,81 @@ namespace TacticsRPG {
 	public class StatsCalculator {
 		#region Attack
 		public static float StrengthToAttack(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Strength"] * a_champion.getRace().getRatio("AttackStrength");
-			t_float += a_champion.getClass().getBaseStats()["Strength"] * a_champion.getClass().getRatio("AttackStrength");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Strength"] * a_champion.getRace().getRatio("AttackStrength");
+			l_float += a_champion.getClass().getBaseStats()["Strength"] * a_champion.getClass().getRatio("AttackStrength");
+			return l_float;
 		}
 
 		public static float AgilityToAttack(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Agility"] * a_champion.getRace().getRatio("AttackAgility");
-			t_float += a_champion.getClass().getBaseStats()["Agility"] * a_champion.getClass().getRatio("AttackAgility");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Agility"] * a_champion.getRace().getRatio("AttackAgility");
+			l_float += a_champion.getClass().getBaseStats()["Agility"] * a_champion.getClass().getRatio("AttackAgility");
+			return l_float;
 		}
 
 		public static float IntellectToAttack(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Intellect"] * a_champion.getRace().getRatio("AttackIntellect");
-			t_float += a_champion.getClass().getBaseStats()["Intellect"] * a_champion.getClass().getRatio("AttackIntellect");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Intellect"] * a_champion.getRace().getRatio("AttackIntellect");
+			l_float += a_champion.getClass().getBaseStats()["Intellect"] * a_champion.getClass().getRatio("AttackIntellect");
+			return l_float;
 		}
 		#endregion
 
 		#region Defense
 		public static float StrengthToDefense(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Strength"] * a_champion.getRace().getRatio("DefenseStrength");
-			t_float += a_champion.getClass().getBaseStats()["Strength"] * a_champion.getClass().getRatio("DefenseStrength");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Strength"] * a_champion.getRace().getRatio("DefenseStrength");
+			l_float += a_champion.getClass().getBaseStats()["Strength"] * a_champion.getClass().getRatio("DefenseStrength");
+			return l_float;
 		}
 
 		public static float AgilityToDefense(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Agility"] * a_champion.getRace().getRatio("DefenseAgility");
-			t_float += a_champion.getClass().getBaseStats()["Agility"] * a_champion.getClass().getRatio("DefenseAgility");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Agility"] * a_champion.getRace().getRatio("DefenseAgility");
+			l_float += a_champion.getClass().getBaseStats()["Agility"] * a_champion.getClass().getRatio("DefenseAgility");
+			return l_float;
 		}
 
 		public static float IntellectToDefense(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Intellect"] * a_champion.getRace().getRatio("DefenseIntellect");
-			t_float += a_champion.getClass().getBaseStats()["Intellect"] * a_champion.getClass().getRatio("DefenseIntellect");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Intellect"] * a_champion.getRace().getRatio("DefenseIntellect");
+			l_float += a_champion.getClass().getBaseStats()["Intellect"] * a_champion.getClass().getRatio("DefenseIntellect");
+			return l_float;
 		}
 		#endregion
 
 		#region Resist
 		public static float StrengthToResist(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Strength"] * a_champion.getRace().getRatio("MagicResistStrength");
-			t_float += a_champion.getClass().getBaseStats()["Strength"] * a_champion.getClass().getRatio("MagicResistStrength");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Strength"] * a_champion.getRace().getRatio("MagicResistStrength");
+			l_float += a_champion.getClass().getBaseStats()["Strength"] * a_champion.getClass().getRatio("MagicResistStrength");
+			return l_float;
 		}
 
 		public static float AgilityToResist(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Agility"] * a_champion.getRace().getRatio("MagicResistAgility");
-			t_float += a_champion.getClass().getBaseStats()["Agility"] * a_champion.getClass().getRatio("MagicResistAgility");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Agility"] * a_champion.getRace().getRatio("MagicResistAgility");
+			l_float += a_champion.getClass().getBaseStats()["Agility"] * a_champion.getClass().getRatio("MagicResistAgility");
+			return l_float;
 		}
 
 		public static float IntellectToResist(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Intellect"] * a_champion.getRace().getRatio("MagicResistIntellect");
-			t_float += a_champion.getClass().getBaseStats()["Intellect"] * a_champion.getClass().getRatio("MagicResistIntellect");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Intellect"] * a_champion.getRace().getRatio("MagicResistIntellect");
+			l_float += a_champion.getClass().getBaseStats()["Intellect"] * a_champion.getClass().getRatio("MagicResistIntellect");
+			return l_float;
 		}
 		#endregion
 
 		#region Magic Attack
 		public static float StrengthToMagic(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Strength"] * a_champion.getRace().getRatio("MagicAttackStrength");
-			t_float += a_champion.getClass().getBaseStats()["Strength"] * a_champion.getClass().getRatio("MagicAttackStrength");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Strength"] * a_champion.getRace().getRatio("MagicAttackStrength");
+			l_float += a_champion.getClass().getBaseStats()["Strength"] * a_champion.getClass().getRatio("MagicAttackStrength");
+			return l_float;
 		}
 
 		public static float AgilityToMagic(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Agility"] * a_champion.getRace().getRatio("MagicAttackAgility");
-			t_float += a_champion.getClass().getBaseStats()["Agility"] * a_champion.getClass().getRatio("MagicAttackAgility");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Agility"] * a_champion.getRace().getRatio("MagicAttackAgility");
+			l_float += a_champion.getClass().getBaseStats()["Agility"] * a_champion.getClass().getRatio("MagicAttackAgility");
+			return l_float;
 		}
 
 		public static float IntellectToMagic(Champion a_champion) {
-			float t_float = a_champion.getRace().getBaseStats()["Intellect"] * a_champion.getRace().getRatio("MagicAttackIntellect");
-			t_float += a_champion.getClass().getBaseStats()["Intellect"] * a_champion.getClass().getRatio("MagicAttackIntellect");
-			return t_float;
+			float l_float = a_champion.getRace().getBaseStats()["Intellect"] * a_champion.getRace().getRatio("MagicAttackIntellect");
+			l_float += a_champion.getClass().getBaseStats()["Intellect"] * a_champion.getClass().getRatio("MagicAttackIntellect");
+			return l_float;
 		}
 		#endregion
 
