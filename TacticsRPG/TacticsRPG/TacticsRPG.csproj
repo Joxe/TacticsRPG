@@ -122,6 +122,7 @@
     <Compile Include="GameGUI.cs" />
     <Compile Include="GUI\Button.cs" />
     <Compile Include="AbilityEffects\Effect.cs" />
+    <Compile Include="GUI\ButtonList.cs" />
     <Compile Include="GUI\GuiObject.cs" />
     <Compile Include="GUI\Text.cs" />
     <Compile Include="GUI\TextButton.cs" />

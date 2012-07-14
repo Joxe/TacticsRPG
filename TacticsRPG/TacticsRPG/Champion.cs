@@ -12,6 +12,7 @@ namespace TacticsRPG {
 		private ChampionRace m_race;
 		private Player m_owningPlayer;
 		private int m_speed;
+		private bool m_hasMoved;
 		private bool m_actionTaken;
 		private bool m_male;
 		private int m_faceNumber;
@@ -88,6 +89,7 @@ namespace TacticsRPG {
 				if ((m_moveQueue = AStar.findPath(m_currentPosition, a_tile, AStar.PathfindState.Hexagon)).Count > m_stats["MoveLeft"] + 1) {
 					m_moveQueue.Clear();
 				} else {
+					m_hasMoved = true;
 					m_stats["MoveLeft"] -= m_moveQueue.Count - 1;
 					p_speed += 50;
 					return true;
@@ -156,6 +158,15 @@ namespace TacticsRPG {
 			}
 			set {
 				m_speed = Math.Max(0, value);
+			}
+		}
+
+		public bool p_hasMoved {
+			get {
+				return m_hasMoved;
+			}
+			set {
+				m_hasMoved = value;
 			}
 		}
 

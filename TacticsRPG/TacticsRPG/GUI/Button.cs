@@ -29,7 +29,7 @@ namespace TacticsRPG {
 
 		protected State m_currentState = State.Normal;
 		public enum State {
-			Normal,	Hover,	Pressed,	Toggled, Disabled
+			Normal,	Hover, Pressed, Toggled, Disabled
 		}
 		#endregion
 
