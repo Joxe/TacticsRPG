@@ -21,6 +21,11 @@ namespace TacticsRPG {
 			m_scale = 1.0f;
 		}
 
+		public override void destroy() {
+			m_sprite.destroy();
+			base.destroy();
+		}
+
 		public override void load() {
 			m_hitbox = new Rectangle(m_position.X, m_position.Y, m_sprite.getWidth(), m_sprite.getHeight());
 			base.load();

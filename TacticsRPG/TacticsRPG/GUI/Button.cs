@@ -58,15 +58,15 @@ namespace TacticsRPG {
 
 		public override void load() {
 			if (m_buttonTexture != null) {
-				setNormalTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/" + m_buttonTexture + "_normal"));
-				setHoverTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/" + m_buttonTexture + "_hover"));
-				setPressedTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/" + m_buttonTexture + "_pressed"));
-				setToggleTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/" + m_buttonTexture + "_toggle"));
+				setNormalTexture(ContentLoader.loadTexture("Images/GUI/" + m_buttonTexture + "_normal.png"));
+				setHoverTexture(ContentLoader.loadTexture("Images/GUI/" + m_buttonTexture + "_hover.png"));
+				setPressedTexture(ContentLoader.loadTexture("Images/GUI/" + m_buttonTexture + "_pressed.png"));
+				setToggleTexture(ContentLoader.loadTexture("Images/GUI/" + m_buttonTexture + "_toggle.png"));
 			} else {
-				setNormalTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_normal"));
-				setHoverTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_hover"));
-				setPressedTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_pressed"));
-				setToggleTexture(Game.getInstance().Content.Load<Texture2D>("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_toggle"));
+				setNormalTexture(ContentLoader.loadTexture("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_normal.png"));
+				setHoverTexture(ContentLoader.loadTexture("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_hover.png"));
+				setPressedTexture(ContentLoader.loadTexture("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_pressed.png"));
+				setToggleTexture(ContentLoader.loadTexture("Images/GUI/DevelopmentHotkeys/btn_selecl_hotkey_toggle.png"));
 			}
 			updateBounds();
 			updateTextureBounds();

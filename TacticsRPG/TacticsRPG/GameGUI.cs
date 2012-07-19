@@ -7,72 +7,50 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TacticsRPG {
 	public class GameGUI : State {
-		private LinkedList<GuiObject> m_menuList = new LinkedList<GuiObject>();
+		//private LinkedList<GuiObject> m_menuList = new LinkedList<GuiObject>();
 		private TextButton m_gameStart;
 		private GameState m_gameState;
 		private bool m_collidedWithGui;
 
-		private TextButton btn_move;
-		private TextButton btn_action;
-		private TextButton btn_wait;
-
-		private List<Button> m_abilityButtons;
+		private ButtonList m_mainBtnList;
+		private ButtonList m_abilityBtnList;
+		private ButtonList m_actionBtnList;
+		private ButtonList m_activeBtnList;
 
 		private GuiState m_state = GuiState.Normal;
 		public enum GuiState {
-			Normal,		SelectTarget,	Move,	SelectFacing
+			Normal,		SelectTarget,	Move,	SelectFacing,
+			Ability,	Action
 		}
 
 		public GameGUI() {
-			m_guiList.AddLast(m_menuList);
-			m_abilityButtons = new List<Button>();
+			m_mainBtnList = new ButtonList(null, new Vector2(30, 400), ButtonList.ButtonListType.ChmpnMain);
+			m_mainBtnList.setButtonListeners("Move", moveClick);
+			m_mainBtnList.setButtonListeners("Action", actionClick);
+			m_mainBtnList.setButtonListeners("Wait", waitClick);
 		}
 
 		public override void load() {
 			m_gameState = (GameState)Game.getInstance().getCurrentState();
-			m_menuList.AddLast(btn_move		= new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 220), "Move",	"Arial"));
-			m_menuList.AddLast(btn_action	= new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 200), "Action", "Arial"));
-			m_menuList.AddLast(btn_wait		= new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 180), "Wait",	"Arial"));
-			btn_move.m_clickEvent	+= new TextButton.clickDelegate(moveClick);
-			btn_action.m_clickEvent += new TextButton.clickDelegate(attackClick);
-			btn_wait.m_clickEvent	+= new TextButton.clickDelegate(waitClick);
 			m_gameStart = new TextButton(new Vector2(400, 15), "Start Game", "Arial");
 			m_gameStart.m_clickEvent += new TextButton.clickDelegate(gameStartClick);
 			m_gameStart.load();
-			foreach (GuiObject l_go in m_menuList) {
-				l_go.load();
-			}
+			m_mainBtnList.load();
 		}
 
 		public override void update() {
 			m_gameState.getTileMap().p_ignoreMouse = (m_collidedWithGui = collidedWithGUI());
 			updateMouse();
 			m_gameStart.update();
-			if (m_gameState.p_selectedChampion != null) {
-				foreach (Button l_button in m_abilityButtons) {
-					l_button.update();
-				}
-				base.update();
-				if (m_gameState.p_selectedChampion.getStat("MoveLeft") <= 0) {
-					btn_move.p_state = Button.State.Disabled;
-				}
-				if (m_gameState.p_selectedChampion.p_actionTaken) {
-					btn_action.p_state = Button.State.Disabled;
-				}
-			}
-
-			if (KeyboardHandler.keyDown(Keys.A)) {
-				m_abilityButtons = GuiListManager.createAbilityList(m_gameState.p_selectedChampion.getAbilities());
+			if (m_activeBtnList != null) {
+				m_activeBtnList.update();
 			}
 		}
 
 		public override void draw() {
 			m_gameStart.draw();
-			if (m_gameState.p_selectedChampion != null) {
-				foreach (Button l_button in m_abilityButtons) {
-					l_button.draw();
-				}
-				base.draw();
+			if (m_activeBtnList != null) {
+				m_activeBtnList.draw();
 			}
 		}
 
@@ -116,31 +94,41 @@ namespace TacticsRPG {
 			}
 		}
 
+		public void championChanged() {
+			Vector2 l_position = new Vector2(30, 400);
+			m_abilityBtnList = new ButtonList(m_gameState.p_selectedChampion, l_position, ButtonList.ButtonListType.ChmpnAbility);
+			m_abilityBtnList.load();
+			m_abilityBtnList.setButtonListeners(null, useAbility);
+			m_actionBtnList = new ButtonList(m_gameState.p_selectedChampion, l_position, ButtonList.ButtonListType.ChmpnAction);
+			m_actionBtnList.load();
+			m_activeBtnList = m_mainBtnList;
+			m_activeBtnList.revalidateButtons(m_gameState.p_selectedChampion);
+		}
+
 		private void restoreStates() {
 			m_gameState.getTileMap().restoreStates();
 			m_state = GuiState.Normal;
 		}
 
 		#region Menu Buttons
-		private void moveClick(Button a_button) {
-			if (a_button.p_state == Button.State.Toggled) {
-				return;
-			}
+		public void moveClick(Button a_button) {
 			toggleTiles(m_gameState.p_selectedChampion.getStat("MoveLeft"));
-			m_state = GuiState.Move;
+			setState(GuiState.Move);
 		}
 
-		private void attackClick(Button a_button) {
-			if (a_button.p_state == Button.State.Toggled) {
-				return;
-			}
+		private void actionClick(Button a_button) {
 			toggleTiles(1);
-			m_state = GuiState.SelectTarget;
+			setState(GuiState.Action);
 		}
 
 		private void waitClick(Button a_button) {
 			toggleTiles(1);
-			m_state = GuiState.SelectFacing;
+			setState(GuiState.SelectFacing);
+		}
+
+		private void useAbility(Button a_button) {
+			toggleTiles(m_gameState.p_selectedChampion.getAbility(a_button.p_buttonText).getRange());
+			setState(GuiState.Ability);
 		}
 		#endregion
 
@@ -157,12 +145,37 @@ namespace TacticsRPG {
 		}
 
 		private bool collidedWithGUI() {
-			foreach (GuiObject l_go in m_menuList) {
-				if (l_go.contains(MouseHandler.getCurPos())) {
-					return true;
+			if (m_activeBtnList != null) {
+				foreach (Button l_button in m_activeBtnList.getButtons()) {
+					if (l_button.contains(MouseHandler.getCurPos())) {
+						return true;
+					}
 				}
 			}
 			return false;
+		}
+
+		private void setState(GuiState a_guiState) {
+			switch (a_guiState) {
+				case GuiState.Normal:
+					m_activeBtnList = m_mainBtnList;
+					break;
+				case GuiState.Move:
+					m_activeBtnList = null;
+					break;
+				case GuiState.SelectFacing:
+					m_activeBtnList = null;
+					break;
+				case GuiState.SelectTarget:
+					m_activeBtnList = null;
+					break;
+				case GuiState.Ability:
+					m_activeBtnList = m_abilityBtnList;
+					break;
+				case GuiState.Action:
+					m_activeBtnList = m_abilityBtnList;
+					break;
+			}
 		}
 
 		public GuiState getState() {

@@ -39,7 +39,7 @@ namespace TacticsRPG {
 			m_tileMap = ((GameState)Game.getInstance().getCurrentState()).getTileMap();
 
 			for (int i = 0; i < a_height; i++) {
-				m_heightSprites[i] = new Sprite("Tiles//" + m_tileMap.getTileSet() + "mellangrej", 1);
+				m_heightSprites[i] = new Sprite("Tiles//" + m_tileMap.getTileSet() + "mellangrej.png", 1);
 			}
 		}
 

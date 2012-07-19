@@ -138,6 +138,7 @@ namespace TacticsRPG {
 				}
 				GuiListManager.setListPosition(m_championInfo, new Vector2(10, 10), new Vector2(0, 20));
 				GuiListManager.loadList(m_championInfo);
+				m_gameGui.championChanged();
 			}
 		}
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace TacticsRPG.GUI {
+namespace TacticsRPG {
 	public class ButtonList {
 		private List<Button> m_buttonList;
 		private ButtonListType m_buttonListType;
@@ -17,11 +17,29 @@ namespace TacticsRPG.GUI {
 			m_buttonListType = a_listType;
 		}
 
-		public ButtonList(Champion a_champion, Vector2 a_position) {
+		public ButtonList(Champion a_champion, Vector2 a_position, ButtonListType a_listType) {
 			m_buttonList = new List<Button>();
-			m_buttonListType = ButtonListType.ChmpnAbility;
-			foreach (Ability l_ability in a_champion.getAbilities()) {
-				m_buttonList.Add(new TextButton(a_position, l_ability.getName() + ": " + l_ability.getCost(), "Arial"));		
+			m_buttonListType = a_listType;
+
+			switch (m_buttonListType) {
+				case ButtonListType.ChmpnMain:
+					m_buttonList.Add(new TextButton(a_position, "Move", "Arial"));
+					m_buttonList.Add(new TextButton(a_position + new Vector2(0, 15), "Action", "Arial"));
+					m_buttonList.Add(new TextButton(a_position + new Vector2(0, 30), "Wait", "Arial"));
+					break;
+				case  ButtonListType.ChmpnAction:
+					break;
+				case ButtonListType.ChmpnAbility:
+					foreach (Ability l_ability in a_champion.getAbilities()) {
+						m_buttonList.Add(new TextButton(a_position, l_ability.getName() + ": " + l_ability.getCost(), "Arial"));		
+					}
+					break;
+			}
+		}
+
+		public void load() {
+			foreach (TextButton l_textButton in m_buttonList) {
+				l_textButton.load();
 			}
 		}
 
@@ -60,6 +78,20 @@ namespace TacticsRPG.GUI {
 			return null;
 		}
 
+		public List<Button> getButtons() {
+			return m_buttonList;
+		}
+
+		public void setButtonListeners(string a_button, TextButton.clickDelegate a_delegate) {
+			if (a_button != null) {
+				((TextButton)findButton(a_button)).m_clickEvent += a_delegate;
+			} else {
+				foreach (TextButton l_button in m_buttonList) {
+					l_button.m_clickEvent += a_delegate;
+				}
+			}
+		}
+
 		public void update() {
 			foreach (Button l_button in m_buttonList) {
 				l_button.update();
@@ -68,7 +100,7 @@ namespace TacticsRPG.GUI {
 
 		public void draw() {
 			foreach (Button l_button in m_buttonList) {
-				l_button.update();
+				l_button.draw();
 			}
 		}
 	}
