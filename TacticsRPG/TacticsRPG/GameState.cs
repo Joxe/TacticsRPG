@@ -54,7 +54,7 @@ namespace TacticsRPG {
 				CameraHandler.cameraDrag();
 			}
 			if (MouseHandler.lmbDown()) {
-				if (m_gameGui.getState() != GameGUI.GuiState.SelectTarget) {
+				if (m_gameGui.getState() != GameGUI.GuiState.AttackTarget) {
 					foreach (Champion l_champion in m_champions.Values) {
 						if (l_champion.getHitBox().contains(MouseHandler.worldMouse())) {
 							p_selectedChampion = l_champion;

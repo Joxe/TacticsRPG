@@ -24,10 +24,12 @@ namespace TacticsRPG {
 			switch (m_buttonListType) {
 				case ButtonListType.ChmpnMain:
 					m_buttonList.Add(new TextButton(a_position, "Move", "Arial"));
-					m_buttonList.Add(new TextButton(a_position + new Vector2(0, 15), "Action", "Arial"));
-					m_buttonList.Add(new TextButton(a_position + new Vector2(0, 30), "Wait", "Arial"));
+					m_buttonList.Add(new TextButton(a_position + new Vector2(0, 20), "Action", "Arial"));
+					m_buttonList.Add(new TextButton(a_position + new Vector2(0, 40), "Wait", "Arial"));
 					break;
 				case  ButtonListType.ChmpnAction:
+					m_buttonList.Add(new TextButton(a_position, "Attack", "Arial"));
+					m_buttonList.Add(new TextButton(a_position + new Vector2(0, 20), "Ability", "Arial"));
 					break;
 				case ButtonListType.ChmpnAbility:
 					foreach (Ability l_ability in a_champion.getAbilities()) {

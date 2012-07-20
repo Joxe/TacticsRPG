@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TacticsRPG {
 	public class GameGUI : State {
-		//private LinkedList<GuiObject> m_menuList = new LinkedList<GuiObject>();
 		private TextButton m_gameStart;
 		private GameState m_gameState;
 		private bool m_collidedWithGui;
@@ -19,8 +18,8 @@ namespace TacticsRPG {
 
 		private GuiState m_state = GuiState.Normal;
 		public enum GuiState {
-			Normal,		SelectTarget,	Move,	SelectFacing,
-			Ability,	Action
+			Normal,		AttackTarget,	Move,	SelectFacing,
+			UseAbility,	ActionMenu
 		}
 
 		public GameGUI() {
@@ -57,7 +56,7 @@ namespace TacticsRPG {
 		private void updateMouse() {
 			if (MouseHandler.lmbPressed()) {
 				switch (m_state) {
-					case GuiState.SelectTarget:
+					case GuiState.AttackTarget:
 						foreach (Champion l_champion in m_gameState.getChampions()) {
 							if (l_champion.getHitBox().contains(MouseHandler.worldMouse()) && l_champion.getTile().p_tileState == Tile.TileState.Toggle) {
 								((GameState)Game.getInstance().getCurrentState()).p_selectedChampion.attack(l_champion);
@@ -88,7 +87,7 @@ namespace TacticsRPG {
 				}
 			}
 			if (MouseHandler.rmbPressed()) {
-				if (m_state == GuiState.SelectTarget || m_state == GuiState.Move) {
+				if (m_state == GuiState.AttackTarget || m_state == GuiState.Move || m_state == GuiState.ActionMenu) {
 					restoreStates();		
 				}
 			}
@@ -102,7 +101,7 @@ namespace TacticsRPG {
 			m_actionBtnList = new ButtonList(m_gameState.p_selectedChampion, l_position, ButtonList.ButtonListType.ChmpnAction);
 			m_actionBtnList.load();
 			m_activeBtnList = m_mainBtnList;
-			m_activeBtnList.revalidateButtons(m_gameState.p_selectedChampion);
+			m_mainBtnList.revalidateButtons(m_gameState.p_selectedChampion);
 		}
 
 		private void restoreStates() {
@@ -113,22 +112,24 @@ namespace TacticsRPG {
 		#region Menu Buttons
 		public void moveClick(Button a_button) {
 			toggleTiles(m_gameState.p_selectedChampion.getStat("MoveLeft"));
-			setState(GuiState.Move);
+			m_activeBtnList = null;
+			m_state = GuiState.Move;
 		}
 
 		private void actionClick(Button a_button) {
-			toggleTiles(1);
-			setState(GuiState.Action);
+			m_activeBtnList = m_actionBtnList;
+			m_state = GuiState.ActionMenu;
 		}
 
 		private void waitClick(Button a_button) {
 			toggleTiles(1);
-			setState(GuiState.SelectFacing);
+			m_activeBtnList = null;
+			m_state = GuiState.SelectFacing;
 		}
 
 		private void useAbility(Button a_button) {
-			toggleTiles(m_gameState.p_selectedChampion.getAbility(a_button.p_buttonText).getRange());
-			setState(GuiState.Ability);
+			toggleTiles(m_gameState.p_selectedChampion.getAbility(a_button.p_buttonText.Split(':')[0]).getRange());
+			m_state = GuiState.UseAbility;
 		}
 		#endregion
 
@@ -153,29 +154,6 @@ namespace TacticsRPG {
 				}
 			}
 			return false;
-		}
-
-		private void setState(GuiState a_guiState) {
-			switch (a_guiState) {
-				case GuiState.Normal:
-					m_activeBtnList = m_mainBtnList;
-					break;
-				case GuiState.Move:
-					m_activeBtnList = null;
-					break;
-				case GuiState.SelectFacing:
-					m_activeBtnList = null;
-					break;
-				case GuiState.SelectTarget:
-					m_activeBtnList = null;
-					break;
-				case GuiState.Ability:
-					m_activeBtnList = m_abilityBtnList;
-					break;
-				case GuiState.Action:
-					m_activeBtnList = m_abilityBtnList;
-					break;
-			}
 		}
 
 		public GuiState getState() {
