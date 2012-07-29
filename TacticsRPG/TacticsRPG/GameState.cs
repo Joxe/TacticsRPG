@@ -54,16 +54,18 @@ namespace TacticsRPG {
 				CameraHandler.cameraDrag();
 			}
 			if (MouseHandler.lmbDown()) {
-				if (m_gameGui.getState() != GameGUI.GuiState.AttackTarget) {
-					foreach (Champion l_champion in m_champions.Values) {
-						if (l_champion.getHitBox().contains(MouseHandler.worldMouse())) {
-							p_selectedChampion = l_champion;
+				if (KeyboardHandler.keyPressed(Keys.LeftShift)) {
+					if (m_gameGui.getState() != GameGUI.GuiState.AttackTarget) {
+						foreach (Champion l_champion in m_champions.Values) {
+							if (l_champion.getHitBox().contains(MouseHandler.worldMouse())) {
+								p_selectedChampion = l_champion;
+							}
 						}
 					}
 				}
 			}
 			if (MouseHandler.rmbDown()) {
-				if (KeyboardHandler.keyPressed(Keys.LeftControl)) {
+				if (KeyboardHandler.keyPressed(Keys.LeftShift)) {
 					if (m_selectedChampion != null) {
 						deselectChampion();
 					}

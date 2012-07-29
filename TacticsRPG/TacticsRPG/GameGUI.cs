@@ -11,10 +11,10 @@ namespace TacticsRPG {
 		private GameState m_gameState;
 		private bool m_collidedWithGui;
 
-		private ButtonList m_mainBtnList;
-		private ButtonList m_abilityBtnList;
-		private ButtonList m_actionBtnList;
-		private ButtonList m_activeBtnList;
+		private ChampionSelectList m_mainBtnList;
+		private ChampionSelectList m_abilityBtnList;
+		private ChampionSelectList m_actionBtnList;
+		private ChampionSelectList m_activeBtnList;
 
 		private GuiState m_state = GuiState.Normal;
 		public enum GuiState {
@@ -23,7 +23,7 @@ namespace TacticsRPG {
 		}
 
 		public GameGUI() {
-			m_mainBtnList = new ButtonList(null, new Vector2(30, 400), ButtonList.ButtonListType.ChmpnMain);
+			m_mainBtnList = new ChampionSelectList(null, new Vector2(30, 400), ChampionSelectList.ButtonListType.ChmpnMain);
 			m_mainBtnList.setButtonListeners("Move", moveClick);
 			m_mainBtnList.setButtonListeners("Action", actionClick);
 			m_mainBtnList.setButtonListeners("Wait", waitClick);
@@ -95,10 +95,10 @@ namespace TacticsRPG {
 
 		public void championChanged() {
 			Vector2 l_position = new Vector2(30, 400);
-			m_abilityBtnList = new ButtonList(m_gameState.p_selectedChampion, l_position, ButtonList.ButtonListType.ChmpnAbility);
+			m_abilityBtnList = new ChampionSelectList(m_gameState.p_selectedChampion, l_position, ChampionSelectList.ButtonListType.ChmpnAbility);
 			m_abilityBtnList.load();
 			m_abilityBtnList.setButtonListeners(null, useAbility);
-			m_actionBtnList = new ButtonList(m_gameState.p_selectedChampion, l_position, ButtonList.ButtonListType.ChmpnAction);
+			m_actionBtnList = new ChampionSelectList(m_gameState.p_selectedChampion, l_position, ChampionSelectList.ButtonListType.ChmpnAction);
 			m_actionBtnList.load();
 			m_activeBtnList = m_mainBtnList;
 			m_mainBtnList.revalidateButtons(m_gameState.p_selectedChampion);

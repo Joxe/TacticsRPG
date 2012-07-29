@@ -5,19 +5,14 @@ using System.Text;
 using Microsoft.Xna.Framework;
 
 namespace TacticsRPG {
-	public class ButtonList {
+	public class ChampionSelectList {
 		private List<Button> m_buttonList;
 		private ButtonListType m_buttonListType;
 		public enum ButtonListType {
 			None,		ChmpnMain,		ChmpnAction,	ChmpnAbility
 		}
-
-		public ButtonList(List<Button> a_buttons, ButtonListType a_listType, Vector2 a_position) {
-			m_buttonList = a_buttons;
-			m_buttonListType = a_listType;
-		}
-
-		public ButtonList(Champion a_champion, Vector2 a_position, ButtonListType a_listType) {
+		
+		public ChampionSelectList(Champion a_champion, Vector2 a_position, ButtonListType a_listType) {
 			m_buttonList = new List<Button>();
 			m_buttonListType = a_listType;
 
