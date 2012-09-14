@@ -78,6 +78,7 @@ Content\Images\Sprites\Races\HumanMale01\Walking\Down.xnb
 Content\Images\Sprites\Races\HumanMale01\Walking\TopLeft.xnb
 Content\Images\Sprites\Races\HumanMale01\Walking\TopRight.xnb
 Content\Images\Sprites\Races\HumanMale01\Walking\Up.xnb
+Content\Scripts\GUI\CreateGUI.lua
 Content\Settings\settings.ini
 XML Data\AbilitiesData.xml
 XML Data\ElementsData.xml

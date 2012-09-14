@@ -65,6 +65,14 @@ namespace TacticsRPG {
 			return l_returnList;
 		}
 
+		public static List<Text> createStatsList(Champion a_champion) {
+			List<Text> l_list = new List<Text>();
+			foreach (KeyValuePair<string, int> l_kvPair in a_champion.getStats()) {
+				l_list.Add(new Text(Vector2.Zero, l_kvPair.Key + ": " + l_kvPair.Value, "Arial", Color.Black, false));
+			}
+			return l_list;
+		}
+
 		public static void setListPosition(LinkedList<GuiObject> a_list, Vector2 a_position) {
 			foreach (GuiObject l_go in a_list) {
 				l_go.p_position = a_position;

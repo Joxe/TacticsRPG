@@ -13,6 +13,7 @@ namespace TacticsRPG {
 		private LinkedList<GuiObject> m_championInfo;
 		private GameGUI m_gameGui;
 		private List<Champion> m_battleQueue;
+		public PathFinder m_pathFinder = new AStar();
 
 		public GameState() : base() {
 			m_champions = new Dictionary<string, Champion>();
@@ -47,26 +48,27 @@ namespace TacticsRPG {
 		}
 
 		private void updateMouse() {
-			if (m_gameGui.mouseOverGUI()) {
+			if (m_gameGui.collidedWithGUI()) {
 				return;
 			}
 			if (MouseHandler.mmbPressed()) {
 				CameraHandler.cameraDrag();
 			}
 			if (MouseHandler.lmbDown()) {
+				//TODO DEBUG!!!
 				if (m_gameGui.getState() != GameGUI.GuiState.SelectTarget) {
 					foreach (Champion l_champion in m_champions.Values) {
 						if (l_champion.getHitBox().contains(MouseHandler.worldMouse())) {
-							p_selectedChampion = l_champion;
+							m_selectedChampion = l_champion;
+							break;
 						}
 					}
 				}
 			}
 			if (MouseHandler.rmbDown()) {
-				if (KeyboardHandler.keyPressed(Keys.LeftControl)) {
-					if (m_selectedChampion != null) {
-						deselectChampion();
-					}
+				//TODO DEBUG!!!
+				if (m_selectedChampion != null) {
+					deselectChampion();
 				}
 			}
 			if (MouseHandler.scrollUp()) {
@@ -77,6 +79,7 @@ namespace TacticsRPG {
 		}
 
 		private void updateKeyboard() {
+			//TODO DEBUG!!!
 			if (KeyboardHandler.keyPressed(Keys.D)) {
 				m_champions.Add("Joxe", new Champion(m_tileMap.p_hover.getMapPosition(), "Joxe", "Warrior", true, "Human"));
 				m_tileMap.p_hover.p_object = m_champions["Joxe"];
@@ -91,7 +94,7 @@ namespace TacticsRPG {
 
 		private void updateBattle() {
 			if (m_selectedChampion == null) {
-				p_selectedChampion = m_battleQueue.First();
+				m_selectedChampion = m_battleQueue.First();
 				m_selectedChampion.championsTurn();
 			}
 			int negativeSpeed = m_selectedChampion.p_speed;
@@ -120,34 +123,36 @@ namespace TacticsRPG {
 			m_tileMap.load();
 		}
 
-		public Champion p_selectedChampion {
-			get {
-				return m_selectedChampion;
+		private void selectChampion(Champion a_champion) {
+			deselectChampion();
+			m_selectedChampion = a_champion;
+
+			if (a_champion == null) {
+				return;
 			}
-			set {
-				if (m_selectedChampion != null) {
-					deselectChampion();
-				}
-				m_selectedChampion = value;
-				m_selectedChampion.p_targetState = Champion.TargetState.Targeted;
-				m_selectedChampion.p_actionTaken = false;
-				m_championInfo.Clear();
-				m_championInfo.AddLast(new Text(new Vector2(10, 10), m_selectedChampion.ToString(), "Arial", Color.Black, false));
-				foreach (Text l_text in m_selectedChampion.statsToTextList()) {
-					m_championInfo.AddLast(l_text);
-				}
-				GuiListManager.setListPosition(m_championInfo, new Vector2(10, 10), new Vector2(0, 20));
-				GuiListManager.loadList(m_championInfo);
+
+			m_championInfo.AddLast(new Text(new Vector2(10, 10), m_selectedChampion.ToString(), "Arial", Color.Black, false));
+			foreach (Text l_text in GuiListManager.createStatsList(m_selectedChampion)) {
+				m_championInfo.AddLast(l_text);
 			}
+			GuiListManager.setListPosition(m_championInfo, new Vector2(10, 10), new Vector2(0, 20));
+			GuiListManager.loadList(m_championInfo);
 		}
 
 		public void deselectChampion() {
-			m_selectedChampion.p_targetState = Champion.TargetState.Normal;
+			if (m_selectedChampion == null) {
+				return;
+			}
+			m_selectedChampion.deselect();
 			m_championInfo.Clear();
 			m_selectedChampion = null;
 			if (m_battleQueue != null) {
 				m_battleQueue.Sort();
 			}
+		}
+
+		public Champion getSelectedChampion() {
+			return m_selectedChampion;
 		}
 
 		public LinkedList<Champion> getChampions() {

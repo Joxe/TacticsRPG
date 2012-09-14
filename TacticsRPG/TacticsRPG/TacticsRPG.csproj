@@ -60,6 +60,12 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="lua51">
+      <HintPath>..\TacticsRPGContent\DLL\lua51.dll</HintPath>
+    </Reference>
+    <Reference Include="LuaInterface">
+      <HintPath>..\TacticsRPGContent\DLL\LuaInterface.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <Private>False</Private>
     </Reference>
@@ -127,6 +133,7 @@
     <Compile Include="GUI\Text.cs" />
     <Compile Include="GUI\TextButton.cs" />
     <Compile Include="GUI\TextField.cs" />
+    <Compile Include="LuaParser.cs" />
     <Compile Include="Managers\AStar.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
@@ -139,6 +146,7 @@
     <Compile Include="Managers\Loader.cs" />
     <Compile Include="Handlers\MouseHandler.cs" />
     <Compile Include="Handlers\MusicHandler.cs" />
+    <Compile Include="Interfaces\PathFinder.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Primitives\Box.cs" />
     <Compile Include="Primitives\Line.cs" />
@@ -214,6 +222,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

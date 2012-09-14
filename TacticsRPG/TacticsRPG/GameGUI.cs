@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using LuaInterface;
 
 namespace TacticsRPG {
 	public class GameGUI : State {
 		private LinkedList<GuiObject> m_menuList = new LinkedList<GuiObject>();
-		private TextButton m_gameStart;
+		private TextButton m_gameStart; /*TODO DEBUG!!! */
 		private GameState m_gameState;
 		private bool m_collidedWithGui;
 
@@ -30,9 +31,13 @@ namespace TacticsRPG {
 
 		public override void load() {
 			m_gameState = (GameState)Game.getInstance().getCurrentState();
+			LuaParser.registerMethod("addButton", this);
+			LuaParser.doFile("Content/Scripts/GUI/CreateGUI.lua");
+			/*
 			m_menuList.AddLast(btn_move		= new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 220), "Move",	"Arial"));
 			m_menuList.AddLast(btn_action	= new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 200), "Action", "Arial"));
 			m_menuList.AddLast(btn_wait		= new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 180), "Wait",	"Arial"));
+			*/
 			btn_move.m_clickEvent	+= new TextButton.clickDelegate(moveClick);
 			btn_action.m_clickEvent += new TextButton.clickDelegate(attackClick);
 			btn_wait.m_clickEvent	+= new TextButton.clickDelegate(waitClick);
@@ -43,32 +48,33 @@ namespace TacticsRPG {
 				l_go.load();
 			}
 		}
-
+		
 		public override void update() {
 			m_gameState.getTileMap().p_ignoreMouse = (m_collidedWithGui = collidedWithGUI());
 			updateMouse();
 			m_gameStart.update();
-			if (m_gameState.p_selectedChampion != null) {
+			base.update();
+
+			if (m_gameState.getSelectedChampion() != null) {
 				foreach (Button l_button in m_abilityButtons) {
 					l_button.update();
 				}
-				base.update();
-				if (m_gameState.p_selectedChampion.getStat("MoveLeft") <= 0) {
+				if (m_gameState.getSelectedChampion().getStat("MoveLeft") <= 0) {
 					btn_move.p_state = Button.State.Disabled;
 				}
-				if (m_gameState.p_selectedChampion.p_actionTaken) {
+				if (m_gameState.getSelectedChampion().p_actionTaken) {
 					btn_action.p_state = Button.State.Disabled;
 				}
 			}
 
 			if (KeyboardHandler.keyDown(Keys.A)) {
-				m_abilityButtons = GuiListManager.createAbilityList(m_gameState.p_selectedChampion.getAbilities());
+				m_abilityButtons = GuiListManager.createAbilityList(m_gameState.getSelectedChampion().getAbilities());
 			}
 		}
 
 		public override void draw() {
 			m_gameStart.draw();
-			if (m_gameState.p_selectedChampion != null) {
+			if (m_gameState.getSelectedChampion() != null) {
 				foreach (Button l_button in m_abilityButtons) {
 					l_button.draw();
 				}
@@ -82,7 +88,7 @@ namespace TacticsRPG {
 					case GuiState.SelectTarget:
 						foreach (Champion l_champion in m_gameState.getChampions()) {
 							if (l_champion.getHitBox().contains(MouseHandler.worldMouse()) && l_champion.getTile().p_tileState == Tile.TileState.Toggle) {
-								((GameState)Game.getInstance().getCurrentState()).p_selectedChampion.attack(l_champion);
+								((GameState)Game.getInstance().getCurrentState()).getSelectedChampion().attack(l_champion);
 								restoreStates();
 								break;
 							}
@@ -91,7 +97,7 @@ namespace TacticsRPG {
 					case GuiState.Move:
 						foreach (Tile l_tile in m_gameState.getTileMap().toLinkedList(Tile.TileState.Toggle)) {
 							if (l_tile != null && l_tile.getHitBox().contains(MouseHandler.worldMouse())) {
-								m_gameState.p_selectedChampion.moveTo(l_tile);
+								m_gameState.getSelectedChampion().moveTo(l_tile);
 								restoreStates();
 								break;
 							}
@@ -100,7 +106,7 @@ namespace TacticsRPG {
 					case GuiState.SelectFacing:
 						foreach (Tile l_tile in m_gameState.getTileMap().toLinkedList(Tile.TileState.Toggle)) {
 							if (l_tile != null && l_tile.getHitBox().contains(MouseHandler.worldMouse())) {
-								m_gameState.p_selectedChampion.faceTile(l_tile);
+								m_gameState.getSelectedChampion().faceTile(l_tile);
 								m_gameState.deselectChampion();
 								restoreStates();
 								break;
@@ -126,7 +132,7 @@ namespace TacticsRPG {
 			if (a_button.p_state == Button.State.Toggled) {
 				return;
 			}
-			toggleTiles(m_gameState.p_selectedChampion.getStat("MoveLeft"));
+			toggleTiles(m_gameState.getSelectedChampion().getStat("MoveLeft"));
 			m_state = GuiState.Move;
 		}
 
@@ -142,11 +148,15 @@ namespace TacticsRPG {
 			toggleTiles(1);
 			m_state = GuiState.SelectFacing;
 		}
+
+		public void addButton(int a_x, int a_y, string a_text, string a_font) {
+			m_menuList.AddLast(new TextButton(new Vector2(a_x, a_y), a_text, a_font));
+		}
 		#endregion
 
 		private void toggleTiles(int a_range) {
-			foreach (Tile l_tile in m_gameState.getTileMap().getRangeOfTiles(m_gameState.p_selectedChampion.getTile(), a_range)) {
-				if (l_tile != m_gameState.p_selectedChampion.getTile()) {
+			foreach (Tile l_tile in m_gameState.getTileMap().getRangeOfTiles(m_gameState.getSelectedChampion().getTile(), a_range)) {
+				if (l_tile != m_gameState.getSelectedChampion().getTile()) {
 					l_tile.p_tileState = Tile.TileState.Toggle;
 				}
 			}
@@ -156,7 +166,7 @@ namespace TacticsRPG {
 			m_gameState.startGame();
 		}
 
-		private bool collidedWithGUI() {
+		public bool collidedWithGUI() {
 			foreach (GuiObject l_go in m_menuList) {
 				if (l_go.contains(MouseHandler.getCurPos())) {
 					return true;
@@ -167,10 +177,6 @@ namespace TacticsRPG {
 
 		public GuiState getState() {
 			return m_state;
-		}
-
-		public bool mouseOverGUI() {
-			return m_collidedWithGui;
 		}
 	}
 }

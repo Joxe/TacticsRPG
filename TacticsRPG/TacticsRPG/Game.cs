@@ -46,6 +46,8 @@ namespace TacticsRPG {
 			m_camera.load();
 			m_camera.p_zoom = Game.getInstance().getResolution().Y / 720;
 			m_spriteBatch = new SpriteBatch(GraphicsDevice);
+			LuaParser.registerMethod("getXRes", this);
+			LuaParser.registerMethod("getYRes", this);
 			m_currentState.load();
 		}
 
@@ -84,6 +86,14 @@ namespace TacticsRPG {
 
 		public Vector2 getResolution() {
 			return new Vector2(m_graphics.PreferredBackBufferWidth, m_graphics.PreferredBackBufferHeight);
+		}
+
+		public int getYRes() {
+			return m_graphics.PreferredBackBufferHeight;
+		}
+
+		public int getXRes() {
+			return m_graphics.PreferredBackBufferWidth;
 		}
 
 		public State getCurrentState() {

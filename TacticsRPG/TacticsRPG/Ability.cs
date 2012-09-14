@@ -58,8 +58,14 @@ namespace TacticsRPG {
 			LinkedList<Tile> l_affectedTiles = ((GameState)Game.getInstance().getCurrentState()).getTileMap().getRangeOfTiles(a_tile, m_aoe);
 			foreach (Tile l_tile in l_affectedTiles) {
 				foreach (Effect l_effect in m_effects) {
-					l_tile.castEffect(l_effect);
+					castEffect(l_effect, l_tile.p_object);
 				}
+			}
+		}
+
+		public void castEffect(Effect a_effect, BattlefieldObject a_target) {
+			if (a_target != null) {
+				a_target.addEffect(a_effect);
 			}
 		}
 	}
