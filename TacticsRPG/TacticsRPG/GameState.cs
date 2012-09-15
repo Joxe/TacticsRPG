@@ -55,12 +55,10 @@ namespace TacticsRPG {
 				CameraHandler.cameraDrag();
 			}
 			if (MouseHandler.lmbDown()) {
-				//TODO DEBUG!!!
-				if (m_gameGui.getState() != GameGUI.GuiState.SelectTarget) {
+				if (m_gameGui.getState() != GameGUI.GuiState.AttackTarget) {
 					foreach (Champion l_champion in m_champions.Values) {
 						if (l_champion.getHitBox().contains(MouseHandler.worldMouse())) {
-							m_selectedChampion = l_champion;
-							break;
+							selectChampion(l_champion);
 						}
 					}
 				}
@@ -131,10 +129,8 @@ namespace TacticsRPG {
 				return;
 			}
 
-			m_championInfo.AddLast(new Text(new Vector2(10, 10), m_selectedChampion.ToString(), "Arial", Color.Black, false));
-			foreach (Text l_text in GuiListManager.createStatsList(m_selectedChampion)) {
-				m_championInfo.AddLast(l_text);
-			}
+			m_selectedChampion.select();
+
 			GuiListManager.setListPosition(m_championInfo, new Vector2(10, 10), new Vector2(0, 20));
 			GuiListManager.loadList(m_championInfo);
 		}

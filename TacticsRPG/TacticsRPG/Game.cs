@@ -46,8 +46,8 @@ namespace TacticsRPG {
 			m_camera.load();
 			m_camera.p_zoom = Game.getInstance().getResolution().Y / 720;
 			m_spriteBatch = new SpriteBatch(GraphicsDevice);
-			LuaParser.registerMethod("getXRes", this);
-			LuaParser.registerMethod("getYRes", this);
+			LuaParser.registerMethod("getXRes", this, "getXRes");
+			LuaParser.registerMethod("getYRes", this, "getYRes");
 			m_currentState.load();
 		}
 

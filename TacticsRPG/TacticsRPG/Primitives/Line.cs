@@ -43,7 +43,7 @@ namespace TacticsRPG {
 		public void setTexture(string a_path) {
 			float l_length = Vector2.Distance(m_startPosition, m_endPosition); 
 
-			Texture2D l_texture = Game.getInstance().Content.Load<Texture2D>(a_path);
+			Texture2D l_texture = ContentLoader.loadTexture(a_path);
 			Color[] l_colorArray = new Color[l_texture.Width * l_texture.Height];
 			l_texture.GetData(l_colorArray);
 

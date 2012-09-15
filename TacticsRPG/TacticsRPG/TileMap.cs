@@ -20,10 +20,10 @@ namespace TacticsRPG {
 			m_tileSet = a_tileSet + "/";
 			m_spriteDict = new Dictionary<Tile.TileState, Sprite>();
 
-			m_spriteDict.Add(Tile.TileState.Normal	, new Sprite("Tiles/" + m_tileSet + "normal"	, 1));
-			m_spriteDict.Add(Tile.TileState.Hover	, new Sprite("Tiles/" + m_tileSet + "hover"		, 1));
-			m_spriteDict.Add(Tile.TileState.Pressed	, new Sprite("Tiles/" + m_tileSet + "pressed"	, 1));
-			m_spriteDict.Add(Tile.TileState.Toggle	, new Sprite("Tiles/" + m_tileSet + "toggle"	, 1));
+			m_spriteDict.Add(Tile.TileState.Normal	, new Sprite("Tiles/" + m_tileSet + "normal.png"	, 1));
+			m_spriteDict.Add(Tile.TileState.Hover	, new Sprite("Tiles/" + m_tileSet + "hover.png"		, 1));
+			m_spriteDict.Add(Tile.TileState.Pressed	, new Sprite("Tiles/" + m_tileSet + "pressed.png"	, 1));
+			m_spriteDict.Add(Tile.TileState.Toggle	, new Sprite("Tiles/" + m_tileSet + "toggle.png"	, 1));
 
 			m_tileMap = new Tile[width, height];
 		}

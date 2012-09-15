@@ -12,41 +12,42 @@ namespace TacticsRPG {
 		private TextButton m_gameStart; /*TODO DEBUG!!! */
 		private GameState m_gameState;
 		private bool m_collidedWithGui;
-
-		private TextButton btn_move;
-		private TextButton btn_action;
-		private TextButton btn_wait;
-
-		private List<Button> m_abilityButtons;
+		private GuiElement m_menu = new GuiElement("Content/Scripts/GUI/CreateGUI.lua");
 
 		private GuiState m_state = GuiState.Normal;
 		public enum GuiState {
-			Normal,		SelectTarget,	Move,	SelectFacing
+			Normal,		AttackTarget,	Move,	SelectFacing,
+			UseAbility,	ActionMenu
 		}
 
 		public GameGUI() {
-			m_guiList.AddLast(m_menuList);
-			m_abilityButtons = new List<Button>();
+			/*
+			m_mainBtnList = new ChampionSelectList(null, new Vector2(30, 400), ChampionSelectList.ButtonListType.ChmpnMain);
+			m_mainBtnList.setButtonListeners("Move", moveClick);
+			m_mainBtnList.setButtonListeners("Action", actionClick);
+			m_mainBtnList.setButtonListeners("Wait", waitClick);
+			*/
 		}
 
 		public override void load() {
 			m_gameState = (GameState)Game.getInstance().getCurrentState();
-			LuaParser.registerMethod("addButton", this);
+			LuaParser.registerMethod("addButtonToGUI", this, "addButton");
+			LuaParser.registerMethod("getStateAsString", this, "getStateAsString");
 			LuaParser.doFile("Content/Scripts/GUI/CreateGUI.lua");
+			m_menu.load();
 			/*
 			m_menuList.AddLast(btn_move		= new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 220), "Move",	"Arial"));
 			m_menuList.AddLast(btn_action	= new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 200), "Action", "Arial"));
 			m_menuList.AddLast(btn_wait		= new TextButton(new Vector2(15, Game.getInstance().getResolution().Y - 180), "Wait",	"Arial"));
-			*/
+			
 			btn_move.m_clickEvent	+= new TextButton.clickDelegate(moveClick);
 			btn_action.m_clickEvent += new TextButton.clickDelegate(attackClick);
 			btn_wait.m_clickEvent	+= new TextButton.clickDelegate(waitClick);
+			*/
 			m_gameStart = new TextButton(new Vector2(400, 15), "Start Game", "Arial");
 			m_gameStart.m_clickEvent += new TextButton.clickDelegate(gameStartClick);
 			m_gameStart.load();
-			foreach (GuiObject l_go in m_menuList) {
-				l_go.load();
-			}
+			//m_mainBtnList.load();
 		}
 		
 		public override void update() {
@@ -54,38 +55,30 @@ namespace TacticsRPG {
 			updateMouse();
 			m_gameStart.update();
 			base.update();
-
-			if (m_gameState.getSelectedChampion() != null) {
-				foreach (Button l_button in m_abilityButtons) {
-					l_button.update();
-				}
-				if (m_gameState.getSelectedChampion().getStat("MoveLeft") <= 0) {
-					btn_move.p_state = Button.State.Disabled;
-				}
-				if (m_gameState.getSelectedChampion().p_actionTaken) {
-					btn_action.p_state = Button.State.Disabled;
-				}
+			m_menu.update();
+			/*
+			if (m_activeBtnList != null) {
+				m_activeBtnList.update();
 			}
-
-			if (KeyboardHandler.keyDown(Keys.A)) {
-				m_abilityButtons = GuiListManager.createAbilityList(m_gameState.getSelectedChampion().getAbilities());
-			}
+			*/
 		}
 
 		public override void draw() {
 			m_gameStart.draw();
-			if (m_gameState.getSelectedChampion() != null) {
-				foreach (Button l_button in m_abilityButtons) {
-					l_button.draw();
-				}
-				base.draw();
+
+			base.draw();
+			m_menu.draw();
+			/*
+			if (m_activeBtnList != null) {
+				m_activeBtnList.draw();
 			}
+			*/
 		}
 
 		private void updateMouse() {
 			if (MouseHandler.lmbPressed()) {
 				switch (m_state) {
-					case GuiState.SelectTarget:
+					case GuiState.AttackTarget:
 						foreach (Champion l_champion in m_gameState.getChampions()) {
 							if (l_champion.getHitBox().contains(MouseHandler.worldMouse()) && l_champion.getTile().p_tileState == Tile.TileState.Toggle) {
 								((GameState)Game.getInstance().getCurrentState()).getSelectedChampion().attack(l_champion);
@@ -116,10 +109,23 @@ namespace TacticsRPG {
 				}
 			}
 			if (MouseHandler.rmbPressed()) {
-				if (m_state == GuiState.SelectTarget || m_state == GuiState.Move) {
+				if (m_state == GuiState.AttackTarget || m_state == GuiState.Move || m_state == GuiState.ActionMenu) {
 					restoreStates();		
 				}
 			}
+		}
+
+		public void championChanged() {
+			Vector2 l_position = new Vector2(30, 400);
+			/*
+			m_abilityBtnList = new ChampionSelectList(m_gameState.getSelectedChampion(), l_position, ChampionSelectList.ButtonListType.ChmpnAbility);
+			m_abilityBtnList.load();
+			m_abilityBtnList.setButtonListeners(null, useAbility);
+			m_actionBtnList = new ChampionSelectList(m_gameState.getSelectedChampion(), l_position, ChampionSelectList.ButtonListType.ChmpnAction);
+			m_actionBtnList.load();
+			m_activeBtnList = m_mainBtnList;
+			m_mainBtnList.revalidateButtons(m_gameState.getSelectedChampion());
+			*/
 		}
 
 		private void restoreStates() {
@@ -136,21 +142,26 @@ namespace TacticsRPG {
 			m_state = GuiState.Move;
 		}
 
-		private void attackClick(Button a_button) {
-			if (a_button.p_state == Button.State.Toggled) {
-				return;
-			}
-			toggleTiles(1);
-			m_state = GuiState.SelectTarget;
+		private void actionClick(Button a_button) {
+			//m_activeBtnList = m_actionBtnList;
+			m_state = GuiState.ActionMenu;
 		}
 
 		private void waitClick(Button a_button) {
 			toggleTiles(1);
+			//m_activeBtnList = null;
 			m_state = GuiState.SelectFacing;
 		}
 
-		public void addButton(int a_x, int a_y, string a_text, string a_font) {
-			m_menuList.AddLast(new TextButton(new Vector2(a_x, a_y), a_text, a_font));
+		public void addButton(int a_x, int a_y, string a_text) {
+			m_menuList.AddLast(new TextButton(new Vector2(a_x, a_y), a_text, "Arial"));
+			//m_mainBtnList.AddLast(new TextButton(new Vector2(a_x, a_y), a_text, a_font));
+			//m_mainBtnList.Last().load();
+		}
+
+		private void useAbility(Button a_button) {
+			toggleTiles(m_gameState.getSelectedChampion().getAbility(a_button.p_buttonText.Split(':')[0]).getRange());
+			m_state = GuiState.UseAbility;
 		}
 		#endregion
 
@@ -167,16 +178,24 @@ namespace TacticsRPG {
 		}
 
 		public bool collidedWithGUI() {
-			foreach (GuiObject l_go in m_menuList) {
-				if (l_go.contains(MouseHandler.getCurPos())) {
-					return true;
+			/*
+			if (m_activeBtnList != null) {
+				foreach (Button l_button in m_activeBtnList.getButtons()) {
+					if (l_button.contains(MouseHandler.getCurPos())) {
+						return true;
+					}
 				}
 			}
+			*/
 			return false;
 		}
 
 		public GuiState getState() {
 			return m_state;
+		}
+
+		public string getStateAsString() {
+			return m_state.ToString();
 		}
 	}
 }

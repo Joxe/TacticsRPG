@@ -17,6 +17,11 @@ namespace TacticsRPG {
 			m_position = a_position;
 		}
 
+		public virtual void destroy() {
+			m_parent = null;
+			m_hitbox = null;
+		}
+
 		public virtual void load() {
 
 		}

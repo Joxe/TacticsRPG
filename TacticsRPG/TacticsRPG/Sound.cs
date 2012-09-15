@@ -17,7 +17,7 @@ namespace TacticsRPG {
 
 		public override void load() {
 			if (!m_soundLibrary.ContainsKey(m_file)) {
-				m_soundLibrary.Add(m_file, m_sound = Game.getInstance().Content.Load<SoundEffect>("Sounds//SoundEffects//" + m_file));
+				m_soundLibrary.Add(m_file, m_sound = ContentLoader.loadSFX("Sounds//SoundEffects//" + m_file));
 			}
 			base.load();
 		}

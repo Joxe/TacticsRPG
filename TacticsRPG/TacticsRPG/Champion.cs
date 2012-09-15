@@ -55,7 +55,7 @@ namespace TacticsRPG {
 				foreach (FacingState l_facingState in Enum.GetValues(typeof(FacingState))) {
 					int i = Enum.GetValues(typeof(FacingState)).Length;
 					KeyValuePair<HeroState, FacingState> l_kvPair = new KeyValuePair<HeroState, FacingState>(l_heroState, l_facingState);
-					m_bodySprites.Add(l_kvPair, new Sprite("Classes/" + m_class.getName() + (m_male ? "Male" : "Female") + "/" + l_heroState.ToString() + "/" + l_facingState.ToString(), 1));
+					m_bodySprites.Add(l_kvPair, new Sprite("Classes/" + m_class.getName() + (m_male ? "Male" : "Female") + "/" + l_heroState.ToString() + "/" + l_facingState.ToString() + ".png", 1));
 					m_bodySprites[l_kvPair].load();
 				}
 			}
@@ -212,6 +212,20 @@ namespace TacticsRPG {
 			}
 
 			return l_returnList;
+		}
+
+		public Ability getAbility(string a_ability) {
+			foreach (Ability l_ability in m_class.getAbilities()) {
+				if (l_ability.getName().Equals(a_ability)) {
+					return l_ability;
+				}
+			}
+			foreach (Ability l_ability in m_race.getAbilities()) {
+				if (l_ability.getName().Equals(a_ability)) {
+					return l_ability;
+				}
+			}
+			return null;
 		}
 	}
 }

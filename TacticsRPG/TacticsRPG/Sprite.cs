@@ -21,8 +21,12 @@ namespace TacticsRPG
 			m_frames = a_frames;
 		}
 
+		public void destroy() {
+			m_texture = null;
+		}
+
 		public void load() {
-			m_texture = Game.getInstance().Content.Load<Texture2D>("Images/Sprites/" + m_file);
+			m_texture = ContentLoader.loadTexture("Images/Sprites/" + m_file);
 			m_animationHeight = m_texture.Height;
 			m_animationWidth = m_texture.Width;
 			m_animationFrame = 0;

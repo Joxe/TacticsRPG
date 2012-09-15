@@ -126,6 +126,7 @@
     <Compile Include="Element.cs" />
     <Compile Include="DataClasses\RacesData.cs" />
     <Compile Include="GameGUI.cs" />
+    <Compile Include="GuiElement.cs" />
     <Compile Include="GUI\Button.cs" />
     <Compile Include="AbilityEffects\Effect.cs" />
     <Compile Include="GUI\ButtonList.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="GUI\TextButton.cs" />
     <Compile Include="GUI\TextField.cs" />
     <Compile Include="LuaParser.cs" />
+    <Compile Include="Handlers\ContentLoader.cs" />
     <Compile Include="Managers\AStar.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Managers\CollisionManager.cs" />

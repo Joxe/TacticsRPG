@@ -10,17 +10,13 @@ namespace TacticsRPG {
 	public class GuiListManager {
 		public static LinkedList<Button> createListFromDirectory(string a_path, string[] a_extension, string a_buttonGraphic) {
 			string[] l_fileList = Directory.GetFiles(a_path);
-			return createListFromStringArray(l_fileList, a_extension, a_buttonGraphic);
-		}
-
-		public static LinkedList<Button> createListFromStringArray(string[] a_fileList, string[] a_extension, string a_buttonGraphic) {
 			LinkedList<Button> l_guiList = new LinkedList<Button>();
 
-			for (int i = 0, j = 0; i < a_fileList.Length; i++) {
+			for (int i = 0, j = 0; i < l_fileList.Length; i++) {
 				bool l_accepted = false;
 
 				foreach (string l_ext in a_extension) {
-					if (a_fileList[i].EndsWith(l_ext)) {
+					if (l_fileList[i].EndsWith(l_ext)) {
 						l_accepted = true;
 						continue;
 					}
@@ -30,11 +26,21 @@ namespace TacticsRPG {
 					continue;
 				}
 
-				string[] l_splitPath = Regex.Split(a_fileList[i], "//");
+				string[] l_splitPath = Regex.Split(l_fileList[i], "//");
 				string[] l_extless = l_splitPath[l_splitPath.Length - 1].Split('.');
 				l_guiList.AddLast(new Button(a_buttonGraphic, new Vector2(0, 0), l_extless[0], "Arial", Color.Black, new Vector2(0, 0)));
 				j++;
 			}
+			return l_guiList;
+		}
+
+		public static List<Button> createListFromStringArray(string[] a_array, Vector2 a_position) {
+			List<Button> l_guiList = new List<Button>();
+
+			for (int i = 0, j = 0; i < a_array.Length; i++) {
+				l_guiList.Add(new TextButton(a_position + new Vector2(0, i * 15), a_array[i], "Arial"));
+			}
+			
 			return l_guiList;
 		}
 

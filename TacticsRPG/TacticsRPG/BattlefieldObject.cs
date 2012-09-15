@@ -30,7 +30,7 @@ namespace TacticsRPG {
 
 		public override void load() {
 			if (m_targetRecticle == null) {
-				m_targetRecticle = new Sprite("Indicators/target", 1);
+				m_targetRecticle = new Sprite("Indicators/target.png", 1);
 				m_targetRecticle.load();
 				m_targetRecticle.p_offset = m_targetOffset;
 			}
