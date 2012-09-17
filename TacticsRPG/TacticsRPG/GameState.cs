@@ -11,14 +11,14 @@ namespace TacticsRPG {
 		private Dictionary<string, Champion> m_champions;
 		private Champion m_selectedChampion;
 		private LinkedList<GuiObject> m_championInfo;
-		private GameGUI m_gameGui;
+		private GUI m_gameGui;
 		private List<Champion> m_battleQueue;
 		public PathFinder m_pathFinder = new AStar();
 
 		public GameState() : base() {
 			m_champions = new Dictionary<string, Champion>();
 			m_guiList.AddLast(m_championInfo = new LinkedList<GuiObject>());
-			m_gameGui = new GameGUI();
+			m_gameGui = new GUI();
 		}
 
 		public override void load() {
@@ -55,7 +55,7 @@ namespace TacticsRPG {
 				CameraHandler.cameraDrag();
 			}
 			if (MouseHandler.lmbDown()) {
-				if (m_gameGui.getState() != GameGUI.GuiState.AttackTarget) {
+				if (m_gameGui.getState() != GUI.GuiState.AttackTarget) {
 					foreach (Champion l_champion in m_champions.Values) {
 						if (l_champion.getHitBox().contains(MouseHandler.worldMouse())) {
 							selectChampion(l_champion);
@@ -170,6 +170,10 @@ namespace TacticsRPG {
 				m_battleQueue.Add(l_champion);
 			}
 			m_battleQueue.Sort();
+		}
+
+		public GUI getGUI() {
+			return m_gameGui;
 		}
 	}
 }

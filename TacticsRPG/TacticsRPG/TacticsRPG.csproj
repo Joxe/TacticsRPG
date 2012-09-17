@@ -125,8 +125,8 @@
     <Compile Include="DataClasses\ElementsData.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="DataClasses\RacesData.cs" />
-    <Compile Include="GameGUI.cs" />
-    <Compile Include="GuiElement.cs" />
+    <Compile Include="GUI\GUI.cs" />
+    <Compile Include="GUI\GuiElement.cs" />
     <Compile Include="GUI\Button.cs" />
     <Compile Include="AbilityEffects\Effect.cs" />
     <Compile Include="GUI\ButtonList.cs" />
@@ -224,7 +224,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
