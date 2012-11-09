@@ -38,14 +38,12 @@ namespace TacticsRPG {
 			for (int i = 0; i < m_width; i++) {
 				for (int j = 0; j < m_height; j++) {
 					//m_tileMap[i, j] = new Tile(new Vector2(i, j), MathManager.randomInt(l_heightIndex - 3, l_heightIndex + 3));
-					m_tileMap[i, j] = new Tile(new Vector2(i, j), 1);
-					m_tileMap[i, j].p_tileMap = this;
+					m_tileMap[i, j] = new Tile(new Vector2(i, j), 1, this);
 					m_tileMap[i, j].load();
 					if (MathManager.isEven(i)) {
 						m_tileMap[i, j].move(new Vector2(0, 111));
 					}
 				}
-				MathManager.randomInt(3, 7);
 			}
 		}
 
@@ -113,8 +111,8 @@ namespace TacticsRPG {
 		}
 
 		public LinkedList<Tile> getSurroundingTiles(Tile a_tile) {
-			int[] Xcheck = MathManager.isEven(a_tile.X) ? MathManager.evenX : MathManager.oddX;
-			int[] Ycheck = MathManager.isEven(a_tile.X) ? MathManager.evenY : MathManager.oddY;
+			int[] Xcheck = MathManager.isEven(a_tile.X) ? new[] { -1,  0,  1,  1,  0, -1 } : new[] {  1,  0,  1, -1,  0, -1 };
+			int[] Ycheck = MathManager.isEven(a_tile.X) ? new[] {  1, -1,  0,  1,  1,  0 } : new[] { -1, -1,  0, -1,  1,  0 };
 
 			LinkedList<Tile> l_list = new LinkedList<Tile>();
 

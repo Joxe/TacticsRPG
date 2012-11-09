@@ -21,8 +21,6 @@ namespace TacticsRPG {
 		private Dictionary<KeyValuePair<HeroState, FacingState>, Sprite> m_faceSprites;
 		private Dictionary<KeyValuePair<HeroState, FacingState>, Sprite> m_bodySprites;
 
-		private List<Ability> m_abilities;
-
 		private HeroState m_heroState = HeroState.Idle;
 		public enum HeroState {
 			Idle,	Walking
@@ -67,10 +65,10 @@ namespace TacticsRPG {
 
 			base.load();
 
-			calculateAttack();
-			calculateDefense();
-			calculateMagic();
-			calculateResist();
+			m_stats["Attack"]		= (int)Math.Floor(StatsCalculator.summedAttack(this)	+ 0.5f);
+			m_stats["Defense"]		= (int)Math.Floor(StatsCalculator.summedDefense(this)	+ 0.5f);
+			m_stats["Magic"]		= (int)Math.Floor(StatsCalculator.summedMagic(this)		+ 0.5f);
+			m_stats["Resistance"]	= (int)Math.Floor(StatsCalculator.summedResist(this)	+ 0.5f);
 		}
 
 		public override void update() {
@@ -79,14 +77,14 @@ namespace TacticsRPG {
 		}
 
 		public override void draw() {
-			m_bodySprites[new KeyValuePair<HeroState, FacingState>(p_state, p_facing)].draw(this, p_layer - 0.001f);
+			m_bodySprites[new KeyValuePair<HeroState, FacingState>(p_state, getFacingState())].draw(this, p_layer - 0.001f);
 			base.draw();
 		}
 
 		#region Movement & Facing
 		public override bool moveTo(Tile a_tile) {
 			if (m_moveQueue.Count == 0) {
-				if ((m_moveQueue = AStar.findPath(m_currentPosition, a_tile, AStar.PathfindState.Hexagon)).Count > m_stats["MoveLeft"] + 1) {
+				if ((m_moveQueue = ((GameState)Game.getInstance().getCurrentState()).m_pathFinder.findPath(m_currentPosition.getMapPosition(), a_tile.getMapPosition())).Count > m_stats["MoveLeft"] + 1) {
 					m_moveQueue.Clear();
 				} else {
 					m_hasMoved = true;
@@ -96,40 +94,6 @@ namespace TacticsRPG {
 				}
 			}
 			return false;
-		}
-		#endregion
-
-		#region Stat Calculators
-		public void calculateAttack() {
-			if (m_stats.ContainsKey("Attack")) {
-				m_stats["Attack"] = (int)Math.Floor(StatsCalculator.summedAttack(this) + 0.5f);
-			} else {
-				m_stats.Add("Attack", (int)Math.Floor(StatsCalculator.summedAttack(this) + 0.5f));
-			}
-		}
-
-		public void calculateDefense() {
-			if (m_stats.ContainsKey("Defense")) {
-				m_stats["Defense"] = (int)Math.Floor(StatsCalculator.summedDefense(this) + 0.5f);
-			} else {
-				m_stats.Add("Defense", (int)Math.Floor(StatsCalculator.summedDefense(this) + 0.5f));
-			}
-		}
-
-		public void calculateMagic() {
-			if (m_stats.ContainsKey("MagicAttack")) {
-				m_stats["MagicAttack"] = (int)Math.Floor(StatsCalculator.summedMagic(this) + 0.5f);
-			} else {
-				m_stats.Add("MagicAttack", (int)Math.Floor(StatsCalculator.summedMagic(this) + 0.5f));
-			}
-		}
-
-		public void calculateResist() {
-			if (m_stats.ContainsKey("MagicResist")) {
-				m_stats["MagicResist"] = (int)Math.Floor(StatsCalculator.summedResist(this) + 0.5f);
-			} else {
-				m_stats.Add("MagicResist", (int)Math.Floor(StatsCalculator.summedResist(this) + 0.5f));
-			}
 		}
 		#endregion
 
@@ -174,7 +138,7 @@ namespace TacticsRPG {
 			get {
 				return m_actionTaken;
 			}
-			set {
+			private set {
 				m_actionTaken = value;
 			}
 		}
@@ -182,14 +146,6 @@ namespace TacticsRPG {
 
 		public override string ToString() {
 			return m_name + " " + m_race.getName() + " " + m_class.getName();
-		}
-
-		public string statToString(string a_stat) {
-			if (m_stats.ContainsKey(a_stat)) {
-				return a_stat + ": " + m_stats[a_stat].ToString();
-			} else {
-				return "null";
-			}
 		}
 
 		public int getStat(string a_stat) {
@@ -200,12 +156,9 @@ namespace TacticsRPG {
 			}
 		}
 
-		public LinkedList<Text> statsToTextList() {
-			LinkedList<Text> l_list = new LinkedList<Text>();
-			foreach (KeyValuePair<string, int> l_kvPair in m_stats) {
-				l_list.AddLast(new Text(Vector2.Zero, l_kvPair.Key + ": " + l_kvPair.Value, "Arial", Color.Black, false));
-			}
-			return l_list;
+		public override void select() {
+			base.select();
+			p_actionTaken = false;
 		}
 
 		public ChampionRace getRace() {
@@ -216,8 +169,13 @@ namespace TacticsRPG {
 			return m_class;
 		}
 
+		public Dictionary<string, int> getStats() {
+			return m_stats;
+		}
+
 		public void attack(Champion a_champion) {
 			faceTile(a_champion.getTile());
+			//TODO Play attack animation
 			p_actionTaken = true;
 			a_champion.damage(MathManager.attack(this, a_champion));
 		}
@@ -225,16 +183,13 @@ namespace TacticsRPG {
 		public void damage(int a_damage) {
 			m_stats["CurrentHealth"] -= a_damage;
 			if (m_stats["CurrentHealth"] <= 0) {
+				//TODO Play death animation
 				((GameState)Game.getInstance().getCurrentState()).removeChampion(this);
 			}
 		}
 
 		public string getName() {
 			return m_name;
-		}
-
-		public void kill() {
-			m_currentPosition.p_object = null;
 		}
 
 		public override int CompareTo(GameObject a_gameObject) {

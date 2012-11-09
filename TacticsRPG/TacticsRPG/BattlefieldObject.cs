@@ -69,7 +69,7 @@ namespace TacticsRPG {
 		#region Movement & Facing
 		public virtual bool moveTo(Tile a_tile) {
 			if (m_moveQueue.Count == 0) {
-				m_moveQueue = AStar.findPath(m_currentPosition, a_tile, AStar.PathfindState.Hexagon);
+				m_moveQueue = ((GameState)Game.getInstance().getCurrentState()).m_pathFinder.findPath(m_currentPosition.getMapPosition(), a_tile.getMapPosition());
 			}
 			return true;
 		}
@@ -127,22 +127,12 @@ namespace TacticsRPG {
 			}
 		}
 
-		public TargetState p_targetState {
-			get {
-				return m_targetState;
-			}
-			set {
-				m_targetState = value;
-			}
+		public TargetState getTargetState() {
+			return m_targetState;
 		}
 
-		public FacingState p_facing {
-			get {
-				return m_facingState;
-			}
-			set {
-				m_facingState = value;
-			}
+		public FacingState getFacingState() {
+			return m_facingState;
 		}
 		#endregion
 
@@ -158,6 +148,18 @@ namespace TacticsRPG {
 			if (this is Champion) {
 				a_effect.invokeEffect((Champion)this);
 			}
+		}
+
+		public virtual void select() {
+			m_targetState = TargetState.Targeted;
+		}
+
+		public virtual void deselect() {
+			m_targetState = TargetState.Normal;
+		}
+
+		public virtual void kill() {
+			m_currentPosition.p_object = null;
 		}
 	}
 }

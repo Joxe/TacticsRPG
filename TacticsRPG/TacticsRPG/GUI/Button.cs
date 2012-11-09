@@ -44,6 +44,8 @@ namespace TacticsRPG {
 			: base(a_screenPosition)
 		{
 			m_buttonTexture = a_buttonTexture;
+			LuaParser.registerMethod("updateButton", this, "update");
+			LuaParser.registerMethod("drawButton", this, "draw");
 		}
 
 		//Summary

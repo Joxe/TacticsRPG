@@ -60,6 +60,12 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="lua51">
+      <HintPath>..\TacticsRPGContent\DLL\lua51.dll</HintPath>
+    </Reference>
+    <Reference Include="LuaInterface">
+      <HintPath>..\TacticsRPGContent\DLL\LuaInterface.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <Private>False</Private>
     </Reference>
@@ -119,7 +125,8 @@
     <Compile Include="DataClasses\ElementsData.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="DataClasses\RacesData.cs" />
-    <Compile Include="GameGUI.cs" />
+    <Compile Include="GUI\GUI.cs" />
+    <Compile Include="GUI\GuiElement.cs" />
     <Compile Include="GUI\Button.cs" />
     <Compile Include="AbilityEffects\Effect.cs" />
     <Compile Include="GUI\ButtonList.cs" />
@@ -127,6 +134,7 @@
     <Compile Include="GUI\Text.cs" />
     <Compile Include="GUI\TextButton.cs" />
     <Compile Include="GUI\TextField.cs" />
+    <Compile Include="LuaParser.cs" />
     <Compile Include="Handlers\ContentLoader.cs" />
     <Compile Include="Managers\AStar.cs" />
     <Compile Include="Camera.cs" />
@@ -140,6 +148,7 @@
     <Compile Include="Managers\Loader.cs" />
     <Compile Include="Handlers\MouseHandler.cs" />
     <Compile Include="Handlers\MusicHandler.cs" />
+    <Compile Include="Interfaces\PathFinder.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Primitives\Box.cs" />
     <Compile Include="Primitives\Line.cs" />
@@ -213,6 +222,12 @@
       <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

@@ -6,21 +6,17 @@ using System.Text;
 using Microsoft.Xna.Framework;
 
 namespace TacticsRPG {
-	public class AStar {
-		public enum PathfindState {
-			Hexagon, Square
-		}
-
+	public class AStar : PathFinder {
 		private static double getPathValue(Tile a_curTile, Tile a_endTile) {
 			return Math.Sqrt(Math.Pow(a_curTile.getMapPosition().X - a_endTile.getMapPosition().X, 2) + Math.Pow(a_curTile.getMapPosition().Y - a_endTile.getMapPosition().Y, 2));
 		}
 
-		public static Stack<Tile> findPath(Vector2 a_startPos, Vector2 a_endPos, PathfindState a_currentMapType) {
+		public override Stack<Tile> findPath(Vector2 a_startPos, Vector2 a_endPos) {
 			TileMap l_tileMap = ((GameState)Game.getInstance().getCurrentState()).getTileMap();
-			return findPath(l_tileMap.getTile(a_startPos), l_tileMap.getTile(a_endPos), a_currentMapType);
+			return findPath(l_tileMap.getTile(a_startPos), l_tileMap.getTile(a_endPos));
 		}
 
-		public static Stack<Tile> findPath(Tile a_startTile, Tile a_endTile, PathfindState a_currentMapType) {
+		private static Stack<Tile> findPath(Tile a_startTile, Tile a_endTile) {
 			TileMap l_tileMap = ((GameState)Game.getInstance().getCurrentState()).getTileMap();
 			Dictionary<Tile, double> l_closedSet	= new Dictionary<Tile, double>();
 			Dictionary<Tile, double> l_openSet		= new Dictionary<Tile, double>();
@@ -52,15 +48,12 @@ namespace TacticsRPG {
 				l_openSet.Remove(l_current.Key);
 				l_closedSet.Add(l_current.Key, l_current.Value);
 
-				switch (a_currentMapType) {
-					case PathfindState.Hexagon:
-						Xcheck = MathManager.isEven(l_current.Key.X) ? MathManager.evenX : MathManager.oddX;
-						Ycheck = MathManager.isEven(l_current.Key.X) ? MathManager.evenY : MathManager.oddY;
-						break;
-					case PathfindState.Square:
-						Xcheck = new int[] { 0, 1, 0, -1 };
-						Ycheck = new int[] { -1, 0, 1, 0 };
-						break;
+				if (MathManager.isEven(l_current.Key.X)) {
+					Xcheck = new[] { -1,  0,  1,  1,  0, -1 };
+					Ycheck = new[] {  1, -1,  0,  1,  1,  0 };
+				} else {
+					Xcheck = new[] {  1,  0,  1, -1,  0, -1 };
+					Ycheck = new[] { -1, -1,  0, -1,  1,  0 };
 				}
 
 				for (int i = 0; i < Xcheck.Length && i < Ycheck.Length; i++) {

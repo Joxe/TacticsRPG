@@ -23,10 +23,11 @@ namespace TacticsRPG {
 			Normal, Hover, Pressed, Toggle
 		}
 
-		public Tile(Vector2 a_position, int a_height) : base(a_position * new Vector2(TILE_WIDTH - 32, TILE_HEIGHT) - new Vector2(0, a_height * 40)) {
+		public Tile(Vector2 a_position, int a_height, TileMap a_tileMap) : base(a_position * new Vector2(TILE_WIDTH - 32, TILE_HEIGHT) - new Vector2(0, a_height * 40)) {
 			X = (int)a_position.X;
 			Y = (int)a_position.Y;
 			m_layer = 0.500f - a_position.Y / 1000f;
+			m_tileMap = a_tileMap;
 
 			if (MathManager.isEven((int)a_position.X)) {
 				m_layer -= 0.0001f;
@@ -105,13 +106,8 @@ namespace TacticsRPG {
 			m_tileMap.getSpriteDict()[m_tileState].draw(this);
 		}
 
-		public TileMap p_tileMap {
-			get {
-				return m_tileMap;
-			}
-			set {
-				m_tileMap = value;
-			}
+		public TileMap getTileMap() {
+			return m_tileMap;
 		}
 
 		public Vector2 getMapPosition() {
@@ -167,20 +163,6 @@ namespace TacticsRPG {
 
 		public bool isObstructed() {
 			return m_obstructingObject != null;
-		}
-
-		public void castAbility(Ability a_ability) {
-			foreach (Tile l_tile in m_tileMap.getRangeOfTiles(this, a_ability.getRange())) {
-				foreach (Effect l_effect in a_ability.getEffects()) {
-					l_tile.castEffect(l_effect);
-				}
-			}
-		}
-
-		public void castEffect(Effect a_effect) {
-			if (m_obstructingObject != null) {
-				m_obstructingObject.addEffect(a_effect);
-			}
 		}
 	}
 }

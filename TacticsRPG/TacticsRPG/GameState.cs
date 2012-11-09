@@ -11,13 +11,14 @@ namespace TacticsRPG {
 		private Dictionary<string, Champion> m_champions;
 		private Champion m_selectedChampion;
 		private LinkedList<GuiObject> m_championInfo;
-		private GameGUI m_gameGui;
+		private GUI m_gameGui;
 		private List<Champion> m_battleQueue;
+		public PathFinder m_pathFinder = new AStar();
 
 		public GameState() : base() {
 			m_champions = new Dictionary<string, Champion>();
 			m_guiList.AddLast(m_championInfo = new LinkedList<GuiObject>());
-			m_gameGui = new GameGUI();
+			m_gameGui = new GUI();
 		}
 
 		public override void load() {
@@ -47,28 +48,25 @@ namespace TacticsRPG {
 		}
 
 		private void updateMouse() {
-			if (m_gameGui.mouseOverGUI()) {
+			if (m_gameGui.collidedWithGUI()) {
 				return;
 			}
 			if (MouseHandler.mmbPressed()) {
 				CameraHandler.cameraDrag();
 			}
 			if (MouseHandler.lmbDown()) {
-				if (KeyboardHandler.keyPressed(Keys.LeftShift)) {
-					if (m_gameGui.getState() != GameGUI.GuiState.AttackTarget) {
-						foreach (Champion l_champion in m_champions.Values) {
-							if (l_champion.getHitBox().contains(MouseHandler.worldMouse())) {
-								p_selectedChampion = l_champion;
-							}
+				if (m_gameGui.getState() != GUI.GuiState.AttackTarget) {
+					foreach (Champion l_champion in m_champions.Values) {
+						if (l_champion.getHitBox().contains(MouseHandler.worldMouse())) {
+							selectChampion(l_champion);
 						}
 					}
 				}
 			}
 			if (MouseHandler.rmbDown()) {
-				if (KeyboardHandler.keyPressed(Keys.LeftShift)) {
-					if (m_selectedChampion != null) {
-						deselectChampion();
-					}
+				//TODO DEBUG!!!
+				if (m_selectedChampion != null) {
+					deselectChampion();
 				}
 			}
 			if (MouseHandler.scrollUp()) {
@@ -79,6 +77,7 @@ namespace TacticsRPG {
 		}
 
 		private void updateKeyboard() {
+			//TODO DEBUG!!!
 			if (KeyboardHandler.keyPressed(Keys.D)) {
 				m_champions.Add("Joxe", new Champion(m_tileMap.p_hover.getMapPosition(), "Joxe", "Warrior", true, "Human"));
 				m_tileMap.p_hover.p_object = m_champions["Joxe"];
@@ -93,7 +92,7 @@ namespace TacticsRPG {
 
 		private void updateBattle() {
 			if (m_selectedChampion == null) {
-				p_selectedChampion = m_battleQueue.First();
+				m_selectedChampion = m_battleQueue.First();
 				m_selectedChampion.championsTurn();
 			}
 			int negativeSpeed = m_selectedChampion.p_speed;
@@ -122,35 +121,34 @@ namespace TacticsRPG {
 			m_tileMap.load();
 		}
 
-		public Champion p_selectedChampion {
-			get {
-				return m_selectedChampion;
+		private void selectChampion(Champion a_champion) {
+			deselectChampion();
+			m_selectedChampion = a_champion;
+
+			if (a_champion == null) {
+				return;
 			}
-			set {
-				if (m_selectedChampion != null) {
-					deselectChampion();
-				}
-				m_selectedChampion = value;
-				m_selectedChampion.p_targetState = Champion.TargetState.Targeted;
-				m_selectedChampion.p_actionTaken = false;
-				m_championInfo.Clear();
-				m_championInfo.AddLast(new Text(new Vector2(10, 10), m_selectedChampion.ToString(), "Arial", Color.Black, false));
-				foreach (Text l_text in m_selectedChampion.statsToTextList()) {
-					m_championInfo.AddLast(l_text);
-				}
-				GuiListManager.setListPosition(m_championInfo, new Vector2(10, 10), new Vector2(0, 20));
-				GuiListManager.loadList(m_championInfo);
-				m_gameGui.championChanged();
-			}
+
+			m_selectedChampion.select();
+
+			GuiListManager.setListPosition(m_championInfo, new Vector2(10, 10), new Vector2(0, 20));
+			GuiListManager.loadList(m_championInfo);
 		}
 
 		public void deselectChampion() {
-			m_selectedChampion.p_targetState = Champion.TargetState.Normal;
+			if (m_selectedChampion == null) {
+				return;
+			}
+			m_selectedChampion.deselect();
 			m_championInfo.Clear();
 			m_selectedChampion = null;
 			if (m_battleQueue != null) {
 				m_battleQueue.Sort();
 			}
+		}
+
+		public Champion getSelectedChampion() {
+			return m_selectedChampion;
 		}
 
 		public LinkedList<Champion> getChampions() {
@@ -172,6 +170,10 @@ namespace TacticsRPG {
 				m_battleQueue.Add(l_champion);
 			}
 			m_battleQueue.Sort();
+		}
+
+		public GUI getGUI() {
+			return m_gameGui;
 		}
 	}
 }
